@@ -1,5 +1,8 @@
 import React, { Component } from 'react';
 import UserProfile from './UserProfile.js'
+import Pantry from './Pantry.js'
+import Recipes from './Recipes.js'
+import NewRecipe from './NewRecipe.js'
 
 class HomePage extends Component {
   
@@ -7,7 +10,7 @@ class HomePage extends Component {
     super()
     this.state = {
         user: "Not the name",
-        view: <UserProfile />
+        view: <UserProfile showPantry={ this.showPantry } showRecipes={ this.showRecipes } newRecipe={ this.newRecipe } />
     }
   }
 
@@ -19,8 +22,25 @@ class HomePage extends Component {
         user: user.name
       })
     })
-    
   }
+
+  showPantry = () => {
+    this.setState({
+        view: <Pantry />
+    })
+  }
+
+  showRecipes = () => {
+    this.setState({
+        view: <Recipes />
+    })
+  }
+
+  newRecipe = () => {
+    this.setState({
+        view: <NewRecipe />
+    })
+  } 
 
   render() {
     return (
