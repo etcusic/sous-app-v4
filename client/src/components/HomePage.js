@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import UserProfile from './UserProfile.js'
 import Pantry from './Pantry.js'
 import Recipes from './Recipes.js'
+import Recipe from './Recipe.js'
 import NewRecipe from './NewRecipe.js'
 
 class HomePage extends Component {
@@ -38,7 +39,17 @@ class HomePage extends Component {
 
   showRecipes = () => {
     this.setState({
-        view: <Recipes />
+        view: <Recipes showRecipe={this.showRecipe} />
+    })
+  }
+
+  showRecipe = (id) => {
+    fetch(`http://localhost:3001/users/1/recipes/${id}`)
+    .then(resp =>  resp.json())
+    .then(recipe => {
+      this.setState({
+        view: <Recipe recipe={recipe} />
+      })
     })
   }
 
