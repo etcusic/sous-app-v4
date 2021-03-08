@@ -10,16 +10,17 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_03_08_150603) do
+ActiveRecord::Schema.define(version: 2021_03_08_210619) do
 
   create_table "grocery_list_ingredients", force: :cascade do |t|
     t.integer "grocery_list_id", null: false
-    t.integer "ingredient_id", null: false
     t.float "quantity"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
+    t.string "name"
+    t.string "unit"
+    t.float "cost_per_unit"
     t.index ["grocery_list_id"], name: "index_grocery_list_ingredients_on_grocery_list_id"
-    t.index ["ingredient_id"], name: "index_grocery_list_ingredients_on_ingredient_id"
   end
 
   create_table "grocery_lists", force: :cascade do |t|
@@ -27,14 +28,6 @@ ActiveRecord::Schema.define(version: 2021_03_08_150603) do
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
     t.index ["user_id"], name: "index_grocery_lists_on_user_id"
-  end
-
-  create_table "ingredients", force: :cascade do |t|
-    t.string "name"
-    t.string "unit"
-    t.float "cost_per_unit"
-    t.datetime "created_at", precision: 6, null: false
-    t.datetime "updated_at", precision: 6, null: false
   end
 
   create_table "pantries", force: :cascade do |t|
@@ -46,21 +39,23 @@ ActiveRecord::Schema.define(version: 2021_03_08_150603) do
 
   create_table "pantry_ingredients", force: :cascade do |t|
     t.integer "pantry_id", null: false
-    t.integer "ingredient_id", null: false
     t.float "quantity"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
-    t.index ["ingredient_id"], name: "index_pantry_ingredients_on_ingredient_id"
+    t.string "name"
+    t.string "unit"
+    t.float "cost_per_unit"
     t.index ["pantry_id"], name: "index_pantry_ingredients_on_pantry_id"
   end
 
   create_table "recipe_ingredients", force: :cascade do |t|
     t.integer "recipe_id", null: false
-    t.integer "ingredient_id", null: false
     t.float "quantity"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
-    t.index ["ingredient_id"], name: "index_recipe_ingredients_on_ingredient_id"
+    t.string "name"
+    t.string "unit"
+    t.float "cost_per_unit"
     t.index ["recipe_id"], name: "index_recipe_ingredients_on_recipe_id"
   end
 
@@ -82,12 +77,9 @@ ActiveRecord::Schema.define(version: 2021_03_08_150603) do
   end
 
   add_foreign_key "grocery_list_ingredients", "grocery_lists"
-  add_foreign_key "grocery_list_ingredients", "ingredients"
   add_foreign_key "grocery_lists", "users"
   add_foreign_key "pantries", "users"
-  add_foreign_key "pantry_ingredients", "ingredients"
   add_foreign_key "pantry_ingredients", "pantries"
-  add_foreign_key "recipe_ingredients", "ingredients"
   add_foreign_key "recipe_ingredients", "recipes"
   add_foreign_key "recipes", "users"
 end
