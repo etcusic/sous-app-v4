@@ -1,4 +1,3 @@
-class PantryIngredient < AbstractIngredient
+class PantryIngredient < Ingredient
   belongs_to :pantry
-  belongs_to :ingredient
 end

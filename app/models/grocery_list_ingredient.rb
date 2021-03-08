@@ -1,4 +1,3 @@
-class GroceryListIngredient < AbstractIngredient
+class GroceryListIngredient < Ingredient
   belongs_to :grocery_list
-  belongs_to :ingredient
 end

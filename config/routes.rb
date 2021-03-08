@@ -1,6 +1,6 @@
 Rails.application.routes.draw do
   resources :users do 
-    resources :pantries, only: [:show]
+    resources :pantries, only: [:show] 
     resources :grocery_lists
     resources :recipes
   end
