@@ -9,25 +9,27 @@ class Pantry extends Component {
         }
       }
     
-      componentDidMount(){
+    componentDidMount(){
         fetch(`http://localhost:3001/users/1/pantries/1`)
         .then(resp =>  resp.json())
         .then(ingredients => {
-          console.log(ingredients)
-          this.setState({
+            this.setState({
             ingredients: ingredients
-          })
+            })
         })
-      }
+    }
 
   render() {
     return (
     <div>
         <h2>Pantry: </h2>
-        {/* turn this into a table with ingredients output */}
-        <ul>
-            { this.state.ingredients.map(ing => <li>{ing.id} - {ing.quantity}</li>) }
-        </ul>
+        <table>
+            <tr>
+                <th>Ingredient: </th>
+                <th>Quantity: </th>
+            </tr>
+            { this.state.ingredients.map(ingredient => <tr><td>{ingredient.name}</td><td>{`${ingredient.quantity} ${ingredient.unit}`}</td></tr>) }
+        </table>
     </div>
     );
   }

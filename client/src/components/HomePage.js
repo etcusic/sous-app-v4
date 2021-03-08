@@ -24,6 +24,12 @@ class HomePage extends Component {
     })
   }
 
+  profilePage = () => {
+      this.setState({
+          view: <UserProfile showPantry={ this.showPantry } showRecipes={ this.showRecipes } newRecipe={ this.newRecipe } />
+      })
+  }
+
   showPantry = () => {
     this.setState({
         view: <Pantry />
@@ -46,7 +52,7 @@ class HomePage extends Component {
     return (
     <div>
         <header>
-            <h1>{ this.state.user }</h1>
+            <h1 onClick={ this.profilePage }>{ this.state.user }</h1>
         </header>
 
         <body>
