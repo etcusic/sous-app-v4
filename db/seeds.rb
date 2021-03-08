@@ -53,16 +53,16 @@ FOOD.each do |item|
 end
 
 Ingredient.all.each do |ing|
-    PantryIngredient.build(pantry_id: 1, ingredient_id: ing.id, quantity: rand(2..80))
+    PantryIngredient.create(pantry_id: 1, ingredient_id: ing.id, quantity: rand(2..80))
 end
 
 
-Recipe.create(user_id: 1, name: "Garlic Chicken", portions: 4, instructions: "Cook rice, cut veggies, sautee all the things")
-Recipe.create(user_id: 1, name: "Cashew Chicken", portions: 4, instructions: "Cook rice, cut veggies, do a voodoo chant, sautee and add sauce")
-Recipe.create(user_id: 1, name: "Mushroom Chicken", portions: 4, instructions: "Cook all the things")
-Recipe.create(user_id: 1, name: "Turkey Spaghetti", portions: 4, instructions: "Boil pasta, cook the things, add sauce, injest carbies")
-Recipe.create(user_id: 1, name: "Turkey Tacos", portions: 4, instructions: "Butter dem tortillas, cook meat, sprinkle lime juice, eat and be happy")
-Recipe.create(user_id: 1, name: "Chicken Salad", portions: 4, instructions: "Veggies in bowl, chicken on top")
+Recipe.create(user_id: 1, name: "Garlic Chicken", servings: rand(2..8), instructions: "Cook rice, cut veggies, sautee all the things")
+Recipe.create(user_id: 1, name: "Cashew Chicken", servings: rand(2..8), instructions: "Cook rice, cut veggies, do a voodoo chant, sautee and add sauce")
+Recipe.create(user_id: 1, name: "Mushroom Chicken", servings: rand(2..8), instructions: "Cook all the things")
+Recipe.create(user_id: 1, name: "Turkey Spaghetti", servings: rand(2..8), instructions: "Boil pasta, cook the things, add sauce, injest carbies")
+Recipe.create(user_id: 1, name: "Turkey Tacos", servings: rand(2..8), instructions: "Butter dem tortillas, cook meat, sprinkle lime juice, eat and be happy")
+Recipe.create(user_id: 1, name: "Chicken Salad", servings: rand(2..8), instructions: "Veggies in bowl, chicken on top")
 
 def add_ingredients(recipe_id, supply_ids)
     supply_ids.map{| id | RecipeIngredient.create(recipe_id: recipe_id, ingredient_id: id, quantity: rand(1..20))}
