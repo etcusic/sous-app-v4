@@ -49,13 +49,9 @@ FOOD = [
 ]
 
 FOOD.each do |item| 
-    Ingredient.create(item)
+    item[:quantity] = rand(2..80)
+    Pantry.first.ingredients.build(item).save
 end
-
-Ingredient.all.each do |ing|
-    PantryIngredient.create(pantry_id: 1, ingredient_id: ing.id, quantity: rand(2..80))
-end
-
 
 Recipe.create(user_id: 1, name: "Garlic Chicken", servings: rand(2..8), instructions: "Cook rice, cut veggies, sautee all the things")
 Recipe.create(user_id: 1, name: "Cashew Chicken", servings: rand(2..8), instructions: "Cook rice, cut veggies, do a voodoo chant, sautee and add sauce")
@@ -65,7 +61,11 @@ Recipe.create(user_id: 1, name: "Turkey Tacos", servings: rand(2..8), instructio
 Recipe.create(user_id: 1, name: "Chicken Salad", servings: rand(2..8), instructions: "Veggies in bowl, chicken on top")
 
 def add_ingredients(recipe_id, supply_ids)
-    supply_ids.map{| id | RecipeIngredient.create(recipe_id: recipe_id, ingredient_id: id, quantity: rand(1..20))}
+    supply_ids.map do | id | 
+        ing = PantryIngredient.find_by_id(id)
+        hash = { recipe_id: recipe_id, name: ing.name, unit: ing.unit, cost_per_unit: ing.cost_per_unit, quantity: rand(1..20) }
+        RecipeIngredient.create(hash)
+    end
 end
 
 add_ingredients(1, [1, 6, 20, 16, 14, 13])
