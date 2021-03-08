@@ -6,6 +6,9 @@ class UserProfile extends Component {
     return (
     <div>
         User Profile Component
+        <p onClick={this.props.showPantry}>Pantry |</p>
+        <p onClick={this.props.showRecipes}>| Recipes |</p>
+        <p onClick={this.props.newRecipe}>| Create New Recipe</p>
     </div>
     );
   }
