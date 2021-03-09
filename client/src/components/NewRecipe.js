@@ -9,6 +9,7 @@ class NewRecipe extends Component {
   constructor(){
     super()
     this.state = {
+      ingredientComponents: [],
       recipeName: "",
       recipeServings: 0,
       recipeIngredients: [],
@@ -17,14 +18,12 @@ class NewRecipe extends Component {
   }
 
   componentDidMount(){
-    this.setState({
-      recipeIngredients: [<NewIngredient ingredients={this.props.ingredients} />]
-    })
+    this.addIngredient()
   }
 
   sendRecipe = (event) => {
     event.preventDefault()
-    console.log("send recipe")
+    console.log("send recipe => ")
     console.log(this.state)
       // const configObject = {
       //     method: 'POST',
@@ -48,10 +47,13 @@ class NewRecipe extends Component {
   }
 
   addIngredient = () => {
-    let obj = this.state.recipeIngredients
-    obj.push(<NewIngredient ingredients={this.props.ingredients} />)
+    // LOOK INTO ADDING IDENTIFIERS FOR EACH HTML ELEMENT TO BE FOUND EASIER
+    let arr = [...this.state.ingredientComponents]
+    arr.push(<NewIngredient ingredients={this.props.ingredients} changeIngredientName={this.changeIngredientName} changeIngredientQuantity={this.changeIngredientQuantity} changeIngredientUnit={this.changeIngredientUnit} />)
+    let ings = [...this.state.recipeIngredients, {}]
     this.setState({
-      recipeIngredients: obj
+      ingredientComponents: arr,
+      recipeIngredients: ings
     })
   }
 
@@ -73,12 +75,35 @@ class NewRecipe extends Component {
     })
   }
 
-  changeIngredients = event => {
-    let obj = event.target.value
-    console.log(obj)
-    // this.setState({
-    //   recipeIngredients: event.target.value
-    // })
+  // should be able to hone this down to 1 function rather than 3 with arguments and block notation - also whittle down the functions processing
+  changeIngredientName = event => {
+    let name = event.target.value
+    let arr = this.state.recipeIngredients
+    let obj = arr[arr.length - 1]
+    obj.name = name
+    this.setState({
+      recipeIngredients: arr
+    })
+  }
+
+  changeIngredientQuantity = event => {
+    let quantity = event.target.value
+    let arr = this.state.recipeIngredients
+    let obj = arr[arr.length - 1]
+    obj.quantity = quantity
+    this.setState({
+      recipeIngredients: arr
+    })
+  }
+
+  changeIngredientUnit = event => {
+    let unit = event.target.value
+    let arr = this.state.recipeIngredients
+    let obj = arr[arr.length - 1]
+    obj.unit = unit
+    this.setState({
+      recipeIngredients: arr
+    })
   }
 
   render() {
@@ -94,7 +119,7 @@ class NewRecipe extends Component {
           {/* set ingredients list up as a table??? */}
           <div id="new-recipe-ingredients">
             {/* <IngredientNestedForm ingredients={this.state.recipeIngredients} addIngredient={this.addIngredient} /> */}
-            { this.state.recipeIngredients.map(ing => ing) }
+            { this.state.ingredientComponents .map(ing => ing) }
           </div>
           
           <p onClick={this.addIngredient}>++ Add Ingredient ++</p> <br></br> 
