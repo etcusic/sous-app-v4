@@ -1,8 +1,22 @@
 import React, { Component } from 'react';
+import NewIngredient from './NewIngredient'
 
 class NewRecipe extends Component {
 
-  sendRecipe (recipe) {
+  constructor(){
+    super()
+    this.state = {
+      newIngredients: []
+    }
+  }
+
+  componentDidMount(){
+    this.setState({
+      newIngredients: [<NewIngredient ingredients={this.props.ingredients}/>]
+    })
+  }
+
+  sendRecipe = (recipe) => {
       const configObject = {
           method: 'POST',
           headers: {
@@ -24,7 +38,13 @@ class NewRecipe extends Component {
           // add catch
   }
 
-  
+  addIngredient = () => {
+    let obj = this.state.newIngredients
+    obj.push(<NewIngredient ingredients={this.props.ingredients} />)
+    this.setState({
+      newIngredients: obj
+    })
+  }
 
   render() {
     return (
@@ -32,15 +52,10 @@ class NewRecipe extends Component {
         New Recipe:
         <form>
           <div id="new-recipe-ingredients">
-            <select name="ingredients" id="new-recipe-ingredients">
-                { this.props.ingredients.map(ingredient => <option placeholder="ingredient" value={ ingredient.name }>{ ingredient.name }</option>)}
-            </select>
-            <input type ="number"></input>
-            <input type ="text" placeholder="unit"></input> <br></br>
+            { this.state.newIngredients.map(ing => ing) }
           </div>
-          
 
-          <p>++ Add Ingredient ++</p>
+          <p onClick={this.addIngredient}>++ Add Ingredient ++</p>
         </form>
     </div>
     );
