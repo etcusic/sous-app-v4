@@ -16,10 +16,10 @@ class Recipe extends Component {
         <br></br>
         <br></br>
         <br></br>
-        <div>
-            Instructions:
-            <p>{ this.props.recipe.instructions }</p>
-        </div>
+        <div>Estimated Raw Cost: { this.props.recipe.total_cost }</div>
+        <br></br>
+        <br></br>
+        <div>Instructions: { this.props.recipe.instructions }</div>
     </div>
     );
   }
