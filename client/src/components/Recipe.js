@@ -20,6 +20,9 @@ class Recipe extends Component {
         <br></br>
         <br></br>
         <div>Instructions: { this.props.recipe.instructions }</div>
+        <br></br>
+        <br></br>
+        <div>{ this.props.recipe.in_pantry ? "There are enough ingredients in the pantry for this recipe!" : "Not enough ingredients in pantry for this recipe"}</div>
     </div>
     );
   }
