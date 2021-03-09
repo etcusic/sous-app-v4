@@ -10,7 +10,7 @@ class HomePage extends Component {
   constructor(){
     super()
     this.state = {
-        user: "Not the name",
+        user: "",
         view: <UserProfile showPantry={ this.showPantry } showRecipes={ this.showRecipes } newRecipe={ this.newRecipe } />,
         ingredients: []
     }
