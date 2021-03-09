@@ -5,6 +5,7 @@ class NewIngredient extends Component {
   render() {
     return (
     <div>
+        Ingredient: 
         <select name="ingredients" id="new-recipe-ingredients">
             { this.props.ingredients.map(ingredient => <option placeholder="ingredient" value={ ingredient.name }>{ ingredient.name }</option>)}
         </select>
