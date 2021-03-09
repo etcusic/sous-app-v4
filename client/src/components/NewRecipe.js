@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import IngredientNestedForm from './IngredientNestedForm.js'
 import NewIngredient from './NewIngredient'
 
 class NewRecipe extends Component {
@@ -8,7 +9,6 @@ class NewRecipe extends Component {
   constructor(){
     super()
     this.state = {
-      newIngredients: [],
       recipeName: "",
       recipeServings: 0,
       recipeIngredients: [],
@@ -18,7 +18,7 @@ class NewRecipe extends Component {
 
   componentDidMount(){
     this.setState({
-      newIngredients: [<NewIngredient ingredients={this.props.ingredients}/>]
+      recipeIngredients: [<NewIngredient ingredients={this.props.ingredients} />]
     })
   }
 
@@ -48,10 +48,10 @@ class NewRecipe extends Component {
   }
 
   addIngredient = () => {
-    let obj = this.state.newIngredients
+    let obj = this.state.recipeIngredients
     obj.push(<NewIngredient ingredients={this.props.ingredients} />)
     this.setState({
-      newIngredients: obj
+      recipeIngredients: obj
     })
   }
 
@@ -74,7 +74,7 @@ class NewRecipe extends Component {
   }
 
   changeIngredients = event => {
-    obj = event.target.value
+    let obj = event.target.value
     console.log(obj)
     // this.setState({
     //   recipeIngredients: event.target.value
@@ -93,7 +93,8 @@ class NewRecipe extends Component {
           
           {/* set ingredients list up as a table??? */}
           <div id="new-recipe-ingredients">
-            { this.state.newIngredients.map(ing => ing) }
+            {/* <IngredientNestedForm ingredients={this.state.recipeIngredients} addIngredient={this.addIngredient} /> */}
+            { this.state.recipeIngredients.map(ing => ing) }
           </div>
           
           <p onClick={this.addIngredient}>++ Add Ingredient ++</p> <br></br> 
