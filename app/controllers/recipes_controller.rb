@@ -6,8 +6,8 @@ class RecipesController < ApplicationController
     end
 
     def show
-        binding.pry
-        # @recipe = Recipe.find_by_id()
+        @recipe = Recipe.find_by_id(params[:id])
+        render json: @recipe.with_ingredients
     end
 
 end

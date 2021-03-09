@@ -1,3 +1,3 @@
-class RecipeIngredient < Ingredient
+class RecipeIngredient < ApplicationRecord
   belongs_to :recipe
 end
