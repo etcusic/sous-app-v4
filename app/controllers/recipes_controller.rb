@@ -10,4 +10,8 @@ class RecipesController < ApplicationController
         render json: @recipe.with_ingredients
     end
 
+    def create
+        binding.pry
+    end
+
 end

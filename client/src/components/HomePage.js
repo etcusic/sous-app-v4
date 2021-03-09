@@ -11,7 +11,8 @@ class HomePage extends Component {
     super()
     this.state = {
         user: "Not the name",
-        view: <UserProfile showPantry={ this.showPantry } showRecipes={ this.showRecipes } newRecipe={ this.newRecipe } />
+        view: <UserProfile showPantry={ this.showPantry } showRecipes={ this.showRecipes } newRecipe={ this.newRecipe } />,
+        ingredients: []
     }
   }
 
@@ -20,7 +21,8 @@ class HomePage extends Component {
     .then(resp =>  resp.json())
     .then(user => {
       this.setState({
-        user: user.name
+        user: user.name,
+        ingredients: user.ingredients
       })
     })
   }
@@ -33,7 +35,7 @@ class HomePage extends Component {
 
   showPantry = () => {
     this.setState({
-        view: <Pantry />
+        view: <Pantry ingredients={ this.state.ingredients }/>
     })
   }
 
@@ -56,7 +58,7 @@ class HomePage extends Component {
 
   newRecipe = () => {
     this.setState({
-        view: <NewRecipe />
+        view: <NewRecipe ingredients={ this.state.ingredients }/>
     })
   } 
 

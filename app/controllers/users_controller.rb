@@ -6,8 +6,11 @@ class UsersController < ApplicationController
     end
 
     def show
+        # this needs to be moved to the User model
         @user = User.first
-        render json: @user
+        ingredients = @user.pantry.ingredients
+        hash = {name: @user.name, ingredients: ingredients}
+        render json: hash
     end
 
 end
