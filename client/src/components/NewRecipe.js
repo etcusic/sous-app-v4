@@ -5,7 +5,7 @@ import NewIngredient from './NewIngredient'
 class NewRecipe extends Component {
 
   // STANDARDIZE FORM TO HANDLE EDIT RECIPE AS WELL
-
+  // refactor to let state have a recipe object that doesn't need to be converted
   constructor(){
     super()
     this.state = {
@@ -21,28 +21,38 @@ class NewRecipe extends Component {
     this.addIngredient()
   }
 
+  convertStateToRecipe(){
+    return {
+      name: this.state.recipeName,
+      servings: this.state.recipeServings,
+      instructions: this.state.recipeInstructions,
+      ingredients: this.state.recipeIngredients
+    }
+  }
+
   sendRecipe = (event) => {
     event.preventDefault()
     console.log("send recipe => ")
     console.log(this.state)
-      // const configObject = {
-      //     method: 'POST',
-      //     headers: {
-      //         "Content-Type": 'application/json',
-      //         "Accept": 'application/json'
-      //     },
-      //     body: JSON.stringify(recipe)
-      // }
+    let recipe = this.convertStateToRecipe()  
+    const configObject = {
+        method: 'POST',
+        headers: {
+            "Content-Type": 'application/json',
+            "Accept": 'application/json'
+        },
+        body: JSON.stringify(recipe)
+    }
 
-      // fetch(`http://localhost:3000/users/1/recipes`, configObject)
-      //     .then(function(response){
-      //         return response.json()
-      //     })
-      //     .then(function(json){
-      //         // do I need to do something with the data here ??
-      //       console.log(json)
-      //       console.log("should I do something here??")
-      //     })
+    fetch(`http://localhost:3001/users/1/recipes`, configObject)
+      .then(function(response){
+          return response.json()
+      })
+      .then(function(json){
+          // do I need to do something with the data here ??
+        console.log(json)
+        console.log("should I do something here??")
+      })
           // add catch
   }
 
