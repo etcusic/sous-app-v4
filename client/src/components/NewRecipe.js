@@ -47,13 +47,8 @@ class NewRecipe extends Component {
     }
 
     fetch(`http://localhost:3001/users/1/recipes`, configObject)
-      .then(function(response){
-          return response.json()
-      })
-      .then(function(json){
-        console.log(json)
-        console.log("should I do something here??")
-      })
+      .then(response => response.json())
+      .then(json => this.props.showRecipe(json.id))
           // add catch
   }
 

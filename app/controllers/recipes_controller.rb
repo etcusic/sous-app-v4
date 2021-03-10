@@ -14,7 +14,7 @@ class RecipesController < ApplicationController
         # NEED TO ACCOUNT FOR EDGE CASES 
         @recipe = Recipe.create(recipe_params)
         Ingredient.createRecipeIngredientsFromPantry(ingredient_params, @recipe.id)
-        redirect_to recipe_path(@recipe)
+        redirect_to user_recipe_path(User.find_by_id(@recipe.user_id), @recipe)
     end
 
     private
