@@ -11,10 +11,10 @@ class RecipesController < ApplicationController
     end
 
     def create
-        hash = recipe_params
-        hash[:ingredients] = ingredient_params
-        # @recipe = Recipe.create(recipe_params)
-        binding.pry
+        # NEED TO ACCOUNT FOR EDGE CASES 
+        @recipe = Recipe.create(recipe_params)
+        ingredient_params.each{|ing| @recipe.ingredients.build(ing).save}
+        redirect_to recipe_path(@recipe)
     end
 
     private
