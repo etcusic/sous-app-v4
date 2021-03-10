@@ -13,7 +13,7 @@ class RecipesController < ApplicationController
     def create
         # NEED TO ACCOUNT FOR EDGE CASES 
         @recipe = Recipe.create(recipe_params)
-        ingredient_params.each{|ing| @recipe.ingredients.build(ing).save}
+        Ingredient.createRecipeIngredientsFromPantry(ingredient_params, @recipe.id)
         redirect_to recipe_path(@recipe)
     end
 
@@ -24,7 +24,7 @@ class RecipesController < ApplicationController
     end
 
     def ingredient_params 
-        params[:ingredients] .map{|x| {name: x[:name], quantity: x[:quantity], unit: x[:unit]}}
+        params[:ingredients] .map{|ingredient| {id: ingredient[:id], quantity: ingredient[:quantity], unit: ingredient[:unit]}}
     end
 
 end

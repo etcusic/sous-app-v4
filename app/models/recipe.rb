@@ -16,7 +16,8 @@ class Recipe < ApplicationRecord
   end
 
   def total_cost
-    self.ingredients.map{ | ing | ing.quantity * ing. cost_per_unit } .reduce(&:+).round(2)
+    x = self.ingredients.map{ | ing | ing.quantity * ing. cost_per_unit } #.reduce(&:+).round(2)
+    binding.pry
   end
 
   def enough_ingredients_in_pantry?

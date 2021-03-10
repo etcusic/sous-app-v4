@@ -61,7 +61,7 @@ class NewRecipe extends Component {
     // need to check to make sure last ingredient has everything filled out first or else it doesn't register the previous ingredient
     // LOOK INTO ADDING IDENTIFIERS FOR EACH HTML ELEMENT TO BE FOUND EASIER
     let arr = [...this.state.ingredientComponents]
-    arr.push(<NewIngredient ingredients={this.props.ingredients} changeIngredientName={this.changeIngredientName} changeIngredientQuantity={this.changeIngredientQuantity} changeIngredientUnit={this.changeIngredientUnit} />)
+    arr.push(<NewIngredient ingredients={this.props.ingredients} changeIngredientId={this.changeIngredientId} changeIngredientQuantity={this.changeIngredientQuantity} changeIngredientUnit={this.changeIngredientUnit} />)
     let ings = [...this.state.recipeIngredients, {}]
     this.setState({
       ingredientComponents: arr,
@@ -88,11 +88,11 @@ class NewRecipe extends Component {
   }
 
   // should be able to hone this down to 1 function rather than 3 with arguments and block notation - also whittle down the functions processing
-  changeIngredientName = event => {
-    let name = event.target.value
+  changeIngredientId = event => {
+    let id = event.target.value
     let arr = this.state.recipeIngredients
     let obj = arr[arr.length - 1]
-    obj.name = name
+    obj.id = id
     this.setState({
       recipeIngredients: arr
     })
@@ -130,7 +130,6 @@ class NewRecipe extends Component {
           
           {/* set ingredients list up as a table??? */}
           <div id="new-recipe-ingredients">
-            {/* <IngredientNestedForm ingredients={this.state.recipeIngredients} addIngredient={this.addIngredient} /> */}
             { this.state.ingredientComponents .map(ing => ing) }
           </div>
           
