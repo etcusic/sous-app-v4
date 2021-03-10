@@ -14,4 +14,14 @@ class RecipesController < ApplicationController
         binding.pry
     end
 
+    private
+
+    def recipe_params
+        params.permit(:user_id, :name, :servings, :instructions, :ingredients, :quantity, :unit)
+    end
+
+    def ingredient_params
+        params[:ingredients] .map{params.permit(:name, :quantity, :unit)}
+    end
+
 end

@@ -4,6 +4,8 @@ import NewIngredient from './NewIngredient'
 
 class NewRecipe extends Component {
 
+  // add componentDidUnmount to reset state
+  // allow tab button to add an ingredient
   // STANDARDIZE FORM TO HANDLE EDIT RECIPE AS WELL
   // refactor to let state have a recipe object that doesn't need to be converted
   constructor(){
@@ -22,11 +24,12 @@ class NewRecipe extends Component {
   }
 
   convertStateToRecipe(){
+    let obj = {...this.state}
     return {
-      name: this.state.recipeName,
-      servings: this.state.recipeServings,
-      instructions: this.state.recipeInstructions,
-      ingredients: this.state.recipeIngredients
+      name: obj.recipeName,
+      servings: obj.recipeServings,
+      instructions: obj.recipeInstructions,
+      ingredients: obj.recipeIngredients
     }
   }
 
@@ -49,7 +52,6 @@ class NewRecipe extends Component {
           return response.json()
       })
       .then(function(json){
-          // do I need to do something with the data here ??
         console.log(json)
         console.log("should I do something here??")
       })
