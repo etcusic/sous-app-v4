@@ -1,5 +1,4 @@
-import React, { Component } from 'react';
-import IngredientNestedForm from './IngredientNestedForm.js'
+import React, { Component } from 'react'
 import NewIngredient from './NewIngredient'
 
 class NewRecipe extends Component {
@@ -59,6 +58,7 @@ class NewRecipe extends Component {
   }
 
   addIngredient = () => {
+    // need to check to make sure last ingredient has everything filled out first or else it doesn't register the previous ingredient
     // LOOK INTO ADDING IDENTIFIERS FOR EACH HTML ELEMENT TO BE FOUND EASIER
     let arr = [...this.state.ingredientComponents]
     arr.push(<NewIngredient ingredients={this.props.ingredients} changeIngredientName={this.changeIngredientName} changeIngredientQuantity={this.changeIngredientQuantity} changeIngredientUnit={this.changeIngredientUnit} />)
