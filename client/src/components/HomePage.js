@@ -22,7 +22,8 @@ class HomePage extends Component {
     .then(resp =>  resp.json())
     .then(user => {
       this.setState({
-        user: user.name,
+        userId: user.id,
+        userName: user.name,
         ingredients: user.ingredients
       })
     })
@@ -47,7 +48,7 @@ class HomePage extends Component {
   }
 
   showRecipe = (id) => {
-    fetch(`http://localhost:3001/users/1/recipes/${id}`)
+    fetch(`http://localhost:3001/users/${this.state.userId}/recipes/${id}`)
     .then(resp =>  resp.json())
     .then(recipe => {
       this.setState({
@@ -58,7 +59,7 @@ class HomePage extends Component {
 
   newRecipe = () => {
     this.setState({
-        view: <NewRecipe ingredients={ this.state.ingredients } showRecipe={ this.showRecipe }/>
+        view: <NewRecipe userId={this.state.userId} ingredients={ this.state.ingredients } showRecipe={ this.showRecipe }/>
     })
   } 
 

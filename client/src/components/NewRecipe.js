@@ -3,11 +3,8 @@ import NewIngredient from './NewIngredient'
 
 class NewRecipe extends Component {
 
-  // add componentDidUnmount to reset state
   // allow tab button to add an ingredient
   // STANDARDIZE FORM TO HANDLE EDIT && CREATE RECIPE
-
-  // next - change from recipeId to pantryIngredientId && adjust recipes controller accordingly
 
   constructor(){
     super()
@@ -28,8 +25,6 @@ class NewRecipe extends Component {
 
   sendRecipe = (event) => {
     event.preventDefault()
-    console.log("send recipe => ")
-    console.log(this.state.recipe)
     const configObject = {
         method: 'POST',
         headers: {
@@ -39,7 +34,7 @@ class NewRecipe extends Component {
         body: JSON.stringify(this.state.recipe)
     }
 
-    fetch(`http://localhost:3001/users/1/recipes`, configObject)
+    fetch(`http://localhost:3001/users/${this.state.userId}/recipes`, configObject)
       .then(response => response.json())
       .then(json => this.props.showRecipe(json.id))
           // add catch
@@ -77,7 +72,7 @@ class NewRecipe extends Component {
           
           Recipe Name: <input type ="text" onChange={event => this.changeRecipe(event, "name")}></input> <br></br> <br></br>
           
-          Servings: <input onChange={event => this.changeRecipe(event, "servings")}></input>  <br></br> <br></br>
+          Servings: <input type="number" onChange={event => this.changeRecipe(event, "servings")}></input>  <br></br> <br></br>
           
           <div id="new-recipe-ingredients">
             { this.state.ingredientComponents.map(ing => ing) }
