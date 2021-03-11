@@ -60,15 +60,11 @@ class NewRecipe extends Component {
   }
 
   addIngredient = () => {
-    // need to check to make sure last ingredient has everything filled out first or else it doesn't register the previous ingredient
-    // LOOK INTO ADDING IDENTIFIERS FOR EACH HTML ELEMENT TO BE FOUND EASIER
-    let arr = [...this.state.ingredientComponents]
-    arr.push(<NewIngredient keyId={arr.length + 1} ingredients={this.props.ingredients} changeIngredientId={this.changeIngredientId} changeIngredientQuantity={this.changeIngredientQuantity} changeIngredientUnit={this.changeIngredientUnit} />)
-    let ings = [...this.state.recipeIngredients, {}]
-    this.setState({
-      ingredientComponents: arr,
-      recipeIngredients: ings
-    })
+    let newState = Object.assign({}, this.state)
+    let newId = newState.ingredientComponents.length + 1
+    newState.ingredientComponents.push(<NewIngredient keyId={newId} ingredients={this.props.ingredients} changeIngredient={this.changeIngredient} />)
+    newState.recipe.ingredients.push({id: newId})
+    this.setState(newState)
   }
 
   changeName = event => {
@@ -123,10 +119,15 @@ class NewRecipe extends Component {
   changeRecipe = (event, category) => {
     let recipeObject = this.state.recipe
     recipeObject[category] = event.target.value
-    console.log(recipeObject)
     this.setState({
       recipe: recipeObject
     })
+  }
+
+  changeIngredient = (event, id, category) => {
+    let ingredients = [...this.state.recipe.ingredients]
+    ingredients[id - 1][category] = event.target.value
+    console.log(ingredients)
   }
 
   render() {
