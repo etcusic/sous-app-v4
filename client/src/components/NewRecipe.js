@@ -7,15 +7,12 @@ class NewRecipe extends Component {
   // allow tab button to add an ingredient
   // STANDARDIZE FORM TO HANDLE EDIT && CREATE RECIPE
 
-  // refactor to let state have a recipe object that doesn't need to be converted
+  // next - change from recipeId to pantryIngredientId && adjust recipes controller accordingly
+
   constructor(){
     super()
     this.state = {
       ingredientComponents: [],
-      recipeName: "",
-      recipeServings: 0,
-      recipeIngredients: [],
-      recipeInstructions: "",
       recipe: {
         name: "",
         servings: 0,
@@ -29,20 +26,10 @@ class NewRecipe extends Component {
     this.addIngredient()
   }
 
-  convertStateToRecipe(){
-    let obj = {...this.state}
-    return {
-      name: obj.recipeName,
-      servings: obj.recipeServings,
-      instructions: obj.recipeInstructions,
-      ingredients: obj.recipeIngredients
-    }
-  }
-
   sendRecipe = (event) => {
     event.preventDefault()
     console.log("send recipe => ")
-    console.log(this.state)
+    console.log(this.state.recipe)
     // let recipe = this.convertStateToRecipe()  
     // const configObject = {
     //     method: 'POST',
@@ -67,55 +54,6 @@ class NewRecipe extends Component {
     this.setState(newState)
   }
 
-  changeName = event => {
-    this.setState({
-      recipeName: event.target.value
-    })
-  }
-
-  changeServings = event => {
-    this.setState({
-      recipeServings: event.target.value
-    })
-  }
-
-  changeInstructions = event => {
-    this.setState({
-      recipeInstructions: event.target.value
-    })
-  }
-
-  // should be able to hone this down to 1 function rather than 3 with arguments and block notation - also whittle down the functions processing
-  changeIngredientId = event => {
-    let id = event.target.value
-    let arr = this.state.recipeIngredients
-    let obj = arr[arr.length - 1]
-    obj.id = id
-    this.setState({
-      recipeIngredients: arr
-    })
-  }
-
-  changeIngredientQuantity = event => {
-    let quantity = event.target.value
-    let arr = this.state.recipeIngredients
-    let obj = arr[arr.length - 1]
-    obj.quantity = quantity
-    this.setState({
-      recipeIngredients: arr
-    })
-  }
-
-  changeIngredientUnit = event => {
-    let unit = event.target.value
-    let arr = this.state.recipeIngredients
-    let obj = arr[arr.length - 1]
-    obj.unit = unit
-    this.setState({
-      recipeIngredients: arr
-    })
-  }
-
   changeRecipe = (event, category) => {
     let recipeObject = this.state.recipe
     recipeObject[category] = event.target.value
@@ -125,9 +63,11 @@ class NewRecipe extends Component {
   }
 
   changeIngredient = (event, id, category) => {
-    let ingredients = [...this.state.recipe.ingredients]
-    ingredients[id - 1][category] = event.target.value
-    console.log(ingredients)
+    let recipeObject = Object.assign({}, this.state.recipe)
+    recipeObject.ingredients[id - 1][category] = event.target.value
+    this.setState({
+      recipe: recipeObject
+    })
   }
 
   render() {
@@ -136,20 +76,16 @@ class NewRecipe extends Component {
         <h2>New Recipe:</h2><br></br> 
         <form onSubmit={event => this.sendRecipe(event)}>
           
-          {/* Recipe Name: <input type ="text" onChange={event => this.changeName(event)}></input> <br></br> <br></br> */}
           Recipe Name: <input type ="text" onChange={event => this.changeRecipe(event, "name")}></input> <br></br> <br></br>
           
-          {/* Servings: <input onChange={event => this.changeServings(event)}></input>  <br></br> <br></br> */}
           Servings: <input onChange={event => this.changeRecipe(event, "servings")}></input>  <br></br> <br></br>
           
-          {/* set ingredients list up as a table??? */}
           <div id="new-recipe-ingredients">
             { this.state.ingredientComponents.map(ing => ing) }
           </div>
           
           <p onClick={this.addIngredient}>++ Add Ingredient ++</p> <br></br> 
           
-          {/* Instructions: <input type="text" onChange={event => this.changeInstructions(event)}></input> <br></br> <br></br> */}
           Instructions: <input type="text" onChange={event => this.changeRecipe(event, "instructions")}></input> <br></br> <br></br>
           
           <input type="submit"></input>
