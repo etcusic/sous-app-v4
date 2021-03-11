@@ -16,6 +16,7 @@ class HomePage extends Component {
     }
   }
 
+  // remove hard coded users route when a user sign in is added
   componentDidMount(){
     fetch(`http://localhost:3001/users/1`)
     .then(resp =>  resp.json())

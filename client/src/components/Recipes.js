@@ -28,7 +28,7 @@ componentDidMount(){
             <th>Title: </th>
             <th>Servings: </th>
           </tr>
-          { this.state.recipes.map(recipe => <tr><td onClick={ () => this.props.showRecipe(recipe.id) }>{recipe.name}</td><td>{recipe.servings}</td></tr>) }
+          { this.state.recipes.map(recipe => <tr key={`recipe-${recipe.id}`}><td onClick={ () => this.props.showRecipe(recipe.id) }>{recipe.name}</td><td>{recipe.servings}</td></tr>) }
         </table>
     </div>
     );

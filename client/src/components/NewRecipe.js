@@ -56,7 +56,7 @@ class NewRecipe extends Component {
     // need to check to make sure last ingredient has everything filled out first or else it doesn't register the previous ingredient
     // LOOK INTO ADDING IDENTIFIERS FOR EACH HTML ELEMENT TO BE FOUND EASIER
     let arr = [...this.state.ingredientComponents]
-    arr.push(<NewIngredient ingredients={this.props.ingredients} changeIngredientId={this.changeIngredientId} changeIngredientQuantity={this.changeIngredientQuantity} changeIngredientUnit={this.changeIngredientUnit} />)
+    arr.push(<NewIngredient keyId={arr.length + 1} ingredients={this.props.ingredients} changeIngredientId={this.changeIngredientId} changeIngredientQuantity={this.changeIngredientQuantity} changeIngredientUnit={this.changeIngredientUnit} />)
     let ings = [...this.state.recipeIngredients, {}]
     this.setState({
       ingredientComponents: arr,
