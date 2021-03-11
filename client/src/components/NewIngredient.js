@@ -10,7 +10,7 @@ class NewIngredient extends Component {
           <option key="ingredient-option-0" value="0"></option>
             { this.props.ingredients.map(ingredient => <option key={`ingredient-option-${ingredient.id}`} value={ ingredient.id }>{ ingredient.name }</option>)}
         </select>
-        <input type ="number" onChange={ event => this.props.changeIngredient(event, this.props.keyId, "servings") }></input>
+        <input type ="number" onChange={ event => this.props.changeIngredient(event, this.props.keyId, "quantity") }></input>
         <input type ="text" placeholder="unit" onChange={ event => this.props.changeIngredient(event, this.props.keyId, "unit") }></input> <br></br>
     </div>
     );

@@ -30,19 +30,18 @@ class NewRecipe extends Component {
     event.preventDefault()
     console.log("send recipe => ")
     console.log(this.state.recipe)
-    // let recipe = this.convertStateToRecipe()  
-    // const configObject = {
-    //     method: 'POST',
-    //     headers: {
-    //         "Content-Type": 'application/json',
-    //         "Accept": 'application/json'
-    //     },
-    //     body: JSON.stringify(recipe)
-    // }
+    const configObject = {
+        method: 'POST',
+        headers: {
+            "Content-Type": 'application/json',
+            "Accept": 'application/json'
+        },
+        body: JSON.stringify(this.state.recipe)
+    }
 
-    // fetch(`http://localhost:3001/users/1/recipes`, configObject)
-    //   .then(response => response.json())
-    //   .then(json => this.props.showRecipe(json.id))
+    fetch(`http://localhost:3001/users/1/recipes`, configObject)
+      .then(response => response.json())
+      .then(json => this.props.showRecipe(json.id))
           // add catch
   }
 
