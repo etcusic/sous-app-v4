@@ -65,15 +65,14 @@ class HomePage extends Component {
 
   render() {
     return (
-    <div>
-        <header>
-            <h1 onClick={ this.profilePage }>{ this.state.user }</h1>
-        </header>
-
-        <body>
+        <div>
+          <header>
+              <h1 onClick={ this.profilePage }>{ this.state.user }</h1>
+          </header>
+          <main>
             { this.state.view }
-        </body>
-    </div>
+          </main>
+        </div>
     );
   }
 

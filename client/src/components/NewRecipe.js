@@ -121,7 +121,7 @@ class NewRecipe extends Component {
           
           Recipe Name: <input type ="text" onChange={event => this.changeName(event)}></input> <br></br> <br></br>
           
-          Servings: <input type ="number" onChange={event => this.changeServings(event)}></input>  <br></br> <br></br>
+          Servings: <input onChange={event => this.changeServings(event)}></input>  <br></br> <br></br>
           
           {/* set ingredients list up as a table??? */}
           <div id="new-recipe-ingredients">
