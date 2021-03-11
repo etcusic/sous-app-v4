@@ -24,11 +24,15 @@ componentDidMount(){
     <div>
         <h2>Recipes:</h2>
         <table>
-          <tr>
-            <th>Title: </th>
-            <th>Servings: </th>
-          </tr>
-          { this.state.recipes.map(recipe => <tr key={`recipe-${recipe.id}`}><td onClick={ () => this.props.showRecipe(recipe.id) }>{recipe.name}</td><td>{recipe.servings}</td></tr>) }
+          <thead>
+            <tr>
+              <th>Title: </th>
+              <th>Servings: </th>
+            </tr>
+          </thead>
+          <tbody>
+            { this.state.recipes.map(recipe => <tr key={`recipe-${recipe.id}`}><td onClick={ () => this.props.showRecipe(recipe.id) }>{recipe.name}</td><td>{recipe.servings}</td></tr>) }
+          </tbody>      
         </table>
     </div>
     );

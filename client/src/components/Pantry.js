@@ -7,11 +7,16 @@ class Pantry extends Component {
     <div>
         <h2>Pantry: </h2>
         <table>
+          <thead>
             <tr>
                 <th>Ingredient: </th>
                 <th>Quantity: </th>
             </tr>
-            { this.props.ingredients.map(ingredient => <tr key={`pantry-ingredient-${ingredient.id}`}><td>{ingredient.name}</td><td>{`${ingredient.quantity} ${ingredient.unit}`}</td></tr>) }
+          </thead>
+            
+            <tbody>
+              { this.props.ingredients.map(ingredient => <tr key={`pantry-ingredient-${ingredient.id}`}><td>{ingredient.name}</td><td>{`${ingredient.quantity} ${ingredient.unit}`}</td></tr>) }
+            </tbody>
         </table>
     </div>
     );

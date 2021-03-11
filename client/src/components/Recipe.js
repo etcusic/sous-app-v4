@@ -7,11 +7,15 @@ class Recipe extends Component {
     <div>
         <h2>{this.props.recipe.name} - {this.props.recipe.servings} servings</h2>
         <table>
-          <tr>
-            <th>Ingredient: </th>
-            <th>Quantity: </th>
-          </tr>
-          { this.props.recipe.ingredients.map(ingredient => <tr key={`recipe-ingredient-${ingredient.id}`}><td>{ingredient.name}</td><td>{` -  ${ingredient.quantity}  ${ingredient.unit}`}</td></tr>) }
+          <thead>
+            <tr>
+              <th>Ingredient: </th>
+              <th>Quantity: </th>
+            </tr>
+          </thead>
+          <tbody>
+            { this.props.recipe.ingredients.map(ingredient => <tr key={`recipe-ingredient-${ingredient.id}`}><td>{ingredient.name}</td><td>{` -  ${ingredient.quantity}  ${ingredient.unit}`}</td></tr>) }
+          </tbody>
         </table>
         <br></br>
         <br></br>

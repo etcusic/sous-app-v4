@@ -125,7 +125,7 @@ class NewRecipe extends Component {
           
           {/* set ingredients list up as a table??? */}
           <div id="new-recipe-ingredients">
-            { this.state.ingredientComponents .map(ing => ing) }
+            { this.state.ingredientComponents.map(ing => ing) }
           </div>
           
           <p onClick={this.addIngredient}>++ Add Ingredient ++</p> <br></br> 
