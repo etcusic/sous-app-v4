@@ -5,7 +5,8 @@ class NewRecipe extends Component {
 
   // add componentDidUnmount to reset state
   // allow tab button to add an ingredient
-  // STANDARDIZE FORM TO HANDLE EDIT RECIPE AS WELL
+  // STANDARDIZE FORM TO HANDLE EDIT && CREATE RECIPE
+
   // refactor to let state have a recipe object that doesn't need to be converted
   constructor(){
     super()
@@ -14,7 +15,13 @@ class NewRecipe extends Component {
       recipeName: "",
       recipeServings: 0,
       recipeIngredients: [],
-      recipeInstructions: ""
+      recipeInstructions: "",
+      recipe: {
+        name: "",
+        servings: 0,
+        instructions: "",
+        ingredients: []
+      }
     }
   }
 
@@ -36,19 +43,19 @@ class NewRecipe extends Component {
     event.preventDefault()
     console.log("send recipe => ")
     console.log(this.state)
-    let recipe = this.convertStateToRecipe()  
-    const configObject = {
-        method: 'POST',
-        headers: {
-            "Content-Type": 'application/json',
-            "Accept": 'application/json'
-        },
-        body: JSON.stringify(recipe)
-    }
+    // let recipe = this.convertStateToRecipe()  
+    // const configObject = {
+    //     method: 'POST',
+    //     headers: {
+    //         "Content-Type": 'application/json',
+    //         "Accept": 'application/json'
+    //     },
+    //     body: JSON.stringify(recipe)
+    // }
 
-    fetch(`http://localhost:3001/users/1/recipes`, configObject)
-      .then(response => response.json())
-      .then(json => this.props.showRecipe(json.id))
+    // fetch(`http://localhost:3001/users/1/recipes`, configObject)
+    //   .then(response => response.json())
+    //   .then(json => this.props.showRecipe(json.id))
           // add catch
   }
 
@@ -113,15 +120,26 @@ class NewRecipe extends Component {
     })
   }
 
+  changeRecipe = (event, category) => {
+    let recipeObject = this.state.recipe
+    recipeObject[category] = event.target.value
+    console.log(recipeObject)
+    this.setState({
+      recipe: recipeObject
+    })
+  }
+
   render() {
     return (
     <div>
         <h2>New Recipe:</h2><br></br> 
         <form onSubmit={event => this.sendRecipe(event)}>
           
-          Recipe Name: <input type ="text" onChange={event => this.changeName(event)}></input> <br></br> <br></br>
+          {/* Recipe Name: <input type ="text" onChange={event => this.changeName(event)}></input> <br></br> <br></br> */}
+          Recipe Name: <input type ="text" onChange={event => this.changeRecipe(event, "name")}></input> <br></br> <br></br>
           
-          Servings: <input onChange={event => this.changeServings(event)}></input>  <br></br> <br></br>
+          {/* Servings: <input onChange={event => this.changeServings(event)}></input>  <br></br> <br></br> */}
+          Servings: <input onChange={event => this.changeRecipe(event, "servings")}></input>  <br></br> <br></br>
           
           {/* set ingredients list up as a table??? */}
           <div id="new-recipe-ingredients">
@@ -130,7 +148,8 @@ class NewRecipe extends Component {
           
           <p onClick={this.addIngredient}>++ Add Ingredient ++</p> <br></br> 
           
-          Instructions: <input type="text" onChange={event => this.changeInstructions(event)}></input> <br></br> <br></br>
+          {/* Instructions: <input type="text" onChange={event => this.changeInstructions(event)}></input> <br></br> <br></br> */}
+          Instructions: <input type="text" onChange={event => this.changeRecipe(event, "instructions")}></input> <br></br> <br></br>
           
           <input type="submit"></input>
         </form>

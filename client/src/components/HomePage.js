@@ -50,7 +50,6 @@ class HomePage extends Component {
     fetch(`http://localhost:3001/users/1/recipes/${id}`)
     .then(resp =>  resp.json())
     .then(recipe => {
-        console.log(recipe)
       this.setState({
         view: <Recipe recipe={recipe} />
       })
