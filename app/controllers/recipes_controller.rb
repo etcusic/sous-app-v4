@@ -12,6 +12,7 @@ class RecipesController < ApplicationController
 
     def create
         # NEED TO ACCOUNT FOR EDGE CASES & ERRORS
+        binding.pry
         @recipe = Recipe.create(recipe_params)
         Ingredient.createRecipeIngredientsFromPantry(ingredient_params, @recipe.id)
         redirect_to user_recipe_path(User.find_by_id(@recipe.user_id), @recipe)
@@ -24,8 +25,9 @@ class RecipesController < ApplicationController
     end
 
     # this is here to handle nested attributes of ingredients when sent from frontend form
+    # need better standardization
     def ingredient_params 
-        params[:ingredients] .map{|ingredient| {id: ingredient[:id], quantity: ingredient[:quantity], unit: ingredient[:unit]}}
+        params[:ingredients] .map{|ingredient| {id: ingredient[:pantryIngredientId], quantity: ingredient[:quantity], unit: ingredient[:unit]}}
     end
 
 end
