@@ -1,11 +1,14 @@
 class PantriesController < ApplicationController
 
     def show
-        # binding.pry
-        params[:permitted] = true
-        @ingredients = Pantry.find_by_id(params[:id]).ingredients
-        #.map{| ing | {id: ing.id, name: ing.name, quantity: ing.quantity, unit: ing.unit, cost_per_unit: ing.cost_per_unit}}
+        @ingredients = Pantry.find_by_id(pantry_params[:id]).ingredients
         render json: @ingredients
+    end
+
+    private
+
+    def pantry_params
+        params.permit(:id)
     end
 
 end

@@ -23,6 +23,7 @@ class RecipesController < ApplicationController
         params.permit(:user_id, :name, :servings, :instructions)
     end
 
+    # this is here to handle nested attributes of ingredients when sent from UI page
     def ingredient_params 
         params[:ingredients] .map{|ingredient| {id: ingredient[:id], quantity: ingredient[:quantity], unit: ingredient[:unit]}}
     end
