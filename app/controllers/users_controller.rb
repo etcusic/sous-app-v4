@@ -6,11 +6,14 @@ class UsersController < ApplicationController
     end
 
     def show
-        # this needs to be moved to the User model
-        @user = User.first
-        ingredients = @user.pantry.ingredients
-        hash = {name: @user.name, ingredients: ingredients}
-        render json: hash
+        @user = User.find_by_id(user_params[:id])
+        render json: @user.send_initialization_info
+    end
+
+    private
+
+    def user_params
+        params.permit(:id)
     end
 
 end
