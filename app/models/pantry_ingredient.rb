@@ -1,4 +1,3 @@
-class PantryIngredient < ApplicationRecord
+class PantryIngredient < IngredientQuantityJoin
   belongs_to :pantry
-  belongs_to :ingredient
 end

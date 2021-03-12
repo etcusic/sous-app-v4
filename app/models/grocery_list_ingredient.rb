@@ -1,4 +1,3 @@
-class GroceryListIngredient < ApplicationRecord
+class GroceryListIngredient < IngredientQuantityJoin
   belongs_to :grocery_list
-  belongs_to :ingredient
 end
