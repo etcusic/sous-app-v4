@@ -10,7 +10,8 @@ class HomePage extends Component {
   constructor(){
     super()
     this.state = {
-        user: "",
+        userId: 0,
+        userName: "",
         view: <UserProfile showPantry={ this.showPantry } showRecipes={ this.showRecipes } newRecipe={ this.newRecipe } />,
         ingredients: []
     }
@@ -67,7 +68,7 @@ class HomePage extends Component {
     return (
         <div>
           <header>
-              <h1 onClick={ this.profilePage }>{ this.state.user }</h1>
+              <h1 onClick={ this.profilePage }>{ this.state.userName }</h1>
           </header>
           <main>
             { this.state.view }

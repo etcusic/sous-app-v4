@@ -49,8 +49,10 @@ FOOD = [
 ]
 
 FOOD.each do |item| 
-    item[:quantity] = rand(2..80)
-    Pantry.first.ingredients.build(item).save
+    ing = Ingredient.create(item)
+    PantryIngredient.create({pantry_id: 1, ingredient_id: ing.id, quantity: rand(2..80)})
+    # item[:quantity] = rand(2..80)
+    # Pantry.first.ingredients.build(item).save
 end
 
 Recipe.create(user_id: 1, name: "Garlic Chicken", servings: rand(2..8), instructions: "Cook rice, cut veggies, sautee all the things")
@@ -60,12 +62,13 @@ Recipe.create(user_id: 1, name: "Turkey Spaghetti", servings: rand(2..8), instru
 Recipe.create(user_id: 1, name: "Turkey Tacos", servings: rand(2..8), instructions: "Butter dem tortillas, cook meat, sprinkle lime juice, eat and be happy")
 Recipe.create(user_id: 1, name: "Chicken Salad", servings: rand(2..8), instructions: "Veggies in bowl, chicken on top")
 
-def add_ingredients(recipe_id, supply_ids)
-    supply_ids.map do | id | 
-        ing = PantryIngredient.find_by_id(id)
-        hash = { recipe_id: recipe_id, name: ing.name, unit: ing.unit, cost_per_unit: ing.cost_per_unit, quantity: rand(1..20) }
-        RecipeIngredient.create(hash)
-    end
+def add_ingredients(recipe_id, ingredient_ids)
+    ingredient_ids.map{|ing_id| {recipe_id: recipe_id, ingredient_id: ing_id, quantity: rand(1..20)}}
+    # supply_ids.map do | id | 
+    #     ing = PantryIngredient.find_by_id(id)
+    #     hash = { recipe_id: recipe_id, name: ing.name, unit: ing.unit, cost_per_unit: ing.cost_per_unit, quantity: rand(1..20) }
+    #     RecipeIngredient.create(hash)
+    # end
 end
 
 add_ingredients(1, [1, 6, 20, 16, 14, 13])
@@ -74,3 +77,14 @@ add_ingredients(3, [1, 6, 14, 11, 19])
 add_ingredients(4, [28, 5, 24, 14, 18])
 add_ingredients(5, [5, 4, 12, 18, 10])
 add_ingredients(6, [6, 29, 7, 13, 19, 21])
+
+drop_table :pantry_ingredients
+drop_table :recipe_ingredients
+drop_table :grocery_list_ingredients
+
+rails g resource Ingredient name:string unit:string cost_per_unit:float
+rails g resource PantryIngredient quantity:float ingredient:belongs_to pantry:belongs_to
+rails g resource RecipeIngredient quantity:float ingredient:belongs_to recipe:belongs_to
+rails g resource GroceryListIngredient quantity:float ingredient:belongs_to grocery_list:belongs_to
+
+model => JoinTableIngredient
