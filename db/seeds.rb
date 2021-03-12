@@ -6,14 +6,14 @@
 
 # rails g resource Ingredient name:string unit:string cost_per_unit:float
 
-# rails g resource PantryIngredient pantry:belongs_to ingredient:belongs_to quantity:float
-# rails g resource GroceryListIngredient grocery_list:belongs_to ingredient:belongs_to quantity:float
-# rails g resource RecipeIngredient recipe:belongs_to ingredient:belongs_to quantity:float
+# rails g model PantryIngredient pantry:belongs_to ingredient:belongs_to quantity:float
+# rails g model GroceryListIngredient grocery_list:belongs_to ingredient:belongs_to quantity:float
+# rails g model RecipeIngredient recipe:belongs_to ingredient:belongs_to quantity:float
 
 # add AbstractIngredient model for sub ingredients to inherit from
 
-User.create(name: "Mr Bojangles")
-Pantry.create(user_id: 1)
+# User.create(name: "Mr Bojangles")
+# Pantry.create(user_id: 1)
 
 # ALL OF THESE PRICES NEED TO BE REASSESSED
 FOOD = [
@@ -78,13 +78,8 @@ add_ingredients(4, [28, 5, 24, 14, 18])
 add_ingredients(5, [5, 4, 12, 18, 10])
 add_ingredients(6, [6, 29, 7, 13, 19, 21])
 
-drop_table :pantry_ingredients
-drop_table :recipe_ingredients
-drop_table :grocery_list_ingredients
+# binding.pry
 
-rails g resource Ingredient name:string unit:string cost_per_unit:float
-rails g resource PantryIngredient quantity:float ingredient:belongs_to pantry:belongs_to
-rails g resource RecipeIngredient quantity:float ingredient:belongs_to recipe:belongs_to
-rails g resource GroceryListIngredient quantity:float ingredient:belongs_to grocery_list:belongs_to
-
-model => JoinTableIngredient
+# drop_table :pantry_ingredients
+# drop_table :recipe_ingredients
+# drop_table :grocery_list_ingredients
