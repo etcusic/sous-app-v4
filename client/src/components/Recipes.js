@@ -9,15 +9,16 @@ class Recipes extends Component {
     }
   }
 
-componentDidMount(){
-    fetch(`http://localhost:3001/users/1/recipes`)
-    .then(resp =>  resp.json())
-    .then(recipes => {
-        this.setState({
-        recipes: recipes
-        })
-    })
-}
+  componentDidMount(){
+      fetch(`http://localhost:3001/users/1/recipes`)
+      .then(resp =>  resp.json())
+      .then(recipes => {
+        console.log(recipes)
+          this.setState({
+            recipes: recipes
+          })
+      })
+  }
 
   render() {
     return (

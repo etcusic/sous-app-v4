@@ -1,20 +1,21 @@
 class RecipesController < ApplicationController
 
     def index
-        @recipes = User.find_by_id(recipe_params[:user_id]).recipes
+        # do I want to prepare recipes here???
+        @recipes = User.find_by_id(recipe_params[:user_id]).recipes.map{|recipe| recipe.prepare_to_send}
         render json: @recipes
     end
 
     def show
-        @recipe = Recipe.find_by_id(recipe_params[:id])
-        render json: @recipe.with_ingredients
+        @recipe = Recipe.find_by_id(recipe_params[:id]).prepare_to_send
+        render json: @recipe
     end
 
     def create
         # NEED TO ACCOUNT FOR EDGE CASES & ERRORS
-        @recipe = Recipe.create(recipe_params)
-        Ingredient.createRecipeIngredientsFromPantry(ingredient_params, @recipe.id)
-        redirect_to user_recipe_path(User.find_by_id(@recipe.user_id), @recipe)
+        # @recipe = Recipe.create(recipe_params)
+        # Ingredient.createRecipeIngredientsFromPantry(ingredient_params, @recipe.id)
+        # redirect_to user_recipe_path(User.find_by_id(@recipe.user_id), @recipe)
     end
 
     private

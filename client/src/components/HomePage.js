@@ -24,8 +24,8 @@ class HomePage extends Component {
     .then(user => {
       this.setState({
         userId: user.id,
-        userName: user.name,
-        ingredients: user.ingredients
+        userName: user.name
+        // ingredients: user.ingredients
       })
     })
   }
