@@ -13,7 +13,6 @@ class Recipes extends Component {
       fetch(`http://localhost:3001/users/1/recipes`)
       .then(resp =>  resp.json())
       .then(recipes => {
-        console.log(recipes)
           this.setState({
             recipes: recipes
           })

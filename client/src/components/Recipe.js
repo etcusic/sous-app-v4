@@ -20,7 +20,11 @@ class Recipe extends Component {
         <br></br>
         <br></br>
         <br></br>
-        <div>Estimated Raw Cost: ${ this.props.recipe.total_cost }</div>
+        <div>Estimated Raw Cost: ${ this.props.recipe.ingredients.map(x => x.quantity * x.cost_per_unit).reduce((y,z) => y += z).toFixed(2) }</div>
+        <br></br>
+        {/* THESE 2 FUNCTIONS NEEDS TO BE ACCESSED IN OTHER PLACES  */}
+        <br></br>
+        <div>Estimated Cost Per Serving: ${ (this.props.recipe.ingredients.map(x => x.quantity * x.cost_per_unit).reduce((y,z) => y += z) / this.props.recipe.servings).toFixed(2) }</div>
         <br></br>
         <br></br>
         <div>Instructions: { this.props.recipe.instructions }</div>
