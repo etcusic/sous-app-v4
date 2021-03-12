@@ -2,7 +2,6 @@ module IngredientProcessor
 
     def prepare_to_send
         x = self.attributes.merge!(ingredients: self.ingredients_with_quantities)
-        binding.pry
     end
 
     def ingredients_with_quantities

@@ -1,4 +1,7 @@
 import React, { Component } from 'react';
+import { calculateRawCost } from '../actions/helpers'
+import { costPerServing } from '../actions/helpers'
+import { enoughInPantry } from '../actions/helpers'
 
 class Recipe extends Component {
 
@@ -20,17 +23,16 @@ class Recipe extends Component {
         <br></br>
         <br></br>
         <br></br>
-        <div>Estimated Raw Cost: ${ this.props.recipe.ingredients.map(x => x.quantity * x.cost_per_unit).reduce((y,z) => y += z).toFixed(2) }</div>
+        <div>Estimated Raw Cost: ${ calculateRawCost(this.props.recipe.ingredients).toFixed(2) }</div>
         <br></br>
-        {/* THESE 2 FUNCTIONS NEEDS TO BE ACCESSED IN OTHER PLACES  */}
         <br></br>
-        <div>Estimated Cost Per Serving: ${ (this.props.recipe.ingredients.map(x => x.quantity * x.cost_per_unit).reduce((y,z) => y += z) / this.props.recipe.servings).toFixed(2) }</div>
+        <div>Estimated Cost Per Serving: ${ costPerServing(this.props.recipe).toFixed(2) }</div>
         <br></br>
         <br></br>
         <div>Instructions: { this.props.recipe.instructions }</div>
         <br></br>
         <br></br>
-        <div>{ this.props.recipe.in_pantry ? "There are enough ingredients in the pantry for this recipe!" : "Not enough ingredients in pantry for this recipe"}</div>
+        <div>{ enoughInPantry(this.props.recipe.ingredients, this.props.pantry) }</div>
     </div>
     );
   }

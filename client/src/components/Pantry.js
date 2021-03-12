@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import { calculateRawCost } from '../actions/helpers'
 
 class Pantry extends Component {
 
@@ -13,11 +14,14 @@ class Pantry extends Component {
                 <th>Quantity: </th>
             </tr>
           </thead>
-            
-            <tbody>
-              { this.props.ingredients.map(ingredient => <tr key={`pantry-ingredient-${ingredient.id}`}><td>{ingredient.name}</td><td>{`${ingredient.quantity} ${ingredient.unit}`}</td></tr>) }
-            </tbody>
+
+          <tbody>
+            { this.props.ingredients.map(ingredient => <tr key={`pantry-ingredient-${ingredient.id}`}><td>{ingredient.name}</td><td>{`${ingredient.quantity} ${ingredient.unit}`}</td></tr>) }
+          </tbody>
         </table>
+        <br></br>
+        <br></br>
+        <div>Estimated Raw Cost in Pantry: ${ calculateRawCost(this.props.ingredients).toFixed(2) }</div>
     </div>
     );
   }

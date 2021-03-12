@@ -25,7 +25,7 @@ class HomePage extends Component {
       this.setState({
         userId: user.id,
         userName: user.name,
-        ingredients: user.ingredients
+        pantry: user.pantry
       })
     })
   }
@@ -38,7 +38,7 @@ class HomePage extends Component {
 
   showPantry = () => {
     this.setState({
-        view: <Pantry userId={this.state.userId} ingredients={ this.state.ingredients }/>
+        view: <Pantry userId={this.state.userId} ingredients={ this.state.pantry }/>
     })
   }
 
@@ -53,7 +53,7 @@ class HomePage extends Component {
     .then(resp =>  resp.json())
     .then(recipe => {
       this.setState({
-        view: <Recipe recipe={recipe} />
+        view: <Recipe recipe={recipe} pantry={this.state.pantry} />
       })
     })
   }
