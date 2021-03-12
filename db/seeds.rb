@@ -11,8 +11,8 @@
 
 # add IngredientJoinTable model for sub ingredients to inherit from
 
-# User.create(name: "Mr Bojangles")
-# Pantry.create(user_id: 1)
+User.create(name: "Mr Bojangles")
+Pantry.create(user_id: 1)
 
 # ALL OF THESE PRICES NEED TO BE REASSESSED
 FOOD = [
@@ -62,7 +62,7 @@ Recipe.create(user_id: 1, name: "Turkey Tacos", servings: rand(2..8), instructio
 Recipe.create(user_id: 1, name: "Chicken Salad", servings: rand(2..8), instructions: "Veggies in bowl, chicken on top")
 
 def add_ingredients(recipe_id, ingredient_ids)
-    ingredient_ids.map{|ing_id| {recipe_id: recipe_id, ingredient_id: ing_id, quantity: rand(1..20)}}
+    ingredient_ids.map{|ing_id| RecipeIngredient.create({recipe_id: recipe_id, ingredient_id: ing_id, quantity: rand(1..20)})}
     # supply_ids.map do | id | 
     #     ing = PantryIngredient.find_by_id(id)
     #     hash = { recipe_id: recipe_id, name: ing.name, unit: ing.unit, cost_per_unit: ing.cost_per_unit, quantity: rand(1..20) }
@@ -77,8 +77,4 @@ add_ingredients(4, [28, 5, 24, 14, 18])
 add_ingredients(5, [5, 4, 12, 18, 10])
 add_ingredients(6, [6, 29, 7, 13, 19, 21])
 
-# binding.pry
-
-# drop_table :pantry_ingredients
-# drop_table :recipe_ingredients
-# drop_table :grocery_list_ingredients
+binding.pry

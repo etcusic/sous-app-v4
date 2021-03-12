@@ -1,39 +1,18 @@
 class Recipe < ApplicationRecord
   belongs_to :user
-  # has_many :recipe_ingredients, dependent: :destroy
-  # alias_attribute :ingredients, :recipe_ingredients
+  has_many :recipe_ingredients, dependent: :destroy
+  has_many :ingredients, through: :recipe_ingredients
 
-  # how about ingredient arrays ???
-  # [{name: "name", unit: "unit", cost_per_unit: x}, {quantity: x}]
-
-  ### -- OR -- ###
-
-  # def ingredients
-  #   self.join_tables do |table|
-  #   ing = table.ingredient
-  #   hash = {
-  #     id: ing.id,
-  #     name: ing.name,
-  #     unit: ing.unit,
-  #     cost_per_unit: ing.cost_per_unit,
-  #     quantity: table.quantity
-  #   }
-  # end
-
-  # let's put this in the IngredientJoinTable
-
-  def with_ingredients
-    # hash = {
-    #   id: self.id,
-    #   name: self.name,
-    #   servings: self.servings,
-    #   instructions: self.instructions,
-    #   total_cost: self.total_cost,
-    #   ingredients: self.ingredients, # if I separate out quantity then I will need another method to handle this
-    #   in_pantry: self.enough_ingredients_in_pantry?
-    # }
+  def prepare_to_send
+    x = self.attributes.merge!(ingredients: self.ingredients_with_quantities)
   end
 
+  def ingredients_with_quantities
+    joins = self.recipe_ingredients
+    ingredients = self.ingredients.map.with_index{|ing, i| ing.attributes.merge!(quantity: joins[i].quantity) }
+  end
+
+  # these need to be moved to frontend
   def total_cost
     # x = self.ingredients.map{ | ing | ing.quantity * ing. cost_per_unit } .reduce(&:+).round(2)
   end
