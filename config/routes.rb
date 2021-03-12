@@ -1,5 +1,6 @@
 Rails.application.routes.draw do
 
+  resources :ingredients
   resources :users do 
     resources :pantries, only: [:show] 
     resources :grocery_lists

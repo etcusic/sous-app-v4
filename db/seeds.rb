@@ -5,12 +5,11 @@
 # rails g resource Recipe user:belongs_to name:string servings:integer instructions:text meal:boolean
 
 # rails g resource Ingredient name:string unit:string cost_per_unit:float
-
 # rails g model PantryIngredient pantry:belongs_to ingredient:belongs_to quantity:float
 # rails g model GroceryListIngredient grocery_list:belongs_to ingredient:belongs_to quantity:float
 # rails g model RecipeIngredient recipe:belongs_to ingredient:belongs_to quantity:float
 
-# add AbstractIngredient model for sub ingredients to inherit from
+# add IngredientJoinTable model for sub ingredients to inherit from
 
 # User.create(name: "Mr Bojangles")
 # Pantry.create(user_id: 1)
