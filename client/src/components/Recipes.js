@@ -10,7 +10,7 @@ class Recipes extends Component {
   }
 
   componentDidMount(){
-      fetch(`http://localhost:3001/users/1/recipes`)
+      fetch(`http://localhost:3001/users/${this.props.userId}/recipes`)
       .then(resp =>  resp.json())
       .then(recipes => {
           this.setState({

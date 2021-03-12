@@ -13,7 +13,7 @@ class HomePage extends Component {
         userId: 0,
         userName: "",
         view: <UserProfile showPantry={ this.showPantry } showRecipes={ this.showRecipes } newRecipe={ this.newRecipe } />,
-        ingredients: []
+        pantry: []
     }
   }
 
@@ -24,8 +24,8 @@ class HomePage extends Component {
     .then(user => {
       this.setState({
         userId: user.id,
-        userName: user.name
-        // ingredients: user.ingredients
+        userName: user.name,
+        ingredients: user.ingredients
       })
     })
   }
@@ -38,13 +38,13 @@ class HomePage extends Component {
 
   showPantry = () => {
     this.setState({
-        view: <Pantry ingredients={ this.state.ingredients }/>
+        view: <Pantry userId={this.state.userId} ingredients={ this.state.ingredients }/>
     })
   }
 
   showRecipes = () => {
     this.setState({
-        view: <Recipes showRecipe={this.showRecipe} />
+        view: <Recipes userId={this.state.userId} showRecipe={this.showRecipe} />
     })
   }
 

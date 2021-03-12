@@ -6,7 +6,8 @@ class User < ApplicationRecord
     def send_initialization_info
         info = {
             id: self.id,
-            name: self.name
+            name: self.name,
+            pantry: self.pantry.ingredients_with_quantities
         }
     end
 
