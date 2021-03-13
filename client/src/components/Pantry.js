@@ -14,7 +14,6 @@ class Pantry extends Component {
                 <th>Quantity: </th>
             </tr>
           </thead>
-
           <tbody>
             { this.props.ingredients.map(ingredient => <tr key={`pantry-ingredient-${ingredient.id}`}><td>{ingredient.name}</td><td>{`${ingredient.quantity} ${ingredient.unit}`}</td></tr>) }
           </tbody>
@@ -22,6 +21,9 @@ class Pantry extends Component {
         <br></br>
         <br></br>
         <div>Estimated Raw Cost in Pantry: ${ calculateRawCost(this.props.ingredients).toFixed(2) }</div>
+        <br></br>
+        <br></br>
+        <div></div>
     </div>
     );
   }
