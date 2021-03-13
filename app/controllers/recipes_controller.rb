@@ -1,8 +1,7 @@
 class RecipesController < ApplicationController
 
     def index
-        # do I want to prepare recipes here???
-        @recipes = User.find_by_id(recipe_params[:user_id]).recipes.map{|recipe| recipe.prepare_to_send}
+        @recipes = User.find_by_id(recipe_params[:user_id]).recipes
         render json: @recipes
     end
 
@@ -15,8 +14,7 @@ class RecipesController < ApplicationController
         # NEED TO ACCOUNT FOR EDGE CASES & ERRORS
         @recipe = Recipe.create(recipe_params) # create from custom getter/setter in Recipe model with nested attrs
         RecipeIngredient.createRecipeIngredientsFromPantry(ingredient_params, @recipe.id)
-        binding.pry
-        # redirect_to user_recipe_path(User.find_by_id(@recipe.user_id), @recipe)
+        redirect_to user_recipe_path(@recipe.user, @recipe)
     end
 
     private
