@@ -13,8 +13,9 @@ class RecipesController < ApplicationController
 
     def create
         # NEED TO ACCOUNT FOR EDGE CASES & ERRORS
-        # @recipe = Recipe.create(recipe_params)
-        # Ingredient.createRecipeIngredientsFromPantry(ingredient_params, @recipe.id)
+        @recipe = Recipe.create(recipe_params) # create from custom getter/setter in Recipe model with nested attrs
+        RecipeIngredient.createRecipeIngredientsFromPantry(ingredient_params, @recipe.id)
+        binding.pry
         # redirect_to user_recipe_path(User.find_by_id(@recipe.user_id), @recipe)
     end
 

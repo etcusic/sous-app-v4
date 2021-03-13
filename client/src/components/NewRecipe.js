@@ -34,7 +34,7 @@ class NewRecipe extends Component {
         body: JSON.stringify(this.state.recipe)
     }
 
-    fetch(`http://localhost:3001/users/${this.state.userId}/recipes`, configObject)
+    fetch(`http://localhost:3001/users/${this.props.userId}/recipes`, configObject)
       .then(response => response.json())
       .then(json => this.props.showRecipe(json.id))
           // add catch

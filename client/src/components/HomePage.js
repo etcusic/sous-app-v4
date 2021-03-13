@@ -60,7 +60,7 @@ class HomePage extends Component {
 
   newRecipe = () => {
     this.setState({
-        view: <NewRecipe userId={this.state.userId} ingredients={ this.state.ingredients } showRecipe={ this.showRecipe }/>
+        view: <NewRecipe userId={this.state.userId} ingredients={ this.state.pantry } showRecipe={ this.showRecipe }/>
     })
   } 
 
