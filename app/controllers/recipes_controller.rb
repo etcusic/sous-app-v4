@@ -12,8 +12,10 @@ class RecipesController < ApplicationController
 
     def create
         # NEED TO ACCOUNT FOR EDGE CASES & ERRORS
-        @recipe = Recipe.create(recipe_params) # create from custom getter/setter in Recipe model with nested attrs (recipe_ingredients)
-        RecipeIngredient.createRecipeIngredientsFromPantry(ingredient_params, @recipe.id)
+        # @recipe = Recipe.create(recipe_params) # create from custom getter/setter in Recipe model with nested attrs (recipe_ingredients)
+        # RecipeIngredient.createRecipeIngredientsFromPantry(ingredient_params, @recipe.id)
+        @recipe = Recipe.create_with_nested_attrs(recipe_params, ingredient_params)
+        binding.pry
         redirect_to user_recipe_path(@recipe.user, @recipe)
     end
 
@@ -27,7 +29,7 @@ class RecipesController < ApplicationController
     # need better standardization
     def ingredient_params 
         info = params[:ingredients] .map do |ingredient| 
-            {id: ingredient[:pantryIngredientId], quantity: ingredient[:quantity], unit: ingredient[:unit]}
+            {ingredient_id: ingredient[:pantryIngredientId], quantity: ingredient[:quantity]}
         end
     end
 

@@ -10,7 +10,7 @@ class UserProfile extends Component {
             <li onClick={this.props.showRecipes}>Recipes </li>
             <li onClick={this.props.newRecipe}>Create New Recipe </li>
         </ul>
-       
+        <br></br>
     </div>
     );
   }
