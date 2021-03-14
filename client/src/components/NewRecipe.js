@@ -20,6 +20,7 @@ class NewRecipe extends Component {
   }
 
   componentDidMount(){
+    console.log(this.props)
     this.addIngredient()
   }
 

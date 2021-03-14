@@ -12,11 +12,11 @@ class Recipe < ApplicationRecord
       ings.map do | ing |
         ing[:recipe_id] = @recipe.id
         RecipeIngredient.create(ing)
-        @recipe.prepare_to_send
       end
     else
       "Throw all the errors"
     end
+    @recipe
   end
 
 end

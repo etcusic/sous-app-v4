@@ -48,6 +48,7 @@ class HomePage extends Component {
     })
   }
 
+  // move fetch to actions so that I can show a recipe when it's been created without sending another fetch request
   showRecipe = (id) => {
     fetch(`http://localhost:3001/users/${this.state.userId}/recipes/${id}`)
     .then(resp =>  resp.json())

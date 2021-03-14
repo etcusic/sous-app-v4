@@ -15,8 +15,7 @@ class RecipesController < ApplicationController
         # @recipe = Recipe.create(recipe_params) # create from custom getter/setter in Recipe model with nested attrs (recipe_ingredients)
         # RecipeIngredient.createRecipeIngredientsFromPantry(ingredient_params, @recipe.id)
         @recipe = Recipe.create_with_nested_attrs(recipe_params, ingredient_params)
-        binding.pry
-        redirect_to user_recipe_path(@recipe.user, @recipe)
+        render json: @recipe.prepare_to_send
     end
 
     private
