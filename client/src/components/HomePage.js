@@ -4,6 +4,8 @@ import Pantry from './Pantry.js'
 import Recipes from './Recipes.js'
 import ShowRecipe from './ShowRecipe.js'
 import RecipeForm from './RecipeForm.js';
+import { createRecipe } from '../actions/index'
+import { updateRecipe } from '../actions/index'
 
 class HomePage extends Component {
   
@@ -34,7 +36,7 @@ class HomePage extends Component {
   profilePage = () => {
     const emptyRecipe = {name: "", servings: 0, instructions: "", ingredients: []}
       this.setState({
-          view: <UserProfile showPantry={ this.showPantry } showRecipes={ this.showRecipes } recipeForm={ () => this.recipeForm(emptyRecipe) } />
+          view: <UserProfile showPantry={ this.showPantry } showRecipes={ this.showRecipes } recipeForm={ () => this.recipeForm(emptyRecipe, createRecipe) } />
       })
   }
 
@@ -57,18 +59,19 @@ class HomePage extends Component {
     .then(recipe => {
       this.setState({
         // view: <ShowRecipe recipe={recipe} pantry={this.state.pantry} editRecipe={ this.editRecipe } />
-        view: <ShowRecipe recipe={recipe} pantry={this.state.pantry} editRecipe={ () => this.recipeForm(recipe) } />
+        view: <ShowRecipe recipe={recipe} pantry={this.state.pantry} recipeForm={ () => this.recipeForm(recipe, updateRecipe) } />
       })
     })
   }
 
-  recipeForm = (recipe) => {
+  recipeForm = (recipe, action) => {
     this.setState({
       view: <RecipeForm 
         userId={ this.state.userId } 
         recipe={ recipe } 
         ingredients={ this.state.pantry } 
         showRecipe={ this.showRecipe } 
+        sendRecipeData={ action }
       />
     })
   }

@@ -47,29 +47,12 @@ class RecipeForm extends Component {
     this.setState({ recipe: recipeObject })
   }
 
-  // put this in actions
-  sendRecipe = (event) => {
-    event.preventDefault()
-    const configObject = {
-        method: 'POST',
-        headers: {
-            "Content-Type": 'application/json',
-            "Accept": 'application/json'
-        },
-        body: JSON.stringify(this.state.recipe)
-    }
-
-    fetch(`http://localhost:3001/users/${this.props.userId}/recipes`, configObject)
-      .then(response => response.json())
-      .then(json => this.props.showRecipe(json.id))
-          // add catch
-  }
-
   render() {
     return (
     <div>
         <h2>New Recipe:</h2><br></br> 
-        <form onSubmit={event => this.sendRecipe(event)}>
+        {/* this.prop.sendRecipeData(event, this.state, this.props.userId) should be for both creating and updating a recipe */}
+        <form onSubmit={event => this.props.sendRecipeData(event, this.state.recipe, this.props.userId)}>
           
           Recipe Name: <input type ="text" value={ this.state.recipe.name } onChange={event => this.changeRecipe(event, "name")}></input> <br></br> <br></br>
           
