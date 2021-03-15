@@ -17,13 +17,18 @@ class RecipeForm extends Component {
   }
 
   componentDidMount(){
-    this.setState({
-        recipe: this.props.recipe
-    })
+      let ingredientComponents = this.props.recipe.ingredients.length > 0 ? 
+        this.props.recipe.ingredients.map((ing,i) => this.addExistingIngredient(ing,i)) : 
+        [<Ingredient keyId={1} ingredients={ this.props.ingredients } changeIngredient={ this.changeIngredient } />]
+      this.setState({
+          ingredientComponents: ingredientComponents,
+          recipe: this.props.recipe
+        })
   } 
 
   addExistingIngredient = (ing, i) => {
-
+    console.log(ing)
+    console.log(i)
   }
 
   addIngredient = () => {

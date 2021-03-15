@@ -33,18 +33,6 @@ class HomePage extends Component {
     })
   }
 
-  recipeForm = (recipe) => {
-    console.log("wtf")
-    this.setState({
-      view: <RecipeForm 
-        userId={ this.state.userId } 
-        recipe={ recipe } 
-        ingredients={ this.state.pantry } 
-        showRecipe={ this.showRecipe } 
-      />
-    })
-  }
-
   profilePage = () => {
     const emptyRecipe = {name: "", servings: 0, instructions: "", ingredients: []}
       this.setState({
@@ -87,16 +75,15 @@ class HomePage extends Component {
     })
   }
 
-  recipeForm = () => {
-    console.log("wtf")
-    // this.setState({
-    //   view: <RecipeForm 
-    //     userId={ this.state.userId } 
-    //     recipe={ recipe } 
-    //     ingredients={ this.state.pantry } 
-    //     showRecipe={ this.showRecipe } 
-    //   />
-    // })
+  recipeForm = (recipe) => {
+    this.setState({
+      view: <RecipeForm 
+        userId={ this.state.userId } 
+        recipe={ recipe } 
+        ingredients={ this.state.pantry } 
+        showRecipe={ this.showRecipe } 
+      />
+    })
   }
 
   render() {
