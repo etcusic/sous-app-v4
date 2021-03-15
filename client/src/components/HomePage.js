@@ -58,7 +58,8 @@ class HomePage extends Component {
     .then(resp =>  resp.json())
     .then(recipe => {
       this.setState({
-        view: <ShowRecipe recipe={recipe} pantry={this.state.pantry} editRecipe={ this.editRecipe } />
+        // view: <ShowRecipe recipe={recipe} pantry={this.state.pantry} editRecipe={ this.editRecipe } />
+        view: <ShowRecipe recipe={recipe} pantry={this.state.pantry} editRecipe={ () => this.recipeForm(recipe) } />
       })
     })
   }
