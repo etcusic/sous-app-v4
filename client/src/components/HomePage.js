@@ -4,6 +4,7 @@ import Pantry from './Pantry.js'
 import Recipes from './Recipes.js'
 import Recipe from './Recipe.js'
 import NewRecipe from './NewRecipe.js'
+import EditRecipe from './EditRecipe.js'
 
 class HomePage extends Component {
   
@@ -64,6 +65,12 @@ class HomePage extends Component {
         view: <NewRecipe userId={this.state.userId} ingredients={ this.state.pantry } showRecipe={ this.showRecipe }/>
     })
   } 
+
+  editRecipe = () => {
+    this.setState({
+      view: <EditRecipe />
+    })
+  }
 
   render() {
     return (

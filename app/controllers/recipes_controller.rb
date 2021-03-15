@@ -12,8 +12,6 @@ class RecipesController < ApplicationController
 
     def create
         # NEED TO ACCOUNT FOR EDGE CASES & ERRORS
-        # @recipe = Recipe.create(recipe_params) # create from custom getter/setter in Recipe model with nested attrs (recipe_ingredients)
-        # RecipeIngredient.createRecipeIngredientsFromPantry(ingredient_params, @recipe.id)
         @recipe = Recipe.create_with_nested_attrs(recipe_params, ingredient_params)
         render json: @recipe.prepare_to_send
     end
