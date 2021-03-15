@@ -2,6 +2,28 @@ import React, { Component } from 'react';
 
 class OldIngredient extends Component {
 
+
+  constructor(){
+    super()
+    this.state = {
+        quantity: 0
+      }
+    }
+
+    componentDidMount(){
+        this.setState({
+            quantity: this.props.ingredientQuantity
+        })
+    }
+
+    changeValue = (event) => {
+        // need to also change ingredients array in parent component
+        console.log(event.target.value)
+        this.setState({
+            quantity: event.target.value
+        })
+    }
+
   render() {
     return (
     <div key={`new-ingredient-${this.props.keyId}`}>
@@ -17,7 +39,8 @@ class OldIngredient extends Component {
                 }
             })}
         </select>
-        <input type ="number" value={ this.props.ingredientQuantity } onChange={ event => this.props.changeIngredientComponent(event, this.props.keyId, "quantity") }></input>
+        {/* <input type ="number" value={ this.state.quantity } onChange={ event => this.props.changeIngredientComponent(event, this.props.keyId, "quantity") }></input> */}
+        <input type ="number" value={ this.state.quantity } onChange={ event => this.changeValue(event) }></input>
     </div>
     );
   }

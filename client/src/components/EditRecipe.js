@@ -31,7 +31,7 @@ class EditRecipe extends Component {
             changeIngredientComponent={ this.changeIngredientComponent }
         />})
     let existingIngredients = this.props.recipe.ingredients.map((ing, i) => {
-            return {id: i + 1, pantryIngredientId: ing.id}
+            return {id: i + 1, quantity: ing.quantity}
         })
     console.log(existingIngredients)
     this.setState({
@@ -40,17 +40,13 @@ class EditRecipe extends Component {
             name: this.props.recipe.name,
             servings: this.props.recipe.servings,
             instructions: this.props.recipe.instructions,
-            ingredients: this.props.recipe.ingredients
+            ingredients: existingIngredients
         }
     })
   } 
 
   addExistingIngredient = (ing, i) => {
-    let newState = Object.assign({}, this.state)
-    let newId = newState.ingredientComponents.length + 1
-    newState.ingredientComponents.push(<NewIngredient keyId={newId} ingredients={this.props.ingredients} changeIngredient={this.changeIngredient} />)
-    newState.recipe.ingredients.push({id: newId})
-    this.setState(newState)
+    //
   }
 
   sendRecipe = (event) => {
@@ -87,10 +83,11 @@ class EditRecipe extends Component {
   }
 
   changeIngredientComponent = (event, id, category) => {
-    let ingredientComponentsArray = Object.assign({}, this.state.ingredientComponents)
-    console.log(ingredientComponentsArray)
-    console.log(ingredientComponentsArray[id - 1])
-    console.log(event.target.value)
+    let recipeObject = Object.assign({}, this.state.recipe)
+    recipeObject.ingredients[id - 1][category] = event.target.value
+    this.setState({
+      recipe: recipeObject
+    })
     // ingredientComponentsArray.ingredients[id - 1][category] = event.target.value
     // this.setState({
     //   recipe: recipeObject
