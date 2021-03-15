@@ -1,8 +1,5 @@
 export const createRecipe = (event, recipe, userId, reaction) => {
     event.preventDefault()
-    console.log(event)
-    console.log(recipe)
-    console.log(userId)
     const configObject = {
         method: 'POST',
         headers: {
@@ -18,11 +15,11 @@ export const createRecipe = (event, recipe, userId, reaction) => {
           // add catch
 }
 
-export const updateRecipe = (event, recipe, userId) => {
-    event.preventDefault()
-    console.log(event)
+// CONSOLIDATE INTO ONE FUNCTION BY MAKING METHOD A PARAMETER AS WELL
+
+export const updateRecipe = (event, recipe, userId, reaction) => {
     console.log(recipe)
-    console.log(userId)
+    event.preventDefault()
     const configObject = {
         method: 'PATCH',
         headers: {
@@ -32,8 +29,8 @@ export const updateRecipe = (event, recipe, userId) => {
         body: JSON.stringify(recipe)
     }
 
-    fetch(`http://localhost:3001/users/${userId}/recipes`, configObject)
+    fetch(`http://localhost:3001/users/${userId}/recipes/${recipe.id}`, configObject)
       .then(response => response.json())
-      .then(json => this.props.showRecipe(json.id))
+      .then(json => reaction(json.id))
           // add catch
 }

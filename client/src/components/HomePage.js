@@ -64,6 +64,8 @@ class HomePage extends Component {
   }
 
   recipeForm = (recipe, action) => {
+    console.log(recipe)
+    console.log(action)
     this.setState({
       view: <RecipeForm 
         userId={ this.state.userId } 

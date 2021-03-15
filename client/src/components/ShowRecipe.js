@@ -35,7 +35,7 @@ class ShowRecipe extends Component {
         <div>{ enoughInPantry(this.props.recipe.ingredients, this.props.pantry) }</div>
         <br></br>
         <br></br>
-        <button onClick={ () => this.props.recipeForm() }>Edit Recipe</button>
+        <button onClick={ this.props.recipeForm }>Edit Recipe</button>
     </div>
     );
   }
