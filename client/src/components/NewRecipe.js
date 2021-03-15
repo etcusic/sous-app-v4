@@ -58,6 +58,7 @@ class NewRecipe extends Component {
   }
 
   changeIngredient = (event, id, category) => {
+    // console.log(this.state.recipe.ingredients)
     let recipeObject = Object.assign({}, this.state.recipe)
     recipeObject.ingredients[id - 1][category] = event.target.value
     this.setState({

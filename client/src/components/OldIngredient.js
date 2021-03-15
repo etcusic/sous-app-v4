@@ -7,7 +7,7 @@ class OldIngredient extends Component {
     <div key={`new-ingredient-${this.props.keyId}`}>
     {console.log(this.props)}
         Ingredient: 
-        <select name="ingredients" id="new-recipe-ingredients" onChange={event => this.props.changeIngredient(event, this.props.keyId, "pantryIngredientId") }>
+        <select name="ingredients" id="new-recipe-ingredients" onChange={event => this.props.changeIngredientComponent(event, this.props.keyId, "pantryIngredientId") }>
           <option key="ingredient-option-0" value="0"></option>
             { this.props.ingredients.map(ingredient => {
                 if (ingredient.name === this.props.ingredientName){
@@ -17,7 +17,7 @@ class OldIngredient extends Component {
                 }
             })}
         </select>
-        <input type ="number" onChange={ event => this.props.changeIngredient(event, this.props.keyId, "quantity") } value={ this.props.ingredientQuantity }></input>
+        <input type ="number" value={ this.props.ingredientQuantity } onChange={ event => this.props.changeIngredientComponent(event, this.props.keyId, "quantity") }></input>
     </div>
     );
   }

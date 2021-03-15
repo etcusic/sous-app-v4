@@ -22,7 +22,18 @@ class EditRecipe extends Component {
 
   componentDidMount(){
     console.log(this.props)
-    let ingredientComponents = this.props.recipe.ingredients.map((ing, i) => <OldIngredient keyId={i + 1} ingredientName={ ing.name } ingredientQuantity={ ing.quantity } ingredients={ this.props.ingredients } changeIngredient={ this.changeIngredient } />)
+    let ingredientComponents = this.props.recipe.ingredients.map((ing, i) => {
+        return <OldIngredient 
+            keyId={i + 1} 
+            ingredientName={ ing.name } 
+            ingredientQuantity={ ing.quantity } 
+            ingredients={ this.props.ingredients } 
+            changeIngredientComponent={ this.changeIngredientComponent }
+        />})
+    let existingIngredients = this.props.recipe.ingredients.map((ing, i) => {
+            return {id: i + 1, pantryIngredientId: ing.id}
+        })
+    console.log(existingIngredients)
     this.setState({
         ingredientComponents: ingredientComponents,
         recipe: {
@@ -32,6 +43,14 @@ class EditRecipe extends Component {
             ingredients: this.props.recipe.ingredients
         }
     })
+  } 
+
+  addExistingIngredient = (ing, i) => {
+    let newState = Object.assign({}, this.state)
+    let newId = newState.ingredientComponents.length + 1
+    newState.ingredientComponents.push(<NewIngredient keyId={newId} ingredients={this.props.ingredients} changeIngredient={this.changeIngredient} />)
+    newState.recipe.ingredients.push({id: newId})
+    this.setState(newState)
   }
 
   sendRecipe = (event) => {
@@ -67,12 +86,15 @@ class EditRecipe extends Component {
     })
   }
 
-  changeIngredient = (event, id, category) => {
-    let recipeObject = Object.assign({}, this.state.recipe)
-    recipeObject.ingredients[id - 1][category] = event.target.value
-    this.setState({
-      recipe: recipeObject
-    })
+  changeIngredientComponent = (event, id, category) => {
+    let ingredientComponentsArray = Object.assign({}, this.state.ingredientComponents)
+    console.log(ingredientComponentsArray)
+    console.log(ingredientComponentsArray[id - 1])
+    console.log(event.target.value)
+    // ingredientComponentsArray.ingredients[id - 1][category] = event.target.value
+    // this.setState({
+    //   recipe: recipeObject
+    // })
   }
 
   render() {
