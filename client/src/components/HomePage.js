@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import UserProfile from './UserProfile.js'
 import Pantry from './Pantry.js'
 import Recipes from './Recipes.js'
-import Recipe from './Recipe.js'
+import ShowRecipe from './ShowRecipe.js'
 import NewRecipe from './NewRecipe.js'
 import EditRecipe from './EditRecipe.js'
 
@@ -55,7 +55,7 @@ class HomePage extends Component {
     .then(resp =>  resp.json())
     .then(recipe => {
       this.setState({
-        view: <Recipe recipe={recipe} pantry={this.state.pantry} />
+        view: <ShowRecipe recipe={recipe} pantry={this.state.pantry} />
       })
     })
   }
@@ -66,9 +66,9 @@ class HomePage extends Component {
     })
   } 
 
-  editRecipe = () => {
+  editRecipe = (recipe) => {
     this.setState({
-      view: <EditRecipe />
+      view: <EditRecipe recipe={ this.props.recipe }/>
     })
   }
 

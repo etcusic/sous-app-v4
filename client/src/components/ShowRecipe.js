@@ -3,7 +3,7 @@ import { calculateRawCost } from '../actions/helpers'
 import { costPerServing } from '../actions/helpers'
 import { enoughInPantry } from '../actions/helpers'
 
-class Recipe extends Component {
+class ShowRecipe extends Component {
 
   render() {
     return (
@@ -33,10 +33,13 @@ class Recipe extends Component {
         <br></br>
         <br></br>
         <div>{ enoughInPantry(this.props.recipe.ingredients, this.props.pantry) }</div>
+        <br></br>
+        <br></br>
+        <button onClick={ () => this.editRecipe(this.props.recipe) }>Edit Recipe</button>
     </div>
     );
   }
 
 }
 
-export default Recipe
+export default ShowRecipe
