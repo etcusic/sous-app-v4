@@ -55,20 +55,21 @@ class HomePage extends Component {
     .then(resp =>  resp.json())
     .then(recipe => {
       this.setState({
-        view: <ShowRecipe recipe={recipe} pantry={this.state.pantry} />
+        view: <ShowRecipe recipe={recipe} pantry={this.state.pantry} editRecipe={ this.editRecipe } />
       })
     })
   }
 
   newRecipe = () => {
     this.setState({
-        view: <NewRecipe userId={this.state.userId} ingredients={ this.state.pantry } showRecipe={ this.showRecipe }/>
+        view: <NewRecipe userId={this.state.userId} ingredients={ this.state.pantry } showRecipe={ this.showRecipe } />
     })
   } 
 
   editRecipe = (recipe) => {
+    console.log(recipe)
     this.setState({
-      view: <EditRecipe recipe={ this.props.recipe }/>
+      view: <EditRecipe userId={ this.state.userId } recipe={ recipe } ingredients={ this.state.pantry } showRecipe={ this.showRecipe } />
     })
   }
 

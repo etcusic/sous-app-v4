@@ -1,5 +1,6 @@
 import React, { Component } from 'react'
 import NewIngredient from './NewIngredient'
+import OldIngredient from './OldIngredient'
 
 class EditRecipe extends Component {
 
@@ -21,16 +22,16 @@ class EditRecipe extends Component {
 
   componentDidMount(){
     console.log(this.props)
-    // let ingredientComponents = this.props.ingredients.map((ing, i) => <NewIngredient keyId={i + 1} ingredients={this.props.ingredients} changeIngredient={this.changeIngredient} />)
-    // this.setState({
-    //     ingredientComponents: ingredientComponents,
-    //     recipe: {
-    //         name: this.props.name,
-    //         servings: this.props.servings,
-    //         instructions: this.props.instructions,
-    //         ingredients: this.props.ingredients
-    //     }
-    // })
+    let ingredientComponents = this.props.recipe.ingredients.map((ing, i) => <OldIngredient keyId={i + 1} ingredientName={ ing.name } ingredientQuantity={ ing.quantity } ingredients={ this.props.ingredients } changeIngredient={ this.changeIngredient } />)
+    this.setState({
+        ingredientComponents: ingredientComponents,
+        recipe: {
+            name: this.props.recipe.name,
+            servings: this.props.recipe.servings,
+            instructions: this.props.recipe.instructions,
+            ingredients: this.props.recipe.ingredients
+        }
+    })
   }
 
   sendRecipe = (event) => {
@@ -53,7 +54,7 @@ class EditRecipe extends Component {
   addIngredient = () => {
     let newState = Object.assign({}, this.state)
     let newId = newState.ingredientComponents.length + 1
-    newState.ingredientComponents.push(<NewIngredient keyId={newId} ingredients={this.props.ingredients} changeIngredient={this.changeIngredient} />)
+    newState.ingredientComponents.push(<NewIngredient keyId={newId} ingredients={ this.props.ingredients } changeIngredient={ this.changeIngredient } />)
     newState.recipe.ingredients.push({id: newId})
     this.setState(newState)
   }
@@ -80,9 +81,9 @@ class EditRecipe extends Component {
         <h2>New Recipe:</h2><br></br> 
         <form onSubmit={event => this.sendRecipe(event)}>
           
-          Recipe Name: <input type ="text" onChange={event => this.changeRecipe(event, "name")}></input> <br></br> <br></br>
+          Recipe Name: <input type ="text" value={ this.state.recipe.name } onChange={event => this.changeRecipe(event, "name")}></input> <br></br> <br></br>
           
-          Servings: <input type="number" onChange={event => this.changeRecipe(event, "servings")}></input>  <br></br> <br></br>
+          Servings: <input type="number" value={ this.state.recipe.servings } onChange={event => this.changeRecipe(event, "servings")}></input>  <br></br> <br></br>
           
           <div id="new-recipe-ingredients">
             { this.state.ingredientComponents.map(ing => ing) }
@@ -90,7 +91,7 @@ class EditRecipe extends Component {
           
           <p onClick={this.addIngredient}>++ Add Ingredient ++</p> <br></br> 
           
-          Instructions: <input type="text" onChange={event => this.changeRecipe(event, "instructions")}></input> <br></br> <br></br>
+          Instructions: <input type="text" value={ this.state.recipe.instructions } onChange={event => this.changeRecipe(event, "instructions")}></input> <br></br> <br></br>
           
           <input type="submit"></input>
         </form>
