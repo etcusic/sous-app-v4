@@ -15,7 +15,7 @@ class HomePage extends Component {
     this.state = {
         userId: 0,
         userName: "",
-        view: <UserProfile showPantry={ this.showPantry } showRecipes={ this.showRecipes } recipeForm={ () => this.recipeForm(emptyRecipe) } />,
+        view: <UserProfile showPantry={ this.showPantry } showRecipes={ this.showRecipes } recipeForm={ () => this.recipeForm(emptyRecipe, createRecipe) } />,
         pantry: []
     }
   }

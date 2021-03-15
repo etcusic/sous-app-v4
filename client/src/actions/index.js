@@ -1,6 +1,8 @@
 export const createRecipe = (event, recipe, userId) => {
+    event.preventDefault()
+    console.log(event)
     console.log(recipe)
-    // event.preventDefault()
+    console.log(userId)
     // const configObject = {
     //     method: 'POST',
     //     headers: {
@@ -17,8 +19,10 @@ export const createRecipe = (event, recipe, userId) => {
 }
 
 export const updateRecipe = (event, recipe, userId) => {
+    event.preventDefault()
+    console.log(event)
     console.log(recipe)
-    // event.preventDefault()
+    console.log(userId)
     // const configObject = {
     //     method: 'POST',
     //     headers: {
