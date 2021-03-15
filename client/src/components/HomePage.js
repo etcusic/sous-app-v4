@@ -3,8 +3,6 @@ import UserProfile from './UserProfile.js'
 import Pantry from './Pantry.js'
 import Recipes from './Recipes.js'
 import ShowRecipe from './ShowRecipe.js'
-import NewRecipe from './NewRecipe.js'
-import EditRecipe from './EditRecipe.js'
 import RecipeForm from './RecipeForm.js';
 
 class HomePage extends Component {
@@ -61,18 +59,6 @@ class HomePage extends Component {
         // view: <ShowRecipe recipe={recipe} pantry={this.state.pantry} editRecipe={ this.editRecipe } />
         view: <ShowRecipe recipe={recipe} pantry={this.state.pantry} editRecipe={ () => this.recipeForm(recipe) } />
       })
-    })
-  }
-
-  newRecipe = () => {
-    this.setState({
-        view: <NewRecipe userId={this.state.userId} ingredients={ this.state.pantry } showRecipe={ this.showRecipe } />
-    })
-  } 
-
-  editRecipe = (recipe) => {
-    this.setState({
-      view: <EditRecipe userId={ this.state.userId } recipe={ recipe } ingredients={ this.state.pantry } showRecipe={ this.showRecipe } />
     })
   }
 
