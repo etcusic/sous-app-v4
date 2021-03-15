@@ -17,11 +17,25 @@ class RecipeForm extends Component {
   }
 
   componentDidMount(){
-    
+    this.setState({
+        recipe: this.props.recipe
+    })
   } 
 
   addExistingIngredient = (ing, i) => {
-    //
+
+  }
+
+  addIngredient = () => {
+
+  }
+
+  changeRecipe = (event, category) => {
+
+  }
+
+  changeIngredient = (event, id, category) => {
+
   }
 
   // put this in actions
@@ -56,7 +70,7 @@ class RecipeForm extends Component {
             { this.state.ingredientComponents.map(ing => ing) }
           </div>
           
-          <p onClick={this.addIngredient}>++ Add Ingredient ++</p> <br></br> 
+          <p onClick={ this.addIngredient }>++ Add Ingredient ++</p> <br></br> 
           
           Instructions: <input type="text" value={ this.state.recipe.instructions } onChange={event => this.changeRecipe(event, "instructions")}></input> <br></br> <br></br>
           

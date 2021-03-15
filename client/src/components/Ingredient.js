@@ -2,9 +2,9 @@ import React, { Component } from 'react';
 
 class Ingredient extends Component {
 
-  constructor(){
-    super()
-    this.state = { quantity: 0 }
+    constructor(){
+        super()
+        this.state = { quantity: 0 }
     }
 
     componentDidMount(){

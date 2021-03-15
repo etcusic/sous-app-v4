@@ -5,15 +5,17 @@ import Recipes from './Recipes.js'
 import ShowRecipe from './ShowRecipe.js'
 import NewRecipe from './NewRecipe.js'
 import EditRecipe from './EditRecipe.js'
+import RecipeForm from './RecipeForm.js';
 
 class HomePage extends Component {
   
   constructor(){
+    const emptyRecipe = {name: "", servings: 0, instructions: "", ingredients: []}
     super()
     this.state = {
         userId: 0,
         userName: "",
-        view: <UserProfile showPantry={ this.showPantry } showRecipes={ this.showRecipes } newRecipe={ this.newRecipe } />,
+        view: <UserProfile showPantry={ this.showPantry } showRecipes={ this.showRecipes } recipeForm={ () => this.recipeForm(emptyRecipe) } />,
         pantry: []
     }
   }
@@ -31,9 +33,22 @@ class HomePage extends Component {
     })
   }
 
+  recipeForm = (recipe) => {
+    console.log("wtf")
+    this.setState({
+      view: <RecipeForm 
+        userId={ this.state.userId } 
+        recipe={ recipe } 
+        ingredients={ this.state.pantry } 
+        showRecipe={ this.showRecipe } 
+      />
+    })
+  }
+
   profilePage = () => {
+    const emptyRecipe = {name: "", servings: 0, instructions: "", ingredients: []}
       this.setState({
-          view: <UserProfile showPantry={ this.showPantry } showRecipes={ this.showRecipes } newRecipe={ this.newRecipe } />
+          view: <UserProfile showPantry={ this.showPantry } showRecipes={ this.showRecipes } recipeForm={ () => this.recipeForm(emptyRecipe) } />
       })
   }
 
@@ -67,10 +82,21 @@ class HomePage extends Component {
   } 
 
   editRecipe = (recipe) => {
-    console.log(recipe)
     this.setState({
       view: <EditRecipe userId={ this.state.userId } recipe={ recipe } ingredients={ this.state.pantry } showRecipe={ this.showRecipe } />
     })
+  }
+
+  recipeForm = () => {
+    console.log("wtf")
+    // this.setState({
+    //   view: <RecipeForm 
+    //     userId={ this.state.userId } 
+    //     recipe={ recipe } 
+    //     ingredients={ this.state.pantry } 
+    //     showRecipe={ this.showRecipe } 
+    //   />
+    // })
   }
 
   render() {
