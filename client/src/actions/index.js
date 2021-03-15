@@ -1,20 +1,20 @@
-export const createRecipe = (event, recipe, userId) => {
+export const createRecipe = (event, recipe, userId, reaction) => {
     event.preventDefault()
     console.log(event)
     console.log(recipe)
     console.log(userId)
-    // const configObject = {
-    //     method: 'POST',
-    //     headers: {
-    //         "Content-Type": 'application/json',
-    //         "Accept": 'application/json'
-    //     },
-    //     body: JSON.stringify(recipe)
-    // }
+    const configObject = {
+        method: 'POST',
+        headers: {
+            "Content-Type": 'application/json',
+            "Accept": 'application/json'
+        },
+        body: JSON.stringify(recipe)
+    }
 
-    // fetch(`http://localhost:3001/users/${userId}/recipes`, configObject)
-    //   .then(response => response.json())
-    //   .then(json => this.props.showRecipe(json.id))
+    fetch(`http://localhost:3001/users/${userId}/recipes`, configObject)
+      .then(response => response.json())
+      .then(json => reaction(json.id))
           // add catch
 }
 
@@ -23,17 +23,17 @@ export const updateRecipe = (event, recipe, userId) => {
     console.log(event)
     console.log(recipe)
     console.log(userId)
-    // const configObject = {
-    //     method: 'POST',
-    //     headers: {
-    //         "Content-Type": 'application/json',
-    //         "Accept": 'application/json'
-    //     },
-    //     body: JSON.stringify(recipe)
-    // }
+    const configObject = {
+        method: 'PATCH',
+        headers: {
+            "Content-Type": 'application/json',
+            "Accept": 'application/json'
+        },
+        body: JSON.stringify(recipe)
+    }
 
-    // fetch(`http://localhost:3001/users/${userId}/recipes`, configObject)
-    //   .then(response => response.json())
-    //   .then(json => this.props.showRecipe(json.id))
+    fetch(`http://localhost:3001/users/${userId}/recipes`, configObject)
+      .then(response => response.json())
+      .then(json => this.props.showRecipe(json.id))
           // add catch
 }

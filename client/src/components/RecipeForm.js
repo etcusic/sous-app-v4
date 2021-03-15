@@ -52,7 +52,7 @@ class RecipeForm extends Component {
     <div>
         <h2>New Recipe:</h2><br></br> 
         {/* this.prop.sendRecipeData(event, this.state, this.props.userId) should be for both creating and updating a recipe */}
-        <form onSubmit={event => this.props.sendRecipeData(event, this.state.recipe, this.props.userId)}>
+        <form onSubmit={event => this.props.sendRecipeData(event, this.state.recipe, this.props.userId, this.props.showRecipe)}>
           
           Recipe Name: <input type ="text" value={ this.state.recipe.name } onChange={event => this.changeRecipe(event, "name")}></input> <br></br> <br></br>
           
