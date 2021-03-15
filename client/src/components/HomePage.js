@@ -10,7 +10,7 @@ import RecipeForm from './RecipeForm.js';
 class HomePage extends Component {
   
   constructor(){
-    const emptyRecipe = {name: "", servings: 0, instructions: "", ingredients: []}
+    const emptyRecipe = {name: "", servings: 0, instructions: "", ingredients: [{id: 1, name: "", quantity: 0}]}
     super()
     this.state = {
         userId: 0,

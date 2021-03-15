@@ -39,7 +39,6 @@ class RecipeForm extends Component {
     let recipeObject = this.state.recipe
     recipeObject[category] = event.target.value
     this.setState({ recipe: recipeObject })
-    console.log(this.state.recipe)
   }
 
   changeIngredient = (event, id, category) => {
@@ -77,7 +76,7 @@ class RecipeForm extends Component {
           Servings: <input type="number" value={ this.state.recipe.servings } onChange={event => this.changeRecipe(event, "servings")}></input>  <br></br> <br></br>
           
           <div id="new-recipe-ingredients">
-            { this.state.recipe.ingredients.map((ing, i) => this.makeComponent(ing)) }
+            { this.state.recipe.ingredients.map((ing, i) => this.makeComponent(ing, i)) }
           </div>
           
           <p onClick={ this.addIngredient }>++ Add Ingredient ++</p> <br></br> 
@@ -86,7 +85,6 @@ class RecipeForm extends Component {
           
           <input type="submit"></input>
         </form>
-        <button onClick={ this.addExistingIngredients } >Check state</button>
     </div>
     );
   }
