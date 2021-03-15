@@ -21,7 +21,16 @@ class EditRecipe extends Component {
 
   componentDidMount(){
     console.log(this.props)
-    this.addIngredient()
+    // let ingredientComponents = this.props.ingredients.map((ing, i) => <NewIngredient keyId={i + 1} ingredients={this.props.ingredients} changeIngredient={this.changeIngredient} />)
+    // this.setState({
+    //     ingredientComponents: ingredientComponents,
+    //     recipe: {
+    //         name: this.props.name,
+    //         servings: this.props.servings,
+    //         instructions: this.props.instructions,
+    //         ingredients: this.props.ingredients
+    //     }
+    // })
   }
 
   sendRecipe = (event) => {
