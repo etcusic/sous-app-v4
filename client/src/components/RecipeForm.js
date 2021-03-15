@@ -6,7 +6,6 @@ class RecipeForm extends Component {
   constructor(){
     super()
     this.state = {
-      ingredientComponents: [],
       recipe: {
         name: "",
         servings: 0,
@@ -17,37 +16,36 @@ class RecipeForm extends Component {
   }
 
   componentDidMount(){
-      let ingredientComponents = this.props.recipe.ingredients.length > 0 ? 
-        this.addExistingIngredients() : 
-        [<Ingredient keyId={1} ingredients={ this.props.ingredients } changeIngredient={ this.changeIngredient } />]
-      this.setState({
-          ingredientComponents: ingredientComponents,
-          recipe: this.props.recipe
-        })
+    this.setState({recipe: this.props.recipe})
   } 
 
-  addExistingIngredients = () => {
-    return this.props.recipe.ingredients.map((ing, i) => {
-         return <Ingredient 
-            keyId={i + 1} 
-            ingredientName={ ing.name } 
-            ingredientQuantity={ ing.quantity } 
-            ingredients={ this.props.ingredients } 
-            changeIngredientComponent={ this.changeIngredientComponent }
-        />
-    })
+  addIngredient = () => {
+    let newState = Object.assign({}, this.state)
+    newState.recipe.ingredients.push({name: "", quantity: 0})
+    this.setState(newState)
   }
 
-  addIngredient = () => {
-
+  makeComponent = (ing, i) => {
+    return <Ingredient 
+        keyId={i + 1} 
+        ingredientName={ ing.name } 
+        ingredientQuantity={ ing.quantity } 
+        ingredients={ this.props.ingredients } 
+        changeIngredient={ this.changeIngredient }
+    />
   }
 
   changeRecipe = (event, category) => {
-
+    let recipeObject = this.state.recipe
+    recipeObject[category] = event.target.value
+    this.setState({ recipe: recipeObject })
+    console.log(this.state.recipe)
   }
 
   changeIngredient = (event, id, category) => {
-
+    let recipeObject = Object.assign({}, this.state.recipe)
+    recipeObject.ingredients[id - 1][category] = event.target.value
+    this.setState({ recipe: recipeObject })
   }
 
   // put this in actions
@@ -79,7 +77,7 @@ class RecipeForm extends Component {
           Servings: <input type="number" value={ this.state.recipe.servings } onChange={event => this.changeRecipe(event, "servings")}></input>  <br></br> <br></br>
           
           <div id="new-recipe-ingredients">
-            { this.state.ingredientComponents.map(ing => ing) }
+            { this.state.recipe.ingredients.map((ing, i) => this.makeComponent(ing)) }
           </div>
           
           <p onClick={ this.addIngredient }>++ Add Ingredient ++</p> <br></br> 
@@ -88,6 +86,7 @@ class RecipeForm extends Component {
           
           <input type="submit"></input>
         </form>
+        <button onClick={ this.addExistingIngredients } >Check state</button>
     </div>
     );
   }

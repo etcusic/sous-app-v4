@@ -14,6 +14,7 @@ class Ingredient extends Component {
     changeValue = (event) => {
         // need to also change ingredients array in parent component
         console.log(event.target.value)
+        this.props.changeIngredient(event, )
         this.setState({
             quantity: event.target.value
         })
