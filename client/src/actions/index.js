@@ -1,5 +1,6 @@
 export const createRecipe = (event, recipe, userId, reaction) => {
     event.preventDefault()
+    console.log(recipe)
     const configObject = {
         method: 'POST',
         headers: {
@@ -18,8 +19,8 @@ export const createRecipe = (event, recipe, userId, reaction) => {
 // CONSOLIDATE INTO ONE FUNCTION BY MAKING METHOD A PARAMETER AS WELL
 
 export const updateRecipe = (event, recipe, userId, reaction) => {
-    console.log(recipe)
     event.preventDefault()
+    console.log(recipe)
     const configObject = {
         method: 'PATCH',
         headers: {

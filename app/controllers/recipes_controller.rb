@@ -13,11 +13,14 @@ class RecipesController < ApplicationController
     def create
         # NEED TO ACCOUNT FOR EDGE CASES & ERRORS
         @recipe = Recipe.create_with_nested_attrs(recipe_params, ingredient_params)
+        binding.pry
         render json: @recipe.prepare_to_send
     end
 
     def update
-        binding.pry
+        # binding.pry
+        @recipe = Recipe.update_with_ingredients(recipe_params, update_ingredient_params)
+        render json: @recipe.prepare_to_send
     end
 
     private
@@ -30,13 +33,13 @@ class RecipesController < ApplicationController
     # need better standardization
     def ingredient_params 
         info = params[:ingredients] .map do |ingredient| 
-            {ingredient_id: ingredient[:pantryIngredientId], quantity: ingredient[:quantity]}
+            {ingredient_id: ingredient[:id], quantity: ingredient[:quantity]}
         end
     end
 
     def update_ingredient_params
         info = params[:ingredients] .map do |ingredient| 
-            {ingredient_id: ingredient[:id], quantity: ingredient[:quantity]}
+            {recipe_id: recipe_params[:id], ingredient_id: ingredient[:id], quantity: ingredient[:quantity]}
         end
     end
 

@@ -16,7 +16,7 @@ class RecipeForm extends Component {
   }
 
   componentDidMount(){
-      console.log(this.props.recipe)
+      console.log(this.props)
     this.setState({recipe: this.props.recipe})
   } 
 
