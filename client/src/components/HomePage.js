@@ -4,9 +4,9 @@ import Pantry from './Pantry.js'
 import Recipes from './Recipes.js'
 import ShowRecipe from './ShowRecipe.js'
 import RecipeForm from './RecipeForm.js';
-import { sendRecipeData } from '../actions/index'
-import { createRecipe } from '../actions/index'
-import { updateRecipe } from '../actions/index'
+// import { sendRecipeData } from '../actions/index'
+// import { createRecipe } from '../actions/index'
+// import { updateRecipe } from '../actions/index'
 
 class HomePage extends Component {
   
@@ -16,7 +16,7 @@ class HomePage extends Component {
     this.state = {
         userId: 0,
         userName: "",
-        view: <UserProfile showPantry={ this.showPantry } showRecipes={ this.showRecipes } recipeForm={ () => this.recipeForm(emptyRecipe, createRecipe) } />,
+        view: <UserProfile showPantry={ this.showPantry } showRecipes={ this.showRecipes } recipeForm={ () => this.recipeForm(emptyRecipe, 'POST') } />,
         pantry: []
     }
   }
@@ -37,7 +37,7 @@ class HomePage extends Component {
   profilePage = () => {
     const emptyRecipe = {name: "", servings: 0, instructions: "", ingredients: [{id: 1, name: "", quantity: 0}]}
       this.setState({
-          view: <UserProfile showPantry={ this.showPantry } showRecipes={ this.showRecipes } recipeForm={ () => this.recipeForm(emptyRecipe, createRecipe) } />
+          view: <UserProfile showPantry={ this.showPantry } showRecipes={ this.showRecipes } recipeForm={ () => this.recipeForm(emptyRecipe, 'POST') } />
       })
   }
 
@@ -60,12 +60,12 @@ class HomePage extends Component {
     .then(recipe => {
       console.log(recipe)
       this.setState({
-        view: <ShowRecipe recipe={recipe} pantry={this.state.pantry} recipeForm={ () => this.recipeForm(recipe, updateRecipe) } />
+        view: <ShowRecipe recipe={recipe} pantry={this.state.pantry} recipeForm={ () => this.recipeForm(recipe, 'PATCH') } />
       })
     })
   }
 
-  recipeForm = (recipe, action) => {
+  recipeForm = (recipe, routeMethod) => {
     let ingredients = [{id: 0, name: "", quantity: 0}, ...this.state.pantry]
     this.setState({
       view: <RecipeForm 
@@ -73,7 +73,7 @@ class HomePage extends Component {
         recipe={ recipe } 
         ingredients={ ingredients } 
         showRecipe={ this.showRecipe } 
-        sendRecipeData={ action }
+        routeMethod={ routeMethod }
       />
     })
   }

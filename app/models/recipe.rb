@@ -8,7 +8,6 @@ class Recipe < ApplicationRecord
   def self.create_with_nested_attrs(recipe, ings)
     # check validity of recipe and ings before creating new recipe
     @recipe = Recipe.new(recipe)
-    binding.pry
     if @recipe.save
       ings.map do | ing |
         ing[:recipe_id] = @recipe.id
@@ -33,7 +32,6 @@ class Recipe < ApplicationRecord
         new_ing = RecipeIngredient.create(ing)
       end
     end
-    binding.pry
     @recipe
   end
   

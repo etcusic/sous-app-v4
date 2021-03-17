@@ -13,7 +13,6 @@ class RecipesController < ApplicationController
     def create
         # NEED TO ACCOUNT FOR EDGE CASES & ERRORS
         @recipe = Recipe.create_with_nested_attrs(recipe_params, ingredient_params)
-        binding.pry
         render json: @recipe.prepare_to_send
     end
 
