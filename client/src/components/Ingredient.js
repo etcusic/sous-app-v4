@@ -9,9 +9,9 @@ class Ingredient extends Component {
         <select name="ingredients" id="new-recipe-ingredients" onChange={event => this.props.changeIngredient(event, this.props.keyId, "id") }>
             { this.props.ingredients.map(ingredient => {
                 if (ingredient.name === this.props.ingredientName){
-                    return <option selected key={`ingredient-option-${ingredient.id}`} value={ ingredient.id } >{ ingredient.name }</option>
+                    return <option selected key={`ingredient-option-${ingredient.id}`} value={ ingredient.id } >{ `${ingredient.name} - ${ingredient.unit}` }</option>
                 } else {
-                    return <option key={`ingredient-option-${ingredient.id}`} value={ ingredient.id }>{ ingredient.name }</option>
+                    return <option key={`ingredient-option-${ingredient.id}`} value={ ingredient.id }>{ `${ingredient.name} - ${ingredient.unit}` }</option>
                 }
             })}
         </select>

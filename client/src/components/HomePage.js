@@ -7,8 +7,9 @@ import RecipeForm from './RecipeForm.js'
 
 class HomePage extends Component {
   
+  // currently have 3 implementations of empty recipe
   constructor(){
-    const emptyRecipe = {id: 0, name: "", servings: 0, instructions: "", ingredients: [{id: 0, name: "", quantity: 0}]}
+    const emptyRecipe = {id: 0, name: "", servings: 0, instructions: "", ingredients: [{id: 0, name: "", quantity: 0, unit: ""}]}
     super()
     this.state = {
         userId: 0,
@@ -32,7 +33,7 @@ class HomePage extends Component {
   }
 
   profilePage = () => {
-    const emptyRecipe = {name: "", servings: 0, instructions: "", ingredients: [{id: 1, name: "", quantity: 0}]}
+    const emptyRecipe = {name: "", servings: 0, instructions: "", ingredients: [{id: 1, name: "", quantity: 0, unit: ""}]}
       this.setState({
           view: <UserProfile showPantry={ this.showPantry } showRecipes={ this.showRecipes } recipeForm={ () => this.recipeForm(emptyRecipe, 'POST') } />
       })
@@ -55,7 +56,6 @@ class HomePage extends Component {
     fetch(`http://localhost:3001/users/${this.state.userId}/recipes/${id}`)
     .then(resp =>  resp.json())
     .then(recipe => {
-      console.log(recipe)
       this.setState({
         view: <ShowRecipe recipe={recipe} pantry={this.state.pantry} recipeForm={ () => this.recipeForm(recipe, 'PATCH') } />
       })
@@ -63,7 +63,7 @@ class HomePage extends Component {
   }
 
   recipeForm = (recipe, routeMethod) => {
-    let ingredients = [{id: 0, name: "", quantity: 0}, ...this.state.pantry]
+    let ingredients = [{id: 0, name: "", quantity: 0, unit: ""}, ...this.state.pantry]
     this.setState({
       view: <RecipeForm 
         userId={ this.state.userId } 

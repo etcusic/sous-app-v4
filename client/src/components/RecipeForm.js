@@ -19,9 +19,10 @@ class RecipeForm extends Component {
       this.setState(this.props.recipe)
     } 
 
+    // pass empty ingredient as a prop
   addIngredient = () => {
     let newState = Object.assign({}, this.state)
-    newState.ingredients.push({id: 0, name: "", quantity: 0})
+    newState.ingredients.push({id: 0, name: "", quantity: 0, unit: ""})
     this.setState(newState)
   }
 
@@ -29,7 +30,7 @@ class RecipeForm extends Component {
         return <Ingredient 
             keyId={i + 1} 
             ingredientName={ ing.name } 
-            ingredientQuantity={ ing.quantity } 
+            ingredientQuantity={ ing.quantity }
             ingredients={ this.props.ingredients } 
             changeIngredient={ this.changeIngredient }
             removeIngredient={ this.removeIngredient }

@@ -5,6 +5,10 @@ import { enoughInPantry } from '../actions/helpers'
 
 class ShowRecipe extends Component {
 
+  componentDidMount(){
+    console.log(this.props.recipe)
+  }
+
   render() {
     return (
     <div>
