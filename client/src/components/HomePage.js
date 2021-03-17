@@ -33,7 +33,7 @@ class HomePage extends Component {
   }
 
   profilePage = () => {
-    const emptyRecipe = {name: "", servings: 0, instructions: "", ingredients: [{id: 1, name: "", quantity: 0, unit: ""}]}
+    const emptyRecipe = {name: "", servings: 0, instructions: "", ingredients: [{id: 0, name: "", quantity: 0, unit: ""}]}
       this.setState({
           view: <UserProfile showPantry={ this.showPantry } showRecipes={ this.showRecipes } recipeForm={ () => this.recipeForm(emptyRecipe, 'POST') } />
       })
@@ -63,12 +63,12 @@ class HomePage extends Component {
   }
 
   recipeForm = (recipe, routeMethod) => {
-    let ingredients = [{id: 0, name: "", quantity: 0, unit: ""}, ...this.state.pantry]
+    const pantry = [{id: 0, name: "", quantity: 0, unit: ""}, ...this.state.pantry]
     this.setState({
       view: <RecipeForm 
         userId={ this.state.userId } 
         recipe={ recipe } 
-        ingredients={ ingredients } 
+        pantry={ pantry } 
         showRecipe={ this.showRecipe } 
         routeMethod={ routeMethod }
       />
