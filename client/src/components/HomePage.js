@@ -3,15 +3,12 @@ import UserProfile from './UserProfile.js'
 import Pantry from './Pantry.js'
 import Recipes from './Recipes.js'
 import ShowRecipe from './ShowRecipe.js'
-import RecipeForm from './RecipeForm.js';
-// import { sendRecipeData } from '../actions/index'
-// import { createRecipe } from '../actions/index'
-// import { updateRecipe } from '../actions/index'
+import RecipeForm from './RecipeForm.js'
 
 class HomePage extends Component {
   
   constructor(){
-    const emptyRecipe = {name: "", servings: 0, instructions: "", ingredients: [{id: 0, name: "", quantity: 0}]}
+    const emptyRecipe = {id: 0, name: "", servings: 0, instructions: "", ingredients: [{id: 0, name: "", quantity: 0}]}
     super()
     this.state = {
         userId: 0,

@@ -32,6 +32,7 @@ class Recipe < ApplicationRecord
         new_ing = RecipeIngredient.create(ing)
       end
     end
+    binding.pry
     @recipe
   end
   

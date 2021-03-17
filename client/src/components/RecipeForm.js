@@ -7,6 +7,7 @@ class RecipeForm extends Component {
   constructor(){
     super()
     this.state = {
+        id: 0,
         name: "",
         servings: 0,
         instructions: "",
@@ -15,12 +16,7 @@ class RecipeForm extends Component {
   }
 
   componentDidMount(){
-        this.setState({
-            name: this.props.recipe.name, 
-            servings: this.props.recipe.servings,
-            instructions: this.props.recipe.instructions,
-            ingredients: this.props.recipe.ingredients
-        })
+      this.setState(this.props.recipe)
     } 
 
   addIngredient = () => {
@@ -55,8 +51,6 @@ class RecipeForm extends Component {
     return (
     <div>
         <h2>New Recipe:</h2><br></br> 
-        {/* sendRecipeData does need to be sent through as props - but 'POST' or 'PATCH' need to be sent and implemented as method param */}
-        {/* <form onSubmit={event => this.props.sendRecipeData(event, this.state, this.props.userId, this.props.showRecipe)}> */}
         <form onSubmit={event => sendRecipeData(event, this.props.routeMethod, this.state, this.props.userId, this.props.showRecipe)}>
           
           Recipe Name: <input type ="text" value={ this.state.name } onChange={event => this.changeRecipe(event, "name")}></input> <br></br> <br></br>
