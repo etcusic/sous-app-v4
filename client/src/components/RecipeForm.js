@@ -20,17 +20,22 @@ class RecipeForm extends Component {
     } 
 
   addIngredient = () => {
-    let newState = Object.assign({}, this.state)
-    newState.ingredients.push({id: 0, name: "", quantity: 0, unit: ""})
-    console.log(newState)
-    this.setState(newState)
+    let newIngredients = [...this.state.ingredients]
+    newIngredients.push({id: 0, name: "", quantity: 0, unit: ""})
+    this.setState({ingredients: newIngredients})
+    console.log(this.state.ingredients)
   }
 
     removeIngredient = (event, keyId) => {
         event.preventDefault()
-        let newState = Object.assign({}, this.state)
-        newState.ingredients = newState.ingredients.filter((ing, i) => i !== keyId - 1)
-        this.setState(newState)
+        let newIngredients = [...this.state.ingredients]
+        let x = newIngredients.filter((ing, i) => i !== (keyId - 1))
+        this.setState({ingredients: x})
+        console.log(this.state.ingredients)
+
+        // let newState = Object.assign({}, this.state)
+        // newState.ingredients = newState.ingredients.filter((ing, i) => i !== keyId - 1)
+        // this.setState(newState)
     }
 
     makeComponent = (ing, i) => {
@@ -51,11 +56,8 @@ class RecipeForm extends Component {
     }
 
     changeIngredient = (event, id, category) => {
-        // event.preventDefault()
         let newIngredients = [...this.state.ingredients]
         newIngredients[id - 1][category] = event.target.value
-        console.log(newIngredients)
-        console.log(this.props.pantry)
         this.setState({ingredients: newIngredients})
     }
 

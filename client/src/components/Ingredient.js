@@ -5,7 +5,6 @@ class Ingredient extends Component {
   render() {
     return (
     <div key={`new-ingredient-${this.props.keyId}`}>
-            { console.log(this.props) }
         Ingredient: 
         <select name="ingredients" id="new-recipe-ingredients" onChange={event => this.props.changeIngredient(event, this.props.keyId, "id") }>
             { this.props.pantry.map(ingredient => {
