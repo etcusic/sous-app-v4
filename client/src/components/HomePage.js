@@ -4,13 +4,14 @@ import Pantry from './Pantry.js'
 import Recipes from './Recipes.js'
 import ShowRecipe from './ShowRecipe.js'
 import RecipeForm from './RecipeForm.js';
+import { sendRecipeData } from '../actions/index'
 import { createRecipe } from '../actions/index'
 import { updateRecipe } from '../actions/index'
 
 class HomePage extends Component {
   
   constructor(){
-    const emptyRecipe = {name: "", servings: 0, instructions: "", ingredients: [{id: 1, name: "", quantity: 0}]}
+    const emptyRecipe = {name: "", servings: 0, instructions: "", ingredients: [{id: 0, name: "", quantity: 0}]}
     super()
     this.state = {
         userId: 0,
@@ -65,11 +66,12 @@ class HomePage extends Component {
   }
 
   recipeForm = (recipe, action) => {
+    let ingredients = [{id: 0, name: "", quantity: 0}, ...this.state.pantry]
     this.setState({
       view: <RecipeForm 
         userId={ this.state.userId } 
         recipe={ recipe } 
-        ingredients={ this.state.pantry } 
+        ingredients={ ingredients } 
         showRecipe={ this.showRecipe } 
         sendRecipeData={ action }
       />

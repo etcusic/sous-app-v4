@@ -29,8 +29,8 @@ class RecipesController < ApplicationController
         params.permit(:id, :user_id, :name, :servings, :instructions)
     end
 
-    # this is here to handle nested attributes of ingredients when sent from frontend form
-    # need better standardization
+    # this is here to handle nested attributes of ingredients when sent from frontend form - had trouble allowing nested attrs to be accessible
+    # need to merge 2 ingredient params
     def ingredient_params 
         info = params[:ingredients] .map do |ingredient| 
             {ingredient_id: ingredient[:id], quantity: ingredient[:quantity]}
