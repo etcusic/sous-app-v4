@@ -32,6 +32,7 @@ class RecipeForm extends Component {
             ingredientQuantity={ ing.quantity } 
             ingredients={ this.props.ingredients } 
             changeIngredient={ this.changeIngredient }
+            removeIngredient={ this.removeIngredient }
         />
     }
 
@@ -44,6 +45,13 @@ class RecipeForm extends Component {
     changeIngredient = (event, id, category) => {
         let newState = Object.assign({}, this.state)
         newState.ingredients[id - 1][category] = event.target.value
+        this.setState(newState)
+    }
+
+    removeIngredient = (event, keyId) => {
+        event.preventDefault()
+        let newState = Object.assign({}, this.state)
+        newState.ingredients = newState.ingredients.filter((ing, i) => i !== keyId - 1)
         this.setState(newState)
     }
 

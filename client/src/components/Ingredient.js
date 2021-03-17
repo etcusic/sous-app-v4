@@ -16,6 +16,7 @@ class Ingredient extends Component {
             })}
         </select>
         <input type ="number" value={ this.props.ingredientQuantity } onChange={ event => this.props.changeIngredient(event, this.props.keyId, "quantity") }></input>
+        <button onClick={ event => this.props.removeIngredient(event, this.props.keyId) }>- remove -</button>
     </div>
     );
   }
