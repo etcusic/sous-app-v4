@@ -4,23 +4,23 @@ import Pantry from './Pantry.js'
 import Recipes from './Recipes.js'
 import ShowRecipe from './ShowRecipe.js'
 import RecipeForm from './RecipeForm.js'
+import Placeholder from './Placeholder.js'
 
 class HomePage extends Component {
   
-  // currently have 3 implementations of empty recipe
   constructor(){
-    const emptyRecipe = {id: 0, name: "", servings: 0, instructions: "", ingredients: [{id: 0, name: "", quantity: 0, unit: ""}]}
     super()
     this.state = {
         userId: 0,
         userName: "",
-        view: <UserProfile showPantry={ this.showPantry } showRecipes={ this.showRecipes } recipeForm={ () => this.recipeForm(emptyRecipe, 'POST') } />,
+        view: <Placeholder />,
         pantry: []
     }
   }
 
   // remove hard coded users route when a user sign in is added
   componentDidMount(){
+    this.profilePage()
     fetch(`http://localhost:3001/users/1`)
     .then(resp =>  resp.json())
     .then(user => {

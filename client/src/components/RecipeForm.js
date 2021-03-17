@@ -23,19 +23,11 @@ class RecipeForm extends Component {
     let newIngredients = [...this.state.ingredients]
     newIngredients.push({id: 0, name: "", quantity: 0, unit: ""})
     this.setState({ingredients: newIngredients})
-    console.log(this.state.ingredients)
   }
 
     removeIngredient = (event, keyId) => {
         event.preventDefault()
-        let newIngredients = [...this.state.ingredients]
-        let x = newIngredients.filter((ing, i) => i !== (keyId - 1))
-        this.setState({ingredients: x})
-        console.log(this.state.ingredients)
-
-        // let newState = Object.assign({}, this.state)
-        // newState.ingredients = newState.ingredients.filter((ing, i) => i !== keyId - 1)
-        // this.setState(newState)
+        // needs to be fixed - I'll need to store ingredient components in state and map that instead. Which means reincorporating recipe sub-object
     }
 
     makeComponent = (ing, i) => {
