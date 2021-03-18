@@ -34,7 +34,7 @@ class ShowIngredientsTable extends Component {
         <div>Estimated Cost Per Serving: ${ costPerServing(this.props.recipe).toFixed(2) }</div>
         <br></br>
         <br></br>
-        <div>{ enoughInPantry(this.props.recipe.ingredients, this.props.pantry) }</div>
+        <div>{ enoughInPantry(this.props.recipe, this.props.pantry).toFixed(2) }</div>
     </div>
     );
   }
