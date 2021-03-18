@@ -17,9 +17,16 @@ class RecipesController < ApplicationController
     end
 
     def update
-        # binding.pry
-        @recipe = Recipe.update_with_ingredients(recipe_params, update_ingredient_params)
-        render json: @recipe.prepare_to_send
+        x = Recipe.find_by_id(recipe_params[:id])
+        y = x.ingredients
+        z = ingredient_params
+        binding.pry
+        x.update(recipe_params)
+        render json: x
+
+        # REVISIT THIS
+        # @recipe = Recipe.update_with_ingredients(recipe_params, update_ingredient_params)
+        # render json: @recipe.prepare_to_send
     end
 
     private
