@@ -5,7 +5,7 @@ class Recipes extends Component {
   constructor(){
     super()
     this.state = {
-        recipes: []
+        recipes: [{id: 0, name: "this is not a recipe", servings: 0}]
     }
   }
 

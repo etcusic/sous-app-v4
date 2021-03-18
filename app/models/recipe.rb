@@ -23,16 +23,21 @@ class Recipe < ApplicationRecord
   def self.update_with_ingredients(recipe, ings)
     @recipe = Recipe.find_by_id(recipe[:id])
     @recipe.update(recipe)
-    # need to account for no ingredients => ings[0].id == 0 means no ingredients or an invalid ingredient - need ot weed out
-    ingredients = ings.map do |ing| 
-      x = RecipeIngredient.find_by(ingredient_id: ing[:ingredient_id], recipe_id: @recipe.id)
-      if x 
-        x.update(ing)
-        x
-      else
-        new_ing = RecipeIngredient.create(ing)
+    if ings.include?{ | ing | ing[:id] == 0 || ing[:id] == "0" }
+      # need an error handler
+      binding.pry
+    else
+      ingredients = ings.map do |ing| 
+        x = RecipeIngredient.find_by(ingredient_id: ing[:ingredient_id], recipe_id: @recipe.id)
+        if x 
+          x.update(ing)
+          x
+        else
+          new_ing = RecipeIngredient.create(ing)
+        end
       end
     end
+    
     binding.pry
     @recipe
   end

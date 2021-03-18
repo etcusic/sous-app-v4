@@ -1,6 +1,7 @@
 class RecipesController < ApplicationController
 
     def index
+        # binding.pry
         @recipes = User.find_by_id(recipe_params[:user_id]).recipes
         render json: @recipes
     end
@@ -17,16 +18,9 @@ class RecipesController < ApplicationController
     end
 
     def update
-        x = Recipe.find_by_id(recipe_params[:id])
-        y = x.ingredients
-        z = ingredient_params
-        binding.pry
-        x.update(recipe_params)
-        render json: x
-
         # REVISIT THIS
-        # @recipe = Recipe.update_with_ingredients(recipe_params, update_ingredient_params)
-        # render json: @recipe.prepare_to_send
+        @recipe = Recipe.update_with_ingredients(recipe_params, update_ingredient_params)
+        render json: @recipe.prepare_to_send
     end
 
     private
