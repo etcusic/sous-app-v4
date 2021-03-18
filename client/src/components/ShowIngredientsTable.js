@@ -5,9 +5,14 @@ import { enoughInPantry } from '../actions/helpers'
 
 class ShowIngredientsTable extends Component {
 
+  componentDidMount(){
+    console.log(this.props)
+  }
+
   render() {
     return (
     <div>
+    {console.log(this.props)}
         <table>
           <thead>
             <tr>

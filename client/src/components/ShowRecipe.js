@@ -1,6 +1,5 @@
 import React, { Component } from 'react';
 import ShowIngredientsTable from './ShowIngredientsTable.js'
-import { enoughInPantry } from '../actions/helpers'
 
 class ShowRecipe extends Component {
 
@@ -8,7 +7,7 @@ class ShowRecipe extends Component {
     return (
     <div>
         <h2>{this.props.recipe.name} - {this.props.recipe.servings} servings</h2>
-        { this.props.recipe.ingredients.length > 0 ? <ShowIngredientsTable ingredients={ this.props.recipe.ingredients } pantry={ this.props.pantry } /> : "There are no ingredients listed for this recipe yet" }
+        { this.props.recipe.ingredients[0].id !== 0 ? <ShowIngredientsTable recipe={ this.props.recipe } pantry={ this.props.pantry } /> : "There are no ingredients listed for this recipe yet" }
         <br></br>
         <br></br>
         <div>Instructions: { this.props.recipe.instructions }</div>
