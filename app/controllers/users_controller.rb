@@ -7,6 +7,7 @@ class UsersController < ApplicationController
 
     def show
         @user = User.find_by_id(user_params[:id])
+        # binding.pry
         render json: @user.send_initialization_info
     end
 

@@ -1,6 +1,10 @@
 module IngredientProcessor
     def prepare_to_send
-        self.attributes.merge!(ingredients: self.ingredients_with_quantities)
+        if self.ingredients
+            self.attributes.merge!(ingredients: self.ingredients_with_quantities)
+        else 
+            self
+        end
     end
 
     def ingredients_with_quantities

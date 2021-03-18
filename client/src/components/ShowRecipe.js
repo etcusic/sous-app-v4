@@ -1,6 +1,5 @@
 import React, { Component } from 'react';
-import { calculateRawCost } from '../actions/helpers'
-import { costPerServing } from '../actions/helpers'
+import ShowIngredientsTable from './ShowIngredientsTable.js'
 import { enoughInPantry } from '../actions/helpers'
 
 class ShowRecipe extends Component {
@@ -9,32 +8,13 @@ class ShowRecipe extends Component {
     return (
     <div>
         <h2>{this.props.recipe.name} - {this.props.recipe.servings} servings</h2>
-        <table>
-          <thead>
-            <tr>
-              <th>Ingredient: </th>
-              <th>Quantity: </th>
-            </tr>
-          </thead>
-          <tbody>
-            { this.props.recipe.ingredients.map(ingredient => <tr key={`recipe-ingredient-${ingredient.id}`}><td>{ingredient.name}</td><td>{` -  ${ingredient.quantity}  ${ingredient.unit}`}</td></tr>) }
-          </tbody>
-        </table>
-        <br></br>
-        <br></br>
-        <br></br>
-        <div>Estimated Raw Cost: ${ calculateRawCost(this.props.recipe.ingredients).toFixed(2) }</div>
-        <br></br>
-        <br></br>
-        <div>Estimated Cost Per Serving: ${ costPerServing(this.props.recipe).toFixed(2) }</div>
+        { this.props.recipe.ingredients.length > 0 ? <ShowIngredientsTable ingredients={ this.props.recipe.ingredients } /> : "There are no ingredients listed for this recipe yet" }
         <br></br>
         <br></br>
         <div>Instructions: { this.props.recipe.instructions }</div>
         <br></br>
         <br></br>
-        <div>{ enoughInPantry(this.props.recipe.ingredients, this.props.pantry) }</div>
-        <br></br>
-        <br></br>
+        {/* will have a problem with the edit form if there are no ingredients listed initially */}
         <button onClick={ this.props.recipeForm }>Edit Recipe</button>
     </div>
     );
