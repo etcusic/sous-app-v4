@@ -8,7 +8,7 @@ class Ingredient extends Component {
         Ingredient: 
         <select name="ingredients" id="new-recipe-ingredients" onChange={event => this.props.changeIngredient(event, this.props.keyId, "id") }>
             { this.props.pantry.map(ingredient => {
-                if (ingredient.name === this.props.ingredientName){
+                if (ingredient.id == this.props.ingredientId){
                     return <option selected key={`ingredient-option-${ingredient.id}`} value={ ingredient.id } >{ `${ingredient.name} - ${ingredient.unit}` }</option>
                 } else {
                     return <option key={`ingredient-option-${ingredient.id}`} value={ ingredient.id }>{ `${ingredient.name} - ${ingredient.unit}` }</option>

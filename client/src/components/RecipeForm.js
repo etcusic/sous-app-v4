@@ -36,9 +36,11 @@ class RecipeForm extends Component {
 
     // revisit add and remove ingredients - needs to be added and removed from both ingredientComponents and recipe.ingredients
   addIngredient = () => {
-    // let newIngredients = [...this.state.recipe.ingredients]
-    // newIngredients.push({id: 0, name: "", quantity: 0, unit: ""})
-    // this.setState({ingredients: newIngredients})
+    let newState = Object.assign({}, this.state)
+    const emptyIngredient = {id: 0, name: "", quantity: 0, unit: ""}
+    newState.ingredientComponents.push(this.makeComponent(emptyIngredient, newState.ingredientComponents.length - 1))
+    newState.recipe.ingredients.push(emptyIngredient)
+    this.setState( newState )
   }
 
     removeIngredient = (event, keyId) => {
@@ -49,10 +51,11 @@ class RecipeForm extends Component {
     makeComponent = (ing, i) => {
         return <Ingredient 
             keyId={i + 1} 
-            ingredientName={ ing.name } 
+            ingredientId={ ing.id } 
             ingredientQuantity={ ing.quantity }
             pantry={ this.props.pantry } 
             changeIngredient={ this.changeIngredient }
+            changeQuantity={ this.changeQuantity }
             removeIngredient={ this.removeIngredient }
         />
     }
@@ -67,7 +70,6 @@ class RecipeForm extends Component {
     changeIngredient = (event, id, category) => {
         let newState = Object.assign({}, this.state)
         newState.recipe.ingredients[id - 1][category] = event.target.value
-        newState.ingredientComponents[id - 1] = this.makeComponent(newState.recipe.ingredients[id - 1], (id - 1))
         this.setState( newState )
     }
 
@@ -82,7 +84,7 @@ class RecipeForm extends Component {
           Servings: <input type="number" value={ this.state.recipe.servings } onChange={event => this.changeRecipe(event, "servings")}></input>  <br></br> <br></br>
           
             <div id="new-recipe-ingredients">
-                { this.state.ingredientComponents.map(ing => ing) }
+                { this.state.recipe.ingredients.map((ing, i) => this.makeComponent(ing, i)) }
             </div>
           
           <p onClick={ this.addIngredient }>++ Add Ingredient ++</p> <br></br> 
