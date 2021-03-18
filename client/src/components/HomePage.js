@@ -13,8 +13,8 @@ class HomePage extends Component {
     this.state = {
         userId: 0,
         userName: "",
-        view: <Placeholder />,
-        pantry: []
+        pantry: [],
+        view: <Placeholder />
     }
   }
 

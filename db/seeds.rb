@@ -14,44 +14,74 @@
 User.create(name: "Mr Bojangles")
 Pantry.create(user_id: 1)
 
-# ALL OF THESE PRICES NEED TO BE REASSESSED
-FOOD = [
-    {name: 'brown rice', cost_per_unit: 0.06, unit: 'oz'},
-    {name: 'quinoa', cost_per_unit: 0.15, unit: 'oz'},
-    {name: 'bread', cost_per_unit: 0.13, unit: 'pcs'},
-    {name: 'corn tortilla', cost_per_unit: 0.08, unit: 'pcs'},
-    {name: 'ground turkey', cost_per_unit: 0.19, unit: 'oz'},
-    {name: 'chicken', cost_per_unit: 0.13, unit: 'oz'},
-    {name: 'feta', cost_per_unit: 0.3, unit: 'oz'},
-    {name: 'egg', cost_per_unit: 0.27, unit: 'pcs'},
-    {name: 'corn', cost_per_unit: 0.09, unit: 'oz'},
-    {name: 'lime', cost_per_unit: 0.5, unit: 'pcs'},
-    {name: 'zucchini', cost_per_unit: 0.09, unit: 'oz'},
-    {name: 'jalapeno pepper', cost_per_unit: 0.07, unit: 'oz'},
-    {name: 'shredded carrot', cost_per_unit: 0.18, unit: 'oz'},
-    {name: 'mushroom', cost_per_unit: 0.18, unit: 'oz'},
-    {name: 'yellow bell pepper', cost_per_unit: 0.9, unit: 'oz'},
-    {name: 'green bell pepper', cost_per_unit: 0.7, unit: 'pcs'},
-    {name: 'red bell pepper', cost_per_unit: 0.9, unit: 'oz'},
-    {name: 'yellow onion', cost_per_unit: 0.1, unit: 'oz'},
-    {name: 'red onion', cost_per_unit: 0.1, unit: 'oz'},
-    {name: 'garlic', cost_per_unit: 0.1, unit: 'oz'},
-    {name: 'green onion', cost_per_unit: 0.1, unit: 'oz'},
-    {name: 'cilantro', cost_per_unit: 0.1, unit: 'oz'},
-    {name: 'cabbage', cost_per_unit: 0.04, unit: 'oz'},
-    {name: 'canned tomato', cost_per_unit: 0.1, unit: 'oz'},
-    {name: 'cashew', cost_per_unit: 0.1, unit: 'oz'},
-    {name: 'sliced turkey', cost_per_unit: 0.1, unit: 'oz'},
-    {name: 'sliced cheddar', cost_per_unit: 0.1, unit: 'oz'},
-    {name: 'pasta', cost_per_unit: 0.1, unit: 'oz'},
-    {name: 'spinach', cost_per_unit: 0.1, unit: 'oz'}
+PRODUCE = [
+    {name: 'corn', cost_per_unit: 0.09, unit: 'oz', category: 'produce'},
+    {name: 'lime', cost_per_unit: 0.5, unit: 'pcs', category: 'produce'},
+    {name: 'zucchini', cost_per_unit: 0.09, unit: 'oz', category: 'produce'},
+    {name: 'jalapeno pepper', cost_per_unit: 0.07, unit: 'oz', category: 'produce'},
+    {name: 'shredded carrot', cost_per_unit: 0.18, unit: 'oz', category: 'produce'},
+    {name: 'mushroom', cost_per_unit: 0.18, unit: 'oz', category: 'produce'},
+    {name: 'yellow bell pepper', cost_per_unit: 0.9, unit: 'oz', category: 'produce'},
+    {name: 'green bell pepper', cost_per_unit: 0.7, unit: 'pcs', category: 'produce'},
+    {name: 'red bell pepper', cost_per_unit: 0.9, unit: 'oz', category: 'produce'},
+    {name: 'yellow onion', cost_per_unit: 0.1, unit: 'oz', category: 'produce'},
+    {name: 'red onion', cost_per_unit: 0.1, unit: 'oz', category: 'produce'},
+    {name: 'garlic', cost_per_unit: 0.1, unit: 'oz', category: 'produce'},
+    {name: 'green onion', cost_per_unit: 0.1, unit: 'oz', category: 'produce'},
+    {name: 'cilantro', cost_per_unit: 0.1, unit: 'oz', category: 'produce'},
+    {name: 'cabbage', cost_per_unit: 0.04, unit: 'oz', category: 'produce'},
+    {name: 'spinach', cost_per_unit: 0.1, unit: 'oz', category: 'produce'},
 ]
+
+PROTEINS = [
+    {name: 'egg', cost_per_unit: 0.27, unit: 'pcs', category: 'proteins'},
+    {name: 'sliced turkey', cost_per_unit: 0.1, unit: 'oz', category: 'proteins'},
+    {name: 'ground turkey', cost_per_unit: 0.19, unit: 'oz', category: 'proteins'},
+    {name: 'chicken breast', cost_per_unit: 0.13, unit: 'oz', category: 'proteins'},
+    {name: 'whole chicken', cost_per_unit: 0.13, unit: 'oz', category: 'proteins'},
+    {name: 'shrimp', cost_per_unit: 0.27, unit: 'oz', category: 'proteins'},
+    {name: 'pork loin', cost_per_unit: 0.27, unit: 'oz', category: 'proteins'},
+    {name: 'pork chops', cost_per_unit: 0.27, unit: 'oz', category: 'proteins'},
+    {name: 'salmon', cost_per_unit: 0.27, unit: 'oz', category: 'proteins'},
+]
+
+DAIRY = [
+    {name: 'feta', cost_per_unit: 0.3, unit: 'oz', category: 'dairy'},
+    {name: 'sliced cheddar', cost_per_unit: 0.1, unit: 'oz', category: 'dairy'},
+    {name: 'fresh parmesan', cost_per_unit: 0.3, unit: 'oz', category: 'dairy'},
+    {name: 'can parmesan', cost_per_unit: 0.3, unit: 'oz', category: 'dairy'},
+    {name: 'shredded monterrey', cost_per_unit: 0.3, unit: 'oz', category: 'dairy'},   
+    {name: 'milk', cost_per_unit: 0.3, unit: 'oz', category: 'dairy'},
+    {name: 'heavy cream', cost_per_unit: 0.3, unit: 'oz', category: 'dairy'},
+    {name: 'sour cream', cost_per_unit: 0.3, unit: 'oz', category: 'dairy'},
+]
+
+DRIED_GOODS = [
+    {name: 'canned tomato', cost_per_unit: 0.1, unit: 'oz', category: 'dried goods'},
+    {name: 'cashew', cost_per_unit: 0.1, unit: 'oz', category: 'dried goods'},
+    {name: 'pasta', cost_per_unit: 0.1, unit: 'oz', category: 'dried goods'},
+    {name: 'brown rice', cost_per_unit: 0.06, unit: 'oz', category: 'dried goods'},
+    {name: 'quinoa', cost_per_unit: 0.15, unit: 'oz', category: 'dried goods'},
+    {name: 'bread', cost_per_unit: 0.13, unit: 'pcs', category: 'dried goods'},
+    {name: 'corn tortilla', cost_per_unit: 0.08, unit: 'pcs', category: 'dried goods'},
+]
+
+FROZEN_GOODS = [
+    {name: 'frozen corn', cost_per_unit: 0.09, unit: 'oz', category: 'frozen goods'},
+    {name: 'frozen broccoli', cost_per_unit: 0.09, unit: 'oz', category: 'frozen goods'},
+    {name: 'frozen veg medley', cost_per_unit: 0.09, unit: 'oz', category: 'frozen goods'},
+    {name: 'frozen peas', cost_per_unit: 0.09, unit: 'oz', category: 'frozen goods'},
+    {name: 'frozen pizza', cost_per_unit: 0.09, unit: 'pcs', category: 'frozen goods'},
+]
+
+# SPICES = []
+# CONDIMENTS = []
+
+FOOD = [PRODUCE, PROTEINS, DAIRY, DRIED_GOODS, FROZEN_GOODS].flatten!
 
 FOOD.each do |item| 
     ing = Ingredient.create(item)
     PantryIngredient.create({pantry_id: 1, ingredient_id: ing.id, quantity: rand(2..80)})
-    # item[:quantity] = rand(2..80)
-    # Pantry.first.ingredients.build(item).save
 end
 
 Recipe.create(user_id: 1, name: "Garlic Chicken", servings: rand(2..8), instructions: "Cook rice, cut veggies, sautee all the things")
@@ -63,11 +93,6 @@ Recipe.create(user_id: 1, name: "Chicken Salad", servings: rand(2..8), instructi
 
 def add_ingredients(recipe_id, ingredient_ids)
     ingredient_ids.map{|ing_id| RecipeIngredient.create({recipe_id: recipe_id, ingredient_id: ing_id, quantity: rand(1..20)})}
-    # supply_ids.map do | id | 
-    #     ing = PantryIngredient.find_by_id(id)
-    #     hash = { recipe_id: recipe_id, name: ing.name, unit: ing.unit, cost_per_unit: ing.cost_per_unit, quantity: rand(1..20) }
-    #     RecipeIngredient.create(hash)
-    # end
 end
 
 add_ingredients(1, [1, 6, 20, 16, 14, 13])
