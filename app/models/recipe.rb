@@ -21,9 +21,10 @@ class Recipe < ApplicationRecord
   end
 
   def self.update_with_ingredients(recipe, ings)
+    binding.pry
     @recipe = Recipe.find_by_id(recipe[:id])
     @recipe.update(recipe)
-    if ings.include?{ | ing | ing[:id] == 0 || ing[:id] == "0" }
+    if ings.any?{ | ing | ing[:id] == 0 || ing[:id] == "0" }
       # need an error handler
       binding.pry
     else
@@ -37,7 +38,6 @@ class Recipe < ApplicationRecord
         end
       end
     end
-    
     binding.pry
     @recipe
   end
