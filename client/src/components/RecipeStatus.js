@@ -1,9 +1,9 @@
 import React, { Component } from 'react'
 
-class ShowIngredientsTable extends Component {
+class RecipeStatus extends Component {
 
   componentDidMount(){
-    console.log(this.props.recipe)
+    console.log(this.props.ingredients)
   }
 
   render() {
@@ -11,21 +11,13 @@ class ShowIngredientsTable extends Component {
     <div>
     {console.log(this.props)}
         <table>
-          <thead>
-            <tr>
-              <th>Ingredients: </th>
-              <th>Quantity: </th>
-            </tr>
-          </thead>
           <tbody>
-            { this.props.recipe.ingredients.map(ingredient => {
+            { this.props.ingredients.map((ingredient, index) => {
                 return (
                     <tr key={`recipe-ingredient-${ingredient.id}`}>
-                        <td>Ingredient Name</td>
-                        <td>Quantity</td>
-                        <td>Remove</td>
-                        {/* <td>{ingredient.name}</td>
-                        <td>{` -  ${ingredient.quantity}  ${ingredient.unit}`}</td> */}
+                        <td>* {ingredient.name}</td>
+                        <td>{` -  ${ingredient.quantity}  ${ingredient.unit}`}</td>
+                        <td><button onClick={event => this.props.removeIngredient(event, index)}>Remove</button></td>
                     </tr>)
             })}
           </tbody>
@@ -36,4 +28,4 @@ class ShowIngredientsTable extends Component {
 
 }
 
-export default ShowIngredientsTable
+export default RecipeStatus

@@ -5,14 +5,15 @@ class AddIngredient extends Component {
     constructor(){
         super()
         this.state = {
-            currentIngredient: {},
+            currentIngredient: {id: 0, name: "", quantity: 0, unit: ""},
             ingredients: []
         }
     }
 
     componentDidMount(){
-        console.log(this.props.pantry)
+        console.log(this.props.ingredientId)
         this.setState({
+            currentIngredient: this.props.ing,
             ingredients: this.props.pantry["all"]
         })
     }
@@ -24,20 +25,20 @@ class AddIngredient extends Component {
     }
 
     setIngredient = (event) => {
-        console.log(event.target.value)
-        let ing = this.state.ingredients.find(ing => ing.id === event.target.value)
+        let ing = this.state.ingredients.find(ing => ing.id == event.target.value)
         this.setState({ currentIngredient: ing })
     }
 
     changeQuantity = (event) => {
-        let ing = this.state.currentIngredient
+        // console.log(this.state.currentIngredient)
+        let ing = Object.assign({}, this.state.currentIngredient)
         ing.quantity = event.target.value
         this.setState({ currentIngredient: ing })
     }
 
   render() {
     return (
-    <div key={`new-ingredient-${this.props.keyId}`}>
+    <div>
         Ingredient: 
         <select onChange={ event => this.showCategory(event) }>
             <option key="category-1" value="all">all</option>
@@ -51,22 +52,16 @@ class AddIngredient extends Component {
         </select>
 
         <select name="ingredients" id="new-recipe-ingredients" onChange={event => this.setIngredient(event) }>
-            { this.state.ingredients.map(ingredient => {
-                if (ingredient.id == this.props.ingredientId){
-                    return <option selected key={`ingredient-option-${ingredient.id}`} value={ ingredient.id } >{ `${ingredient.name} - ${ingredient.unit}` }</option>
-                } else {
-                    return <option key={`ingredient-option-${ingredient.id}`} value={ ingredient.id }>{ `${ingredient.name} - ${ingredient.unit}` }</option>
-                }
-            })}
+            { this.state.ingredients.map(ingredient => <option key={`ingredient-option-${ingredient.id}`} value={ ingredient.id }>{ `${ingredient.name} - ${ingredient.unit}` }</option>)}
         </select>
 
         <input type ="number" value={ this.state.currentIngredient.quantity } onChange={ event => this.changeQuantity(event) }></input>
         
-        {/* <button onClick={ event => this.props.removeIngredient(event, this.props.keyId) }>- remove -</button> */}
+        <button onClick={ event => this.props.addIngredient(event, this.state.currentIngredient) }>+ add +</button>
     </div>
     );
   }
 
 }
 
-export default AllIngredient
+export default AddIngredient

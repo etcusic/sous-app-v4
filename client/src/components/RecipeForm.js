@@ -2,6 +2,7 @@ import React, { Component } from 'react'
 import AddIngredient from './AddIngredient'
 import RecipeStatus from './RecipeStatus'
 import { sendRecipeData } from '../actions/index'
+import Placeholder from './Placeholder'
 
 class RecipeForm extends Component {
 
@@ -12,44 +13,38 @@ class RecipeForm extends Component {
         name: "",
         servings: 0,
         instructions: "",
-        ingredients: []        
+        ingredients: [],
+        addIngredient: <Placeholder /> 
     }
   }
 
-  // fix state throughout this component!
+  // NEED TO FIGURE OUT HOW TO RESET ADD INGREDIENT COMPONENT WITH ITS SELECTORS - componentDidUnmount???
   componentDidMount(){
       this.setState({
           id: this.props.recipe.id,
           name: this.props.recipe.name,
           servings: this.props.recipe.servings,
           instructions: this.props.recipe.instructions,
-          ingredients: this.props.recipe.ingredients
+          ingredients: this.props.recipe.ingredients,
+          addIngredient: <AddIngredient pantry={ this.categorizedPantry() } addIngredient={ this.addIngredient } ing={{id: 0, name: "", quantity: 0, unit: ""}} />
       })
     } 
 
-  addIngredient = () => {
-    let newState = Object.assign({}, this.state)
-    newState.ingredients.push({id: 0, name: "", quantity: 0, unit: ""})
-    this.setState( newState )
+  addIngredient = (event, ing) => {
+    event.preventDefault()
+    console.log(ing)
+    let ingredients = [...this.state.ingredients, ing]
+    this.setState({ 
+      ingredients: ingredients,
+      addIngredient: <AddIngredient pantry={ this.categorizedPantry() } addIngredient={ this.addIngredient } ing={{id: 0, name: "", quantity: 0, unit: ""}} />
+    })
   }
 
-    removeIngredient = (event, keyId) => {
+    removeIngredient = (event, index) => {
         event.preventDefault()
         let newState = Object.assign({}, this.state)
-        newState.ingredients = newState.ingredients.filter((ing, i) => i !== keyId - 1)
+        newState.ingredients = newState.ingredients.filter((ing, i) => i !== index)
         this.setState( newState )
-    }
-
-    makeComponent = (ing, i) => {
-        return <Ingredient 
-            keyId={i + 1} 
-            ingredientId={ ing.id } 
-            ingredientQuantity={ ing.quantity }
-            pantry={ this.props.pantry } 
-            changeIngredient={ this.changeIngredient }
-            changeQuantity={ this.changeQuantity }
-            removeIngredient={ this.removeIngredient }
-        />
     }
 
     changeRecipe = (event, category) => {
@@ -60,15 +55,19 @@ class RecipeForm extends Component {
     }
 
     categorizedPantry = () => {
+      let newPantry = this.props.pantry.map(x => {
+                                          x.quantity = 0
+                                          return x
+                                        })
       const pantry = {
-          "all": this.props.pantry,
-          "proteins": this.props.pantry.filter(x => x.category === "proteins"),
-          "dried goods": this.props.pantry.filter(x => x.category === "dried goods"),
-          "produce": this.props.pantry.filter(x => x.category === "produce"),
-          "dairy": this.props.pantry.filter(x => x.category === "dairy"),
-          "frozen goods": this.props.pantry.filter(x => x.category === "frozen goods"),
-          "condiments": this.props.pantry.filter(x => x.category === "condiments"),
-          "spices": this.props.pantry.filter(x => x.category === "spices")
+          "all": newPantry,
+          "proteins": newPantry.filter(x => x.category === "proteins"),
+          "dried goods": newPantry.filter(x => x.category === "dried goods"),
+          "produce": newPantry.filter(x => x.category === "produce"),
+          "dairy": newPantry.filter(x => x.category === "dairy"),
+          "frozen goods": newPantry.filter(x => x.category === "frozen goods"),
+          "condiments": newPantry.filter(x => x.category === "condiments"),
+          "spices": newPantry.filter(x => x.category === "spices")
       }
       return pantry
     }
@@ -87,12 +86,14 @@ class RecipeForm extends Component {
           
           Servings: <input type="number" value={ this.state.servings } onChange={event => this.changeRecipe(event, "servings")}></input>  <br></br> <br></br>
           
-          <AddIngredient pantry={ this.categorizedPantry() } />
+          { this.state.addIngredient }
           
-          <RecipeStatus recipe={ this.state.ingredients } />
+          <br></br><br></br>
+          <div>Current Ingredients: </div>
 
-          <p onClick={ this.addIngredient }>++ Add Ingredient ++</p> <br></br> 
+          <RecipeStatus ingredients={ this.state.ingredients } removeIngredient={ this.removeIngredient } />
           
+          <br></br><br></br>
           Instructions: <input type="text" value={ this.state.instructions } onChange={event => this.changeRecipe(event, "instructions")}></input> <br></br> <br></br>
           
           <input type="submit"></input>
