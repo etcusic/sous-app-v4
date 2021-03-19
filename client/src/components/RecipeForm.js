@@ -1,5 +1,5 @@
 import React, { Component } from 'react'
-import Ingredient from './Ingredient'
+import AddIngredient from './AddIngredient'
 import RecipeStatus from './RecipeStatus'
 import { sendRecipeData } from '../actions/index'
 
@@ -59,14 +59,22 @@ class RecipeForm extends Component {
         this.setState(newState)
     }
 
-    changeIngredient = (event, id, category) => {
-        let newState = Object.assign({}, this.state)
-        newState.ingredients[id - 1][category] = event.target.value
-        this.setState( newState )
+    categorizedPantry = () => {
+      const pantry = {
+          "all": this.props.pantry,
+          "proteins": this.props.pantry.filter(x => x.category === "proteins"),
+          "dried goods": this.props.pantry.filter(x => x.category === "dried goods"),
+          "produce": this.props.pantry.filter(x => x.category === "produce"),
+          "dairy": this.props.pantry.filter(x => x.category === "dairy"),
+          "frozen goods": this.props.pantry.filter(x => x.category === "frozen goods"),
+          "condiments": this.props.pantry.filter(x => x.category === "condiments"),
+          "spices": this.props.pantry.filter(x => x.category === "spices")
+      }
+      return pantry
     }
 
     checkIngredients = () => {
-      console.log(this.state)
+      console.log(this.state.ingredients)
     }
 
   render() {
@@ -79,20 +87,10 @@ class RecipeForm extends Component {
           
           Servings: <input type="number" value={ this.state.servings } onChange={event => this.changeRecipe(event, "servings")}></input>  <br></br> <br></br>
           
-            <div id="new-recipe-ingredients">
-                { this.state.ingredients.map((ing, i) => <Ingredient 
-                                                          keyId={i + 1} 
-                                                          ingredientId={ ing.id } 
-                                                          ingredientQuantity={ ing.quantity }
-                                                          pantry={ this.props.pantry } 
-                                                          changeIngredient={ this.changeIngredient }
-                                                          changeQuantity={ this.changeQuantity }
-                                                          removeIngredient={ this.removeIngredient }
-                                                      />) }
-            </div>
+          <AddIngredient pantry={ this.categorizedPantry() } />
           
-          <RecipeStatus recipe={ this.state } />
-          
+          <RecipeStatus recipe={ this.state.ingredients } />
+
           <p onClick={ this.addIngredient }>++ Add Ingredient ++</p> <br></br> 
           
           Instructions: <input type="text" value={ this.state.instructions } onChange={event => this.changeRecipe(event, "instructions")}></input> <br></br> <br></br>
