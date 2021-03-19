@@ -5,34 +5,29 @@ class Ingredient extends Component {
     constructor(){
         super()
         this.state = {
-            pantry: {},
             ingredients: []
         }
     }
 
     componentDidMount(){
-        console.log(this.props.pantry.map(x => x.category))
-        const pantry = {
-            all: this.props.pantry,
-            proteins: this.props.pantry.filter(x => x.category === "proteins"),
-            driedGoods: this.props.pantry.filter(x => x.category === "dried goods"),
-            produce: this.props.pantry.filter(x => x.category === "produce"),
-            dairy: this.props.pantry.filter(x => x.category === "dairy"),
-            frozenGoods: this.props.pantry.filter(x => x.category === "frozen goods"),
-            condiments: this.props.pantry.filter(x => x.category === "condiments"),
-            spices: this.props.pantry.filter(x => x.category === "spices")
-        }
         this.setState({
-            pantry: pantry,
-            ingredients: pantry["all"]
+            ingredients: this.props.pantry
         })
     }
 
     showCategory = (event) => {
-        // event.preventDefault()
-        let ingredientsByCategory = [...this.state.pantry[event.target.value]]
+        const pantry = {
+            all: this.props.pantry,
+            proteins: this.props.pantry.filter(x => x.category === "proteins"),
+            "dried goods": this.props.pantry.filter(x => x.category === "dried goods"),
+            produce: this.props.pantry.filter(x => x.category === "produce"),
+            dairy: this.props.pantry.filter(x => x.category === "dairy"),
+            "frozen goods": this.props.pantry.filter(x => x.category === "frozen goods"),
+            condiments: this.props.pantry.filter(x => x.category === "condiments"),
+            spices: this.props.pantry.filter(x => x.category === "spices")
+        }
         this.setState({
-            ingredients: ingredientsByCategory
+            ingredients: pantry[event.target.value]
         })
     }
 
@@ -50,20 +45,19 @@ class Ingredient extends Component {
             <option key="category-7" value="condiments">condiments</option>
             <option key="category-8" value="spices">spices</option>
         </select>
-        <select>
-            <option>- ingredients -</option>
-            { this.state.ingredients.map(ing => <option value={ing.id}>{ing.name}</option>) }
-        </select>
-        {/* <select name="ingredients" id="new-recipe-ingredients" onChange={event => this.props.changeIngredient(event, this.props.keyId, "id") }>
-            { this.props.pantry.map(ingredient => {
+
+        <select name="ingredients" id="new-recipe-ingredients" onChange={event => this.props.changeIngredient(event, this.props.keyId, "id") }>
+            { this.state.ingredients.map(ingredient => {
                 if (ingredient.id == this.props.ingredientId){
                     return <option selected key={`ingredient-option-${ingredient.id}`} value={ ingredient.id } >{ `${ingredient.name} - ${ingredient.unit}` }</option>
                 } else {
                     return <option key={`ingredient-option-${ingredient.id}`} value={ ingredient.id }>{ `${ingredient.name} - ${ingredient.unit}` }</option>
                 }
             })}
-        </select> */}
+        </select>
+
         <input type ="number" value={ this.props.ingredientQuantity } onChange={ event => this.props.changeIngredient(event, this.props.keyId, "quantity") }></input>
+        
         <button onClick={ event => this.props.removeIngredient(event, this.props.keyId) }>- remove -</button>
     </div>
     );
