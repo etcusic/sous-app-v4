@@ -1,5 +1,6 @@
 import React, { Component } from 'react'
 import Ingredient from './Ingredient'
+import RecipeStatus from './RecipeStatus'
 import { sendRecipeData } from '../actions/index'
 
 class RecipeForm extends Component {
@@ -79,8 +80,18 @@ class RecipeForm extends Component {
           Servings: <input type="number" value={ this.state.servings } onChange={event => this.changeRecipe(event, "servings")}></input>  <br></br> <br></br>
           
             <div id="new-recipe-ingredients">
-                { this.state.ingredients.map((ing, i) => this.makeComponent(ing, i)) }
+                { this.state.ingredients.map((ing, i) => <Ingredient 
+                                                          keyId={i + 1} 
+                                                          ingredientId={ ing.id } 
+                                                          ingredientQuantity={ ing.quantity }
+                                                          pantry={ this.props.pantry } 
+                                                          changeIngredient={ this.changeIngredient }
+                                                          changeQuantity={ this.changeQuantity }
+                                                          removeIngredient={ this.removeIngredient }
+                                                      />) }
             </div>
+          
+          <RecipeStatus recipe={ this.state } />
           
           <p onClick={ this.addIngredient }>++ Add Ingredient ++</p> <br></br> 
           
