@@ -50,9 +50,13 @@ class HomePage extends Component {
       "frozen goods": this.state.pantry.filter(x => x.category === "frozen goods"),
       "condiments": this.state.pantry.filter(x => x.category === "condiments"),
       "spices": this.state.pantry.filter(x => x.category === "spices")
-  }
+    }
     this.setState({
-        view: <Pantry userId={this.state.userId} pantry={ pantry }/>
+        view: <Pantry 
+          userId={ this.state.userId } 
+          pantry={ pantry }
+          showPantry={ this.showPantry }
+        />
     })
   }
 

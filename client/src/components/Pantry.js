@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import { sendNewIngredient } from '../actions';
 import { calculateRawCost } from '../actions/helpers'
 
 class Pantry extends Component {
@@ -6,7 +7,8 @@ class Pantry extends Component {
   constructor(){
       super()
       this.state = {
-          ingredients: []
+          ingredients: [],
+          newIngredient: {}
       }
   }
 
@@ -59,7 +61,9 @@ class Pantry extends Component {
         <div>Estimated Raw Cost in Pantry: ${ calculateRawCost(this.props.pantry["all"]).toFixed(2) }</div>
         <br></br>
         <br></br>
-        <div></div>
+        <form onSubmit={ event => sendNewIngredient(event, 'POST', this.state.newIngredient, this.props.userId, this.props.showRecipe) }>
+
+        </form>
     </div>
     );
   }

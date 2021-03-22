@@ -18,3 +18,20 @@ export const sendRecipeData = (event, method, recipe, userId, reaction) => {
       .then(json => reaction(json.id))
       // add catch
 }
+
+export const sendNewIngredient = (event, method, ingredient, userId, reaction) => {
+    event.preventDefault()
+    const route = `http://localhost:3001/${userId}/ingredients`
+    const configObject = {
+        method: method,
+        headers: {
+            "Content-Type": 'application/json',
+            "Accept": 'application/json'
+        },
+        body: JSON.stringify(ingredient)
+    }
+
+    fetch(route, configObject)
+      .then(response => response.json())
+      .then(json => reaction(json.id))
+}
