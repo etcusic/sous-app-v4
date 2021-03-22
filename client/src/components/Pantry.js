@@ -13,9 +13,10 @@ class Pantry extends Component {
   }
 
   componentDidMount(){
-      console.log(this.props.pantry)
+      console.log(this.props.pantryId)
       this.setState({
-          ingredients: this.props.pantry["all"]
+          ingredients: this.props.pantry["all"],
+          newIngredient: {pantry_id: this.props.pantryId}
       })
   }
 
@@ -69,7 +70,7 @@ class Pantry extends Component {
         <div>Estimated Raw Cost in Pantry: ${ calculateRawCost(this.props.pantry["all"]).toFixed(2) }</div>
         <br></br>
         <br></br>
-        {/* NEEDS FURTHER ABSTRACTION TO ACCOMODATE EDITING AN EXISTING INGREDIENT */}
+        {/* NEEDS FURTHER ABSTRACTION TO ACCOMODATE EDITING AN EXISTING INGREDIENT - ALSO FOR ASSOCIATING WITH PANTRY */}
         <div>
           Add New Ingredient: 
           <form onSubmit={ event => sendNewIngredient(event, 'POST', this.state.newIngredient, this.props.userId, this.props.showPantry) }>
@@ -93,8 +94,11 @@ class Pantry extends Component {
                 <option value="pcs">pcs</option>
             </select>
 
-            <input placeholder="cost per unit" onChange={ event => this.changeIngredient(event, "costPerUnit") }></input>
+            <input placeholder="cost per unit" onChange={ event => this.changeIngredient(event, "cost_per_unit") }></input>
 
+            <input type="number" placeholder="quantity" onChange={ event => this.changeIngredient(event, "quantity") }></input>
+
+            <input type="submit"></input>
           </form>
         </div>
         

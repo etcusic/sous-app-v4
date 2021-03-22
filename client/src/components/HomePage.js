@@ -13,6 +13,7 @@ class HomePage extends Component {
     this.state = {
         userId: 0,
         userName: "",
+        pantryId: 0,
         pantry: [],
         view: <Placeholder />
     }
@@ -27,6 +28,7 @@ class HomePage extends Component {
       this.setState({
         userId: user.id,
         userName: user.name,
+        pantryId: user.pantry_id,
         pantry: user.pantry
       })
     })
@@ -40,7 +42,7 @@ class HomePage extends Component {
   }
 
   showPantry = () => {
-    console.log(this.state.pantry)
+    console.log(this.state)
     const pantry = {
       "all": this.state.pantry,
       "proteins": this.state.pantry.filter(x => x.category === "proteins"),
@@ -53,7 +55,7 @@ class HomePage extends Component {
     }
     this.setState({
         view: <Pantry 
-          userId={ this.state.userId } 
+          pantryId={ this.state.pantryId } 
           pantry={ pantry }
           showPantry={ this.showPantry }
         />
