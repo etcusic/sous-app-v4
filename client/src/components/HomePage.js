@@ -40,18 +40,19 @@ class HomePage extends Component {
   }
 
   showPantry = () => {
+    console.log(this.state.pantry)
     const pantry = {
-      "all": newPantry,
-      "proteins": newPantry.filter(x => x.category === "proteins"),
-      "dried goods": newPantry.filter(x => x.category === "dried goods"),
-      "produce": newPantry.filter(x => x.category === "produce"),
-      "dairy": newPantry.filter(x => x.category === "dairy"),
-      "frozen goods": newPantry.filter(x => x.category === "frozen goods"),
-      "condiments": newPantry.filter(x => x.category === "condiments"),
-      "spices": newPantry.filter(x => x.category === "spices")
+      "all": this.state.pantry,
+      "proteins": this.state.pantry.filter(x => x.category === "proteins"),
+      "dried goods": this.state.pantry.filter(x => x.category === "dried goods"),
+      "produce": this.state.pantry.filter(x => x.category === "produce"),
+      "dairy": this.state.pantry.filter(x => x.category === "dairy"),
+      "frozen goods": this.state.pantry.filter(x => x.category === "frozen goods"),
+      "condiments": this.state.pantry.filter(x => x.category === "condiments"),
+      "spices": this.state.pantry.filter(x => x.category === "spices")
   }
     this.setState({
-        view: <Pantry userId={this.state.userId} ingredients={ pantry }/>
+        view: <Pantry userId={this.state.userId} pantry={ pantry }/>
     })
   }
 
