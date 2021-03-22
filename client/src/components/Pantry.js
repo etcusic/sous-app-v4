@@ -73,7 +73,7 @@ class Pantry extends Component {
         {/* NEEDS FURTHER ABSTRACTION TO ACCOMODATE EDITING AN EXISTING INGREDIENT - ALSO FOR ASSOCIATING WITH PANTRY */}
         <div>
           Add New Ingredient: 
-          <form onSubmit={ event => sendNewIngredient(event, 'POST', this.state.newIngredient, this.props.userId, this.props.showPantry) }>
+          <form onSubmit={ event => sendNewIngredient(event, 'POST', this.state.newIngredient, this.props.showPantry) }>
 
             <select onChange={ event => this.changeIngredient(event, "category") }>
                 <option value="invalid">--</option>

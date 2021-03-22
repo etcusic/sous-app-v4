@@ -3,7 +3,7 @@ class IngredientsController < ApplicationController
     def create_with_pantry
         # check for valid inputs
         @ingredient = Ingredient.create(ingredient_params)
-        @pantry_ingredient = @ingredient.build(pantry_info).save
+        @pantry_ingredient = PantryIngredient.create(ingredient_id: @ingredient.id, pantry_id: pantry_info[:pantry_id], quantity: pantry_info[:quantity])
         binding.pry
     end
 
@@ -14,7 +14,7 @@ class IngredientsController < ApplicationController
     end
 
     def pantry_info
-        params.require(:ingredient.permit(:pantry_id, :quantity))
+        info = {pantry_id: params[:pantry_id], quantity: params[:quantity]}
     end
 
 end
