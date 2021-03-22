@@ -25,6 +25,14 @@ class Pantry extends Component {
     })
   }
 
+  changeIngredient = (event, key) => {
+    event.preventDefault()
+    console.log(event.target.value)
+    let ing = Object.assign({}, this.state.newIngredient)
+    ing[key] = event.target.value 
+    this.setState({ newIngredient: ing })
+  }
+
   render() {
     return (
     <div>
@@ -61,9 +69,35 @@ class Pantry extends Component {
         <div>Estimated Raw Cost in Pantry: ${ calculateRawCost(this.props.pantry["all"]).toFixed(2) }</div>
         <br></br>
         <br></br>
-        <form onSubmit={ event => sendNewIngredient(event, 'POST', this.state.newIngredient, this.props.userId, this.props.showRecipe) }>
+        {/* NEEDS FURTHER ABSTRACTION TO ACCOMODATE EDITING AN EXISTING INGREDIENT */}
+        <div>
+          Add New Ingredient: 
+          <form onSubmit={ event => sendNewIngredient(event, 'POST', this.state.newIngredient, this.props.userId, this.props.showPantry) }>
 
-        </form>
+            <select onChange={ event => this.changeIngredient(event, "category") }>
+                <option value="invalid">--</option>
+                <option value="proteins">proteins</option>
+                <option value="dried goods">dried goods</option>
+                <option value="produce">produce</option>
+                <option value="dairy">dairy</option>
+                <option value="frozen goods">frozen goods</option>
+                <option value="condiments">condiments</option>
+                <option value="spices">spices</option>
+            </select>
+
+            <input placeholder="name" onChange={ event => this.changeIngredient(event, "name") }></input>
+
+            <select onChange={ event => this.changeIngredient(event, "unit") }>
+                <option value="invalid">--</option>
+                <option value="oz">oz</option>
+                <option value="pcs">pcs</option>
+            </select>
+
+            <input placeholder="cost per unit" onChange={ event => this.changeIngredient(event, "costPerUnit") }></input>
+
+          </form>
+        </div>
+        
     </div>
     );
   }

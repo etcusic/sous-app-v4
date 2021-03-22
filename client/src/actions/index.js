@@ -19,9 +19,9 @@ export const sendRecipeData = (event, method, recipe, userId, reaction) => {
       // add catch
 }
 
-export const sendNewIngredient = (event, method, ingredient, userId, reaction) => {
+export const sendNewIngredient = (event, method, ingredient, reaction) => {
     event.preventDefault()
-    const route = `http://localhost:3001/${userId}/ingredients`
+    const route = `http://localhost:3001/ingredients`
     const configObject = {
         method: method,
         headers: {
