@@ -1,5 +1,7 @@
 export const sendRecipeData = (event, method, recipe, userId, reaction) => {
     event.preventDefault()
+    console.log("send recipe")
+    console.log(recipe)
     let id = recipe.id > 0 ? `/${recipe.id}` : ""
     const route = `http://localhost:3001/users/${userId}/recipes` + id
 

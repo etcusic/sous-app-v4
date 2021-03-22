@@ -3,6 +3,20 @@ import { calculateRawCost } from '../actions/helpers'
 
 class Pantry extends Component {
 
+  constructor(){
+      super()
+      this.state = {
+          ingredients: []
+      }
+  }
+
+  componentDidMount(){
+      console.log(this.props.pantry)
+      this.setState({
+          ingredients: this.props.pantry["all"]
+      })
+  }
+
   render() {
     return (
     <div>
@@ -15,7 +29,10 @@ class Pantry extends Component {
             </tr>
           </thead>
           <tbody>
-            { this.props.ingredients.map(ingredient => <tr key={`pantry-ingredient-${ingredient.id}`}><td>{ingredient.name}</td><td>{`${ingredient.quantity} ${ingredient.unit}`}</td></tr>) }
+            { this.props.ingredients.map(ingredient => <tr key={`pantry-ingredient-${ingredient.id}`}>
+                                                        <td>{ingredient.name}</td>
+                                                        <td>{`${ingredient.quantity} ${ingredient.unit}`}</td>
+                                                      </tr>) }
           </tbody>
         </table>
         <br></br>
