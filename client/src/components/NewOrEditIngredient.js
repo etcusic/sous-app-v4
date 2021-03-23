@@ -26,6 +26,14 @@ class NewOrEditIngredient extends Component {
         this.setState({ ingredients: ingredients })
     }
 
+    addIngredient = (event) => {
+        event.preventDefault()
+        const emptyIngredient = {category: "", name: "name", unit: "", cost_per_unit: 0, quantity: 0}
+        let ings = [...this.state.ingredients]
+        ings.push(emptyIngredient)
+        this.setState({ ingredients: ings })
+    }
+
   render() {
     return (
     <div id="new-ingredient-form">
@@ -33,6 +41,10 @@ class NewOrEditIngredient extends Component {
         {/* NEEDS AN ADD INGREDIENT BUTTON FOR MULTIPLE INGREDIENTS */}
         <form onSubmit={ event => sendNewIngredient(event, 'POST', this.state.newIngredient, this.props.showPantry) }>
             { this.state.ingredients.map((ing, index) => <NewIngredientRow keyId={ index } ingredient={ ing } changeIngredient={ this.changeIngredient } />)}
+
+            <button onClick={ this.addIngredient }>Add Ingredient</button>
+            <br></br>
+            <br></br>
             <input type="submit"></input>
         </form>
       </div>

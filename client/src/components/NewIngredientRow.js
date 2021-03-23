@@ -5,7 +5,7 @@ class NewIngredientRow extends Component {
   render() {
     return (
         <div keyId={ `new-ingredient-${this.props.keyId}` }>
-            <h4>{ this.props.keyId + 1 })</h4>
+            <h4>{ `${this.props.keyId + 1}${")"}` }</h4>
             <div>
                 <label>Category: </label>
                 <select onChange={ event => this.props.changeIngredient(event, this.props.keyId, "category") }>
