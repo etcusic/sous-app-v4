@@ -5,7 +5,6 @@ class RecipeStatus extends Component {
   render() {
     return (
     <div>
-    {console.log(this.props)}
         <table>
           <tbody>
             { this.props.ingredients.map((ingredient, index) => {

@@ -20,8 +20,8 @@ class Recipe < ApplicationRecord
     @recipe
   end
 
+  # eww
   def self.update_with_ingredients(recipe, ings)
-    binding.pry
     @recipe = Recipe.find_by_id(recipe[:id])
     @recipe.update(recipe)
     if ings.any?{ | ing | ing[:id] == 0 || ing[:id] == "0" }
@@ -38,7 +38,6 @@ class Recipe < ApplicationRecord
         end
       end
     end
-    binding.pry
     @recipe
   end
   

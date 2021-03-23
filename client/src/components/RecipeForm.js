@@ -32,7 +32,6 @@ class RecipeForm extends Component {
 
   addIngredient = (event, ing) => {
     event.preventDefault()
-    console.log(ing)
     let ingredients = [...this.state.ingredients, ing]
     this.setState({ 
       ingredients: ingredients,
@@ -48,7 +47,6 @@ class RecipeForm extends Component {
     }
 
     changeRecipe = (event, category) => {
-      console.log(this.state.recipe)
         let newState = Object.assign({}, this.state)
         newState[category] = event.target.value
         this.setState(newState)

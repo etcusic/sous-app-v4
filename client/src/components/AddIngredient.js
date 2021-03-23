@@ -11,7 +11,6 @@ class AddIngredient extends Component {
     }
 
     componentDidMount(){
-        console.log(this.props.ingredientId)
         this.setState({
             currentIngredient: this.props.ing,
             ingredients: this.props.pantry["all"]
