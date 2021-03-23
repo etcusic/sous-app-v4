@@ -11,9 +11,9 @@ class NewOrEditIngredient extends Component {
         }
     }
 
-    componentDidMount(){
-        console.log("needs to be set up for edit as well")
-    }
+    // componentDidMount(){
+    //     console.log("needs to be set up for edit as well")
+    // }
 
     changeIngredient = (event, index, key) => {
         event.preventDefault()
@@ -32,21 +32,7 @@ class NewOrEditIngredient extends Component {
         Add New Ingredient: 
         {/* NEEDS AN ADD INGREDIENT BUTTON FOR MULTIPLE INGREDIENTS */}
         <form onSubmit={ event => sendNewIngredient(event, 'POST', this.state.newIngredient, this.props.showPantry) }>
-
-            <table>
-                <thead>
-                    <tr>
-                        <td>Category:</td>
-                        <td>Name:</td>
-                        <td>Unit of Measurement:</td>
-                        <td>Cost Per Unit:</td>
-                        <td>Quantity:</td>
-                    </tr>
-                </thead>
-                <tbody>
-                    { this.state.ingredients.map((ing, index) => <NewIngredientRow keyId={ index } ingredient={ ing } changeIngredient={ this.changeIngredient } />) }
-                </tbody>
-            </table>
+            { this.state.ingredients.map((ing, index) => <NewIngredientRow keyId={ index } ingredient={ ing } changeIngredient={ this.changeIngredient } />)}
             <input type="submit"></input>
         </form>
       </div>
