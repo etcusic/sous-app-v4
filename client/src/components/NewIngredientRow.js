@@ -4,9 +4,9 @@ class NewIngredientRow extends Component {
 
   render() {
     return (
-    <tr>
+    <tr keyId={ `new-ingredient-${this.props.keyId}` }>
 
-          <select onChange={ event => this.props.changeIngredient(event, "category") }>
+          <select onChange={ event => this.props.changeIngredient(event, this.props.keyId, "category") }>
               <option value="invalid">--</option>
               <option value="proteins">proteins</option>
               <option value="dried goods">dried goods</option>
@@ -17,17 +17,17 @@ class NewIngredientRow extends Component {
               <option value="spices">spices</option>
           </select>
 
-          <input onChange={ event => this.props.changeIngredient(event, "name") }>{ this.props.ingredient.name }</input>
+          <input onChange={ event => this.props.changeIngredient(event, this.props.keyId, "name") }>{ this.props.ingredient.name }</input>
 
-          <select onChange={ event => this.props.changeIngredient(event, "unit") }>
+          <select onChange={ event => this.props.changeIngredient(event, this.props.keyId, "unit") }>
               <option value="invalid">--</option>
               <option value="oz">oz</option>
               <option value="pcs">pcs</option>
           </select>
 
-          <input onChange={ event => this.props.changeIngredient(event, "cost_per_unit") }>{ this.props.ingredient.cost_per_unit }</input>
+          <input onChange={ event => this.props.changeIngredient(event, this.props.keyId, "cost_per_unit") }>{ this.props.ingredient.cost_per_unit }</input>
 
-          <input type="number" onChange={ event => this.props.changeIngredient(event, "quantity") }>{ this.props.ingredient.quantity }</input>
+          <input type="number" onChange={ event => this.props.changeIngredient(event, this.props.keyId, "quantity") }>{ this.props.ingredient.quantity }</input>
 
       </tr>
     );

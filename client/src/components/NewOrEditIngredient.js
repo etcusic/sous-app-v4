@@ -44,7 +44,7 @@ class NewOrEditIngredient extends Component {
                     </tr>
                 </thead>
                 <tbody>
-                    { this.state.ingredients.map(ing => <NewIngredientRow ingredient={ ing } changeIngredient={ this.changeIngredient } />) }
+                    { this.state.ingredients.map((ing, index) => <NewIngredientRow keyId={ index } ingredient={ ing } changeIngredient={ this.changeIngredient } />) }
                 </tbody>
             </table>
             <input type="submit"></input>
