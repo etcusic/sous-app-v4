@@ -53,10 +53,11 @@ class Pantry extends Component {
           </thead>
           <tbody>
             { this.state.ingredients.map(ingredient => <tr key={`pantry-ingredient-${ingredient.id}`}>
-                                                        <td>{ingredient.name}</td>
-                                                        <td>{`${ingredient.quantity} ${ingredient.unit}`}</td>
-                                                        <td><button onClick={() => this.props.ingredientForm(ingredient, 'PATCH')}>edit</button></td>
-                                                      </tr>) }
+                                                          <td>{ingredient.name}</td>
+                                                          <td>{`${ingredient.quantity} ${ingredient.unit}`}</td>
+                                                          <td><button onClick={() => this.props.ingredientForm(ingredient, 'PATCH')}>edit</button></td>
+                                                        </tr>
+            )}
           </tbody>
         </table>
         <br></br>

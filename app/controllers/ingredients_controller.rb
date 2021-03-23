@@ -15,10 +15,10 @@ class IngredientsController < ApplicationController
     def update_with_pantry
         # logic should go in models
         ingredients = edit_ingredient_params.map do |ing|
-            binding.pry
-            pantry_ingredient = PantryIngredient.find_by(pantry_id: ing[:pantry_id], ingredient_id: ingredient.id)
-            pantry_ingredient.update(quantity: ing[:quantity])
             ingredient = Ingredient.find_by_id(ing[:id])
+            binding.pry
+            pantry_ingredient = PantryIngredient.find_by(pantry_id: params[:pantry_id], ingredient_id: ingredient.id)
+            pantry_ingredient.update(quantity: ing[:quantity])
             ingredient.update({
                 name: ing[:name],
                 unit: ing[:unit],
@@ -33,12 +33,12 @@ class IngredientsController < ApplicationController
 
     # currently for a single ingredient
     def new_ingredient_params
-        params.require(:_json).map{|ing| ing.permit(:name, :unit, :cost_per_unit, :category, :quantity, :pantry_id)}
+        params.require(:_json).map{|ing| ing.permit(:name, :unit, :cost_per_unit, :category, :quantity)}
     end
 
     # split params up based on distribution of tables - simplify the create and edit logic
     def edit_ingredient_params
-        params.require(:_json).map{|ing| ing.permit(:id, :name, :unit, :cost_per_unit, :category, :quantity, :pantry_id)}
+        params.require(:_json).map{|ing| ing.permit(:id, :name, :unit, :cost_per_unit, :category, :quantity)}
     end
 
 end
