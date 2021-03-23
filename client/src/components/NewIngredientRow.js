@@ -6,7 +6,7 @@ class NewIngredientRow extends Component {
     return (
     <tr>
 
-          <select onChange={ event => this.changeIngredient(event, "category") }>
+          <select onChange={ event => this.props.changeIngredient(event, "category") }>
               <option value="invalid">--</option>
               <option value="proteins">proteins</option>
               <option value="dried goods">dried goods</option>
@@ -17,17 +17,17 @@ class NewIngredientRow extends Component {
               <option value="spices">spices</option>
           </select>
 
-          <input placeholder="name" onChange={ event => this.changeIngredient(event, "name") }></input>
+          <input onChange={ event => this.props.changeIngredient(event, "name") }>{ this.props.ingredient.name }</input>
 
-          <select onChange={ event => this.changeIngredient(event, "unit") }>
+          <select onChange={ event => this.props.changeIngredient(event, "unit") }>
               <option value="invalid">--</option>
               <option value="oz">oz</option>
               <option value="pcs">pcs</option>
           </select>
 
-          <input placeholder="cost per unit" onChange={ event => this.changeIngredient(event, "cost_per_unit") }></input>
+          <input onChange={ event => this.props.changeIngredient(event, "cost_per_unit") }>{ this.props.ingredient.cost_per_unit }</input>
 
-          <input type="number" placeholder="quantity" onChange={ event => this.changeIngredient(event, "quantity") }></input>
+          <input type="number" onChange={ event => this.props.changeIngredient(event, "quantity") }>{ this.props.ingredient.quantity }</input>
 
       </tr>
     );

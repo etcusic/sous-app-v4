@@ -17,7 +17,7 @@ class NewOrEditIngredient extends Component {
 
     changeIngredient = (event, index, key) => {
         event.preventDefault()
-        ingredients = [...this.state.ingredients]
+        let ingredients = [...this.state.ingredients]
         ingredients[index][key] = event.target.value
         console.log(index)
         console.log(key)
