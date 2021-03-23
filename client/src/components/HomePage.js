@@ -69,9 +69,9 @@ class HomePage extends Component {
     })
   }
 
-  ingredientForm = (ingredients) => {
+  ingredientForm = (ingredient, reaction) => {
     this.setState({
-      view: <IngredientForm ingredients={ ingredients } updatePantry={ this.updatePantry } pantryId={ this.pantryId } /> 
+      view: <IngredientForm ingredient={ ingredient } updatePantry={ this.updatePantry } pantryId={ this.pantryId } reaction={ reaction } /> 
     })
      
   }

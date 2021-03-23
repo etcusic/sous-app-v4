@@ -11,23 +11,19 @@ class IngredientsController < ApplicationController
         render json: @pantry.ingredients_with_quantities
     end
 
+    def create
+        binding.pry
+    end
+
+    def update
+        binding.pry
+    end
+
     private
 
+    # currently for a single ingredient
     def ingredient_params
-        info = params["_json"] .map do |ing| 
-            obj = {
-                ingredient: {
-                    category: ing[:category],
-                    name: ing[:name], 
-                    unit: ing[:unit], 
-                    cost_per_unit: ing[:cost_per_unit]
-                },
-                pantry_ingredient: {
-                    pantry_id: ing[:pantry_id],
-                    quantity: ing[:quantity]
-                }    
-            }
-        end
+        
     end
 
 end

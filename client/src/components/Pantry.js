@@ -30,7 +30,7 @@ class Pantry extends Component {
         {/* <NewOrEditIngredient updatePantry={ this.props.updatePantry } pantryId={ this.props.pantryId } />   */}
 
         <h2>Pantry: </h2>
-        <button onClick={ () => this.props.ingredientForm({category: "", name: "name", unit: "", cost_per_unit: 0, quantity: 0, pantry_id: this.props.pantryId}) }>Create Ingredient</button>
+        <button onClick={ () => this.props.ingredientForm({id: 0, category: "", name: "name", unit: "", cost_per_unit: 0, quantity: 0, pantry_id: this.props.pantryId}, 'POST') }>Create Ingredient</button>
         <h3>Category: 
           <select onChange={ event => this.showCategory(event) }>
               <option key="category-1" value="all">all</option>
@@ -55,7 +55,7 @@ class Pantry extends Component {
             { this.state.ingredients.map(ingredient => <tr key={`pantry-ingredient-${ingredient.id}`}>
                                                         <td>{ingredient.name}</td>
                                                         <td>{`${ingredient.quantity} ${ingredient.unit}`}</td>
-                                                        <td><button onClick={() => this.props.ingredientForm(ingredient)}></button></td>
+                                                        <td><button onClick={() => this.props.ingredientForm(ingredient, 'PATCH')}>edit</button></td>
                                                       </tr>) }
           </tbody>
         </table>

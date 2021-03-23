@@ -14,7 +14,7 @@ class NewOrEditIngredient extends Component {
     componentDidMount(){
         console.log("needs to be set up for edit as well")
         this.setState({
-            ingredients: [{category: "", name: "name", unit: "", cost_per_unit: 0, quantity: 0, pantry_id: this.props.pantryId}]
+            ingredients: [this.props.ingredient]
         })
     }
 
@@ -38,7 +38,7 @@ class NewOrEditIngredient extends Component {
     <div id="new-ingredient-form">
         <h3>Add New Ingredient:</h3> 
         {/* NEEDS TO ACCOMODATE EDIT AS WELL */}
-        <form onSubmit={ event => sendNewIngredient(event, 'POST', this.state.ingredients, this.props.updatePantry) }>
+        <form onSubmit={ event => sendNewIngredient(event, this.props.reaction, this.state.ingredients, this.props.pantryId, this.props.updatePantry) }>
             { this.state.ingredients.map((ing, index) => <NewIngredientRow keyId={ index } ingredient={ ing } changeIngredient={ this.changeIngredient } />)}
             {/* <button onClick={ this.addIngredient }>Add Ingredient</button> */}
             <br></br>

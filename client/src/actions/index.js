@@ -19,10 +19,10 @@ export const sendRecipeData = (event, method, recipe, userId, reaction) => {
       // add catch
 }
 
-export const sendNewIngredient = (event, method, ingredients, reaction) => {
+export const sendNewIngredient = (event, method, ingredients, pantryId, reaction) => {
     // check for valid inputs - name, category, unit, cost_per_unit
     event.preventDefault()
-    const route = `http://localhost:3001/new_ingredient`
+    const route = `http://localhost:3001/pantries/${pantryId}/ingredients`
     const configObject = {
         method: method,
         headers: {
