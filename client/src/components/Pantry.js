@@ -30,7 +30,7 @@ class Pantry extends Component {
         {/* <NewOrEditIngredient updatePantry={ this.props.updatePantry } pantryId={ this.props.pantryId } />   */}
 
         <h2>Pantry: </h2>
-        <button onClick={ () => this.props.ingredientForm({id: 0, category: "", name: "name", unit: "", cost_per_unit: 0, quantity: 0, pantry_id: this.props.pantryId}, 'POST') }>Create Ingredient</button>
+        <button onClick={ () => this.props.ingredientForm(this.props.blankIngredient, 'POST') }>Create Ingredient</button>
         <h3>Category: 
           <select onChange={ event => this.showCategory(event) }>
               <option key="category-1" value="all">all</option>

@@ -22,9 +22,8 @@ export const sendRecipeData = (event, method, recipe, userId, reaction) => {
 export const sendNewIngredient = (event, method, ingredients, pantryId, reaction) => {
     // check for valid inputs - name, category, unit, cost_per_unit
     event.preventDefault()
-    console.log(ingredients)
-    console.log(pantryId)
-    const route = `http://localhost:3001/pantries/${pantryId}/ingredients`
+    // work on different routes for creating and updating
+    const route = `http://localhost:3001/new_ingredient`
     const configObject = {
         method: method,
         headers: {
