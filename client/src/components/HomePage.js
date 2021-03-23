@@ -43,7 +43,7 @@ class HomePage extends Component {
   }
 
   updatePantry = (ingredients) => {
-    this.setState({ pantry: ingredients })
+    new Promise((resolve, reject) => this.setState({ pantry: ingredients })).then(this.showPantry())
   }
 
   showPantry = () => {

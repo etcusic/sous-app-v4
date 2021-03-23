@@ -2,22 +2,26 @@ class IngredientsController < ApplicationController
 
     def create_with_pantry
         # check for valid inputs
-        binding.pry
-        # new_ingredients = ingredient_params.map do |obj|
-        #     ingredient = Ingredient.create(obj[:ingredient])
-        #     attrs = {ingredient_id: ingredient.id, pantry_id: obj[:pantry_ingredient][:pantry_id], quantity: obj[:pantry_ingredient][:quantity]}
-        #     pantry_ingredient = PantryIngredient.create(attrs)
-        # end
-        # @pantry = Pantry.find_by_id(ingredient_params[0][:pantry_ingredient][:pantry_id])
-        # render json: @pantry.ingredients_with_quantities
+        @pantry = Pantry.find_by_id(params[:pantry_id])
+        new_ingredients = new_ingredient_params.map do |obj|
+            ingredient = Ingredient.create({
+                name: obj["name"],
+                unit: obj["unit"],
+                cost_per_unit: obj["cost_per_unit"],
+                category: obj["category"]
+            })
+            attrs = {ingredient_id: ingredient.id, pantry_id: @pantry.id, quantity: obj[:quantity]}
+            pantry_ingredient = PantryIngredient.create(attrs)
+        end
+        render json: @pantry.ingredients_with_quantities
     end
 
     def update_with_pantry
         # logic should go in models
+        @pantry = Pantry.find_by_id(params[:pantry_id])
         ingredients = edit_ingredient_params.map do |ing|
             ingredient = Ingredient.find_by_id(ing[:id])
-            binding.pry
-            pantry_ingredient = PantryIngredient.find_by(pantry_id: params[:pantry_id], ingredient_id: ingredient.id)
+            pantry_ingredient = PantryIngredient.find_by(pantry_id: @pantry.id, ingredient_id: ingredient.id)
             pantry_ingredient.update(quantity: ing[:quantity])
             ingredient.update({
                 name: ing[:name],
@@ -25,8 +29,9 @@ class IngredientsController < ApplicationController
                 cost_per_unit: ing[:cost_per_unit],
                 category: ing[:category]
             })
+            ingredient
         end
-        binding.pry
+        render json: @pantry.ingredients_with_quantities
     end
 
     private
