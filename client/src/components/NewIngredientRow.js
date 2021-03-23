@@ -2,20 +2,6 @@ import React, { Component } from 'react';
 
 class NewIngredientRow extends Component {
 
-    constructor(){
-        super()
-        this.state = {
-            ingredient: {category: "", name: "name", unit: "", cost_per_unit: 0, quantity: 0}
-        }
-    }
-
-    componentDidMount(){
-        console.log(this.props.ingredient)
-        this.setState({
-            ingredient: this.props.ingredient
-        })
-    }
-
   render() {
     return (
     <tr>

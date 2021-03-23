@@ -1,6 +1,5 @@
 import React, { Component } from 'react';
 import NewOrEditIngredient from './NewOrEditIngredient'
-import { sendNewIngredient } from '../actions';
 import { calculateRawCost } from '../actions/helpers'
 
 class Pantry extends Component {

@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import NewIngredientRow from './NewIngredientRow'
+import { sendNewIngredient } from '../actions';
 
 class NewOrEditIngredient extends Component {
 
@@ -14,9 +15,20 @@ class NewOrEditIngredient extends Component {
         console.log("needs to be set up for edit as well")
     }
 
+    changeIngredient = (event, index, key) => {
+        event.preventDefault()
+        ingredients = [...this.state.ingredients]
+        ingredients[index][key] = event.target.value
+        console.log(index)
+        console.log(key)
+        console.log(event.target.value)
+        console.log(ingredients)
+        this.setState({ ingredients: ingredients })
+    }
+
   render() {
     return (
-    <div>
+    <div id="new-ingredient-form">
         Add New Ingredient: 
         {/* NEEDS AN ADD INGREDIENT BUTTON FOR MULTIPLE INGREDIENTS */}
         <form onSubmit={ event => sendNewIngredient(event, 'POST', this.state.newIngredient, this.props.showPantry) }>
@@ -32,7 +44,7 @@ class NewOrEditIngredient extends Component {
                     </tr>
                 </thead>
                 <tbody>
-                    { this.state.ingredients.map(ing => <NewIngredientRow ingredient={ ing } />) }
+                    { this.state.ingredients.map(ing => <NewIngredientRow ingredient={ ing } changeIngredient={ this.changeIngredient } />) }
                 </tbody>
             </table>
             <input type="submit"></input>
