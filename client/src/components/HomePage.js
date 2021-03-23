@@ -70,8 +70,16 @@ class HomePage extends Component {
   }
 
   ingredientForm = (ingredient, reaction) => {
+    const categories = ["proteins", "dried goods", "produce", "dairy", "frozen goods", "condiments", "spices"]
+    const units = ["oz", "pcs"]
     this.setState({
-      view: <IngredientForm ingredient={ ingredient } updatePantry={ this.updatePantry } pantryId={ this.pantryId } reaction={ reaction } /> 
+      view: <IngredientForm 
+      ingredient={ ingredient } 
+      updatePantry={ this.updatePantry } 
+      pantryId={ this.state.pantryId } 
+      categories={ categories } 
+      units={ units}
+      reaction={ reaction } /> 
     })
      
   }

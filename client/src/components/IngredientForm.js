@@ -12,7 +12,7 @@ class NewOrEditIngredient extends Component {
     }
 
     componentDidMount(){
-        console.log("needs to be set up for edit as well")
+        console.log(this.props.ingredient)
         this.setState({
             ingredients: [this.props.ingredient]
         })
@@ -39,7 +39,13 @@ class NewOrEditIngredient extends Component {
         <h3>Add New Ingredient:</h3> 
         {/* NEEDS TO ACCOMODATE EDIT AS WELL */}
         <form onSubmit={ event => sendNewIngredient(event, this.props.reaction, this.state.ingredients, this.props.pantryId, this.props.updatePantry) }>
-            { this.state.ingredients.map((ing, index) => <NewIngredientRow keyId={ index } ingredient={ ing } changeIngredient={ this.changeIngredient } />)}
+            { this.state.ingredients.map((ing, index) => <NewIngredientRow 
+                                                            keyId={ index } 
+                                                            ingredient={ ing } 
+                                                            units = { this.props.units }
+                                                            categories={ this.props.categories } 
+                                                            changeIngredient={ this.changeIngredient } />
+            )}
             {/* <button onClick={ this.addIngredient }>Add Ingredient</button> */}
             <br></br>
             <br></br>

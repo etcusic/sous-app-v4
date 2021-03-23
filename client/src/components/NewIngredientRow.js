@@ -9,13 +9,13 @@ class NewIngredientRow extends Component {
                 <label>Category: </label>
                 <select onChange={ event => this.props.changeIngredient(event, this.props.keyId, "category") }>
                     <option value="invalid">--</option>
-                    <option value="proteins">proteins</option>
-                    <option value="dried goods">dried goods</option>
-                    <option value="produce">produce</option>
-                    <option value="dairy">dairy</option>
-                    <option value="frozen goods">frozen goods</option>
-                    <option value="condiments">condiments</option>
-                    <option value="spices">spices</option>
+                    { this.props.categories.map(cat => {
+                        if (cat === this.props.ingredient.category){
+                            return <option selected value={ cat }>{ cat }</option>
+                        } else {
+                            return <option value={ cat }>{ cat }</option>
+                        }
+                    })}
                 </select>
             </div>
             
@@ -28,19 +28,24 @@ class NewIngredientRow extends Component {
                 <label>Unit of Measurement: </label>
                 <select onChange={ event => this.props.changeIngredient(event, this.props.keyId, "unit") }>
                     <option value="invalid">--</option>
-                    <option value="oz">oz</option>
-                    <option value="pcs">pcs</option>
+                    { this.props.units.map(unit => {
+                        if (unit === this.props.ingredient.unit){
+                            return <option selected value={ unit }>{ unit }</option>
+                        } else {
+                            return <option value={ unit }>{ unit }</option>
+                        }
+                    })}
                 </select>
             </div>
             
             <div>
                 <label>Cost per Unit: </label>
-                <input onChange={ event => this.props.changeIngredient(event, this.props.keyId, "cost_per_unit") }></input>
+                <input placeholder={ this.props.ingredient.cost_per_unit } onChange={ event => this.props.changeIngredient(event, this.props.keyId, "cost_per_unit") }></input>
             </div>
             
             <div>
                 <label>Quantity: </label>
-                <input type="number" onChange={ event => this.props.changeIngredient(event, this.props.keyId, "quantity") }></input>
+                <input placeholder={ this.props.ingredient.quantity } type="number" onChange={ event => this.props.changeIngredient(event, this.props.keyId, "quantity") }></input>
             </div>
 
             <br></br><br></br>

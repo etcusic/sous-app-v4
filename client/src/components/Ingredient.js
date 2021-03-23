@@ -17,14 +17,14 @@ class Ingredient extends Component {
 
     showCategory = (event) => {
         const pantry = {
-            all: this.props.pantry,
-            proteins: this.props.pantry.filter(x => x.category === "proteins"),
+            "all": this.props.pantry,
+            "proteins": this.props.pantry.filter(x => x.category === "proteins"),
             "dried goods": this.props.pantry.filter(x => x.category === "dried goods"),
-            produce: this.props.pantry.filter(x => x.category === "produce"),
-            dairy: this.props.pantry.filter(x => x.category === "dairy"),
+            "produce": this.props.pantry.filter(x => x.category === "produce"),
+            "dairy": this.props.pantry.filter(x => x.category === "dairy"),
             "frozen goods": this.props.pantry.filter(x => x.category === "frozen goods"),
-            condiments: this.props.pantry.filter(x => x.category === "condiments"),
-            spices: this.props.pantry.filter(x => x.category === "spices")
+            "condiments": this.props.pantry.filter(x => x.category === "condiments"),
+            "spices": this.props.pantry.filter(x => x.category === "spices")
         }
         this.setState({
             ingredients: pantry[event.target.value]
