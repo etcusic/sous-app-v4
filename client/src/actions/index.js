@@ -19,7 +19,7 @@ export const sendRecipeData = (event, method, recipe, userId, reaction) => {
       // add catch
 }
 
-export const sendNewIngredient = (event, method, ingredient, reaction) => {
+export const sendNewIngredient = (event, method, ingredients, reaction) => {
     // check for valid inputs - name, category, unit, cost_per_unit
     event.preventDefault()
     const route = `http://localhost:3001/new_ingredient`
@@ -29,7 +29,7 @@ export const sendNewIngredient = (event, method, ingredient, reaction) => {
             "Content-Type": 'application/json',
             "Accept": 'application/json'
         },
-        body: JSON.stringify(ingredient)
+        body: JSON.stringify(ingredients)
     }
 
     fetch(route, configObject)

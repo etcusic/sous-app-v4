@@ -7,28 +7,24 @@ class NewOrEditIngredient extends Component {
     constructor(){
         super()
         this.state = {
-            ingredients: [{category: "", name: "name", unit: "", cost_per_unit: 0, quantity: 0}]
+            ingredients: [{category: "", name: "name", unit: "", cost_per_unit: 0, quantity: 0, pantry_id: this.props.pantryId}]
         }
     }
 
-    // componentDidMount(){
-    //     console.log("needs to be set up for edit as well")
-    // }
+    componentDidMount(){
+        console.log("needs to be set up for edit as well")
+    }
 
     changeIngredient = (event, index, key) => {
         event.preventDefault()
         let ingredients = [...this.state.ingredients]
         ingredients[index][key] = event.target.value
-        console.log(index)
-        console.log(key)
-        console.log(event.target.value)
-        console.log(ingredients)
         this.setState({ ingredients: ingredients })
     }
 
     addIngredient = (event) => {
         event.preventDefault()
-        const emptyIngredient = {category: "", name: "name", unit: "", cost_per_unit: 0, quantity: 0}
+        const emptyIngredient = {category: "", name: "name", unit: "", cost_per_unit: 0, quantity: 0, pantry_id: this.props.pantryId}
         let ings = [...this.state.ingredients]
         ings.push(emptyIngredient)
         this.setState({ ingredients: ings })
@@ -38,10 +34,9 @@ class NewOrEditIngredient extends Component {
     return (
     <div id="new-ingredient-form">
         <h3>Add New Ingredient:</h3> 
-        {/* NEEDS AN ADD INGREDIENT BUTTON FOR MULTIPLE INGREDIENTS */}
-        <form onSubmit={ event => sendNewIngredient(event, 'POST', this.state.newIngredient, this.props.showPantry) }>
+        {/* NEEDS TO ACCOMODATE EDIT AS WELL */}
+        <form onSubmit={ event => sendNewIngredient(event, 'POST', this.state.ingredients, this.props.showPantry) }>
             { this.state.ingredients.map((ing, index) => <NewIngredientRow keyId={ index } ingredient={ ing } changeIngredient={ this.changeIngredient } />)}
-
             <button onClick={ this.addIngredient }>Add Ingredient</button>
             <br></br>
             <br></br>

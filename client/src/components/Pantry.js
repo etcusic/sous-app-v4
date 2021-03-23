@@ -7,8 +7,7 @@ class Pantry extends Component {
   constructor(){
       super()
       this.state = {
-          ingredients: [],
-          newIngredient: {}
+          ingredients: []
       }
   }
 
@@ -39,8 +38,8 @@ class Pantry extends Component {
     <div>
 
         {/* USE A BUTTON INSTEAD TO TRIGGER NEW/EDIT INGREDIENT */}
-        <NewOrEditIngredient />  
-        
+        <NewOrEditIngredient pantryId={ this.props.pantryId } />  
+
         <h2>Pantry: </h2>
         <h3>Category: 
           <select onChange={ event => this.showCategory(event) }>
