@@ -34,5 +34,5 @@ export const sendNewIngredient = (event, method, ingredients, reaction) => {
 
     fetch(route, configObject)
       .then(response => response.json())
-      .then(json => reaction(json.id))
+      .then(json => reaction(json))
 }

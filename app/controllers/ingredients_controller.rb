@@ -8,7 +8,6 @@ class IngredientsController < ApplicationController
             pantry_ingredient = PantryIngredient.create(attrs)
         end
         @pantry = Pantry.find_by_id(ingredient_params[0][:pantry_ingredient][:pantry_id])
-        binding.pry
         render json: @pantry.ingredients_with_quantities
     end
 

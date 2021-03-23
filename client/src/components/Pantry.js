@@ -12,7 +12,6 @@ class Pantry extends Component {
   }
 
   componentDidMount(){
-      console.log(this.props.pantryId)
       this.setState({
           ingredients: this.props.pantry["all"]
       })
