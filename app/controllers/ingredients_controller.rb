@@ -2,9 +2,14 @@ class IngredientsController < ApplicationController
 
     def create_with_pantry
         # check for valid inputs
-        # @ingredient = Ingredient.create(ingredient_params)
-        # @pantry_ingredient = PantryIngredient.create(ingredient_id: @ingredient.id, pantry_id: pantry_info[:pantry_id], quantity: pantry_info[:quantity])
+        new_ingredients = ingredient_params.map do |obj|
+            ingredient = Ingredient.create(obj[:ingredient])
+            attrs = {ingredient_id: ingredient.id, pantry_id: obj[:pantry_ingredient][:pantry_id], quantity: obj[:pantry_ingredient][:quantity]}
+            pantry_ingredient = PantryIngredient.create(attrs)
+        end
+        @pantry = Pantry.find_by_id(ingredient_params[0][:pantry_ingredient][:pantry_id])
         binding.pry
+        render json: @pantry.ingredients_with_quantities
     end
 
     private

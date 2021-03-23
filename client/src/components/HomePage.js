@@ -41,8 +41,14 @@ class HomePage extends Component {
       })
   }
 
+  updatePantry = (ingredients) => {
+    let updatedPantry = ingredients
+    this.setState({ pantry: updatedPantry })
+  }
+
   showPantry = () => {
     console.log(this.state)
+    // NEED TO PUT THIS SOMEWHERE ELSE
     const pantry = {
       "all": this.state.pantry,
       "proteins": this.state.pantry.filter(x => x.category === "proteins"),
@@ -57,7 +63,7 @@ class HomePage extends Component {
         view: <Pantry 
           pantryId={ this.state.pantryId } 
           pantry={ pantry }
-          showPantry={ this.showPantry }
+          updatePantry={ this.updatePantry }
         />
     })
   }

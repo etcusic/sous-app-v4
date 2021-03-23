@@ -14,8 +14,7 @@ class Pantry extends Component {
   componentDidMount(){
       console.log(this.props.pantryId)
       this.setState({
-          ingredients: this.props.pantry["all"],
-          newIngredient: {pantry_id: this.props.pantryId}
+          ingredients: this.props.pantry["all"]
       })
   }
 
@@ -25,20 +24,12 @@ class Pantry extends Component {
     })
   }
 
-  changeIngredient = (event, key) => {
-    event.preventDefault()
-    console.log(event.target.value)
-    let ing = Object.assign({}, this.state.newIngredient)
-    ing[key] = event.target.value 
-    this.setState({ newIngredient: ing })
-  }
-
   render() {
     return (
     <div>
 
-        {/* USE A BUTTON INSTEAD TO TRIGGER NEW/EDIT INGREDIENT */}
-        <NewOrEditIngredient pantryId={ this.props.pantryId } />  
+        {/* USE A BUTTON INSTEAD TO TRIGGER NEW/EDIT INGREDIENT - make it its own view */}
+        <NewOrEditIngredient updatePantry={ this.props.updatePantry } pantryId={ this.props.pantryId } />  
 
         <h2>Pantry: </h2>
         <h3>Category: 
