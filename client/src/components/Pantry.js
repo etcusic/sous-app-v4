@@ -37,6 +37,10 @@ class Pantry extends Component {
   render() {
     return (
     <div>
+
+        {/* USE A BUTTON INSTEAD TO TRIGGER NEW/EDIT INGREDIENT */}
+        <NewOrEditIngredient />  
+        
         <h2>Pantry: </h2>
         <h3>Category: 
           <select onChange={ event => this.showCategory(event) }>
@@ -70,9 +74,6 @@ class Pantry extends Component {
         <div>Estimated Raw Cost in Pantry: ${ calculateRawCost(this.props.pantry["all"]).toFixed(2) }</div>
         <br></br>
         <br></br>
-
-        {/* USE A BUTTON INSTEAD TO TRIGGER NEW/EDIT INGREDIENT */}
-        <NewOrEditIngredient />  
         
     </div>
     );

@@ -29,7 +29,7 @@ class NewOrEditIngredient extends Component {
   render() {
     return (
     <div id="new-ingredient-form">
-        Add New Ingredient: 
+        <h3>Add New Ingredient:</h3> 
         {/* NEEDS AN ADD INGREDIENT BUTTON FOR MULTIPLE INGREDIENTS */}
         <form onSubmit={ event => sendNewIngredient(event, 'POST', this.state.newIngredient, this.props.showPantry) }>
             { this.state.ingredients.map((ing, index) => <NewIngredientRow keyId={ index } ingredient={ ing } changeIngredient={ this.changeIngredient } />)}
