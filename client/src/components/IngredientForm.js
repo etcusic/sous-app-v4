@@ -25,13 +25,13 @@ class NewOrEditIngredient extends Component {
         this.setState({ ingredients: ingredients })
     }
 
-    addIngredient = (event) => {
-        event.preventDefault()
-        const emptyIngredient = {category: "", name: "name", unit: "", cost_per_unit: 0, quantity: 0, pantry_id: this.props.pantryId}
-        let ings = [...this.state.ingredients]
-        ings.push(emptyIngredient)
-        this.setState({ ingredients: ings })
-    }
+    // addIngredient = (event) => {
+    //     event.preventDefault()
+    //     const emptyIngredient = {category: "", name: "name", unit: "", cost_per_unit: 0, quantity: 0, pantry_id: this.props.pantryId}
+    //     let ings = [...this.state.ingredients]
+    //     ings.push(emptyIngredient)
+    //     this.setState({ ingredients: ings })
+    // }
 
   render() {
     return (
@@ -40,7 +40,7 @@ class NewOrEditIngredient extends Component {
         {/* NEEDS TO ACCOMODATE EDIT AS WELL */}
         <form onSubmit={ event => sendNewIngredient(event, 'POST', this.state.ingredients, this.props.updatePantry) }>
             { this.state.ingredients.map((ing, index) => <NewIngredientRow keyId={ index } ingredient={ ing } changeIngredient={ this.changeIngredient } />)}
-            <button onClick={ this.addIngredient }>Add Ingredient</button>
+            {/* <button onClick={ this.addIngredient }>Add Ingredient</button> */}
             <br></br>
             <br></br>
             <input type="submit"></input>

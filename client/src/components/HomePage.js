@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import UserProfile from './UserProfile.js'
 import Pantry from './Pantry.js'
+import IngredientForm from './IngredientForm.js'
 import Recipes from './Recipes.js'
 import ShowRecipe from './ShowRecipe.js'
 import RecipeForm from './RecipeForm.js'
@@ -63,8 +64,16 @@ class HomePage extends Component {
           pantryId={ this.state.pantryId } 
           pantry={ pantry }
           updatePantry={ this.updatePantry }
+          ingredientForm={ this.ingredientForm }
         />
     })
+  }
+
+  ingredientForm = (ingredients) => {
+    this.setState({
+      view: <IngredientForm ingredients={ ingredients } updatePantry={ this.updatePantry } pantryId={ this.pantryId } /> 
+    })
+     
   }
 
   showRecipes = () => {
