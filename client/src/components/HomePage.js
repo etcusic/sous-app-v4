@@ -1,11 +1,13 @@
 import React, { Component } from 'react';
+import Placeholder from './Placeholder.js'
 import UserProfile from './UserProfile.js'
 import Pantry from './Pantry.js'
 import IngredientForm from './IngredientForm.js'
 import Recipes from './Recipes.js'
 import ShowRecipe from './ShowRecipe.js'
 import RecipeForm from './RecipeForm.js'
-import Placeholder from './Placeholder.js'
+import WeeklyMenu from './WeeklyMenu.js'
+import WeeklyMenuForm from './WeeklyMenuForm.js'
 
 class HomePage extends Component {
   
@@ -16,7 +18,8 @@ class HomePage extends Component {
         userName: "",
         pantryId: 0,
         pantry: [],
-        view: <Placeholder />
+        view: <Placeholder />,
+        weeklyMenu: {"Monday": {}, "Tuesday": {}, "Wednesday": {}, "Thursday": {}, "Friday": {}, "Saturday": {}, "Sunday": {}}
     }
   }
 
@@ -114,6 +117,14 @@ class HomePage extends Component {
         routeMethod={ routeMethod }
       />
     })
+  }
+
+  weeklyMenu = () => {
+    this.setState({ view: <WeeklyMenu weeklyMenu={this.state.weeklyMenu} />})
+  }
+
+  weeklyMenuForm = (menu) => {
+    this.setState({ view: <WeeklyMenuForm weeklyMenu={this.state.menu} />})
   }
 
   render() {
