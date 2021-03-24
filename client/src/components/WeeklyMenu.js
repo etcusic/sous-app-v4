@@ -15,7 +15,7 @@ class WeeklyMenu extends Component {
                 </tr>
             </thead>
             <tbody>
-                {/* { Object.keys(this.props.weeklyMenu).map(key => { */}
+                { console.log(this.props.weeklyMenu )}
                 { this.props.weeklyMenu.map( obj => {
                     return (
                             <tr>

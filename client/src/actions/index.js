@@ -41,11 +41,12 @@ export const sendNewIngredient = (event, method, ingredients, pantryId, reaction
 
 export const sendWeeklyMenu = (event, userId, method, payload, reaction) => {
     event.preventDefault()
+    const route = `http://localhost:3001/users/${userId}/weekly_menus`
     console.log(`userId => ${userId}`)
     console.log(`method => ${method}`)
+    console.log(`route => ${route}`)
     console.log(`payload => ${JSON.stringify(payload)}`)
     console.log(`reaction => ${reaction}`)
-    const route = `http://localhost:3001/users/${userId}/weekly_menus`
     const configObject = {
         method: method,
         headers: {
