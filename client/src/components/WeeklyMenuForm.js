@@ -21,9 +21,9 @@ class WeeklyMenuForm extends Component {
         })
     }
 
-    changeMenu = (event, key) => {
-        let menu = Object.assign({}, this.state.weeklyMenu)
-        menu[key] = this.state.recipes[event.target.value]
+    changeMenu = (event, index, cat) => {
+        let menu = [...this.state.weeklyMenu]
+        menu[index][cat] = event.target.value
         this.setState({
             weeklyMenu: menu
         })
@@ -46,23 +46,23 @@ class WeeklyMenuForm extends Component {
                 </tr>
             </thead>
             <tbody>
-                { Object.keys(this.state.weeklyMenu).map(key => {
+                { this.state.weeklyMenu.map((obj, index) => {
                     return (
                         <tr>
-                            <td>{ key }</td>
+                            <td>{ obj.day }</td>
                             <td>
-                                <select onChange={ event => this.changeMenu(event, key) }>
+                                <select onChange={ event => this.changeMenu(event, index, "name") }>
                                     <option value="invalid">-------</option>
-                                    { this.state.recipes.map((recipe, index) => {
-                                        if (recipe.name === this.state.weeklyMenu[key].name){
-                                            return <option selected value={ index }>{ recipe.name }</option>
+                                    { this.state.recipes.map((recipe, i) => {
+                                        if (recipe.name === obj.name){
+                                            return <option selected value={ recipe.name }>{ recipe.name }</option>
                                         } else {
-                                            return <option value={ index }>{ recipe.name }</option>
+                                            return <option value={ recipe.name }>{ recipe.name }</option>
                                         }
                                     }) }
                                 </select>
                             </td>
-                            <td><input type ="number"></input></td>
+                            <td><input type ="number" value={ obj.quantity } onChange={ event => this.changeMenu(event, index, "quantity")}></input></td>
                         </tr>
                     )
                 })}
