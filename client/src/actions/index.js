@@ -38,3 +38,21 @@ export const sendNewIngredient = (event, method, ingredients, pantryId, reaction
       .then(response => response.json())
       .then(json => reaction(json))
 }
+
+export const sendWeeklyMenu = (event, userId, method, payload, reaction) => {
+    event.preventDefault()
+    console.log(payload)
+    const route = `http://localhost:3001/users/${userId}/weekly_menus`
+    const configObject = {
+        method: method,
+        headers: {
+            "Content-Type": 'application/json',
+            "Accept": 'application/json'
+        },
+        body: JSON.stringify(ingredients)
+    }
+
+    fetch(route, configObject)
+      .then(response => response.json())
+      .then(json => reaction(json))
+}

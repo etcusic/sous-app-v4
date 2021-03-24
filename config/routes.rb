@@ -1,12 +1,12 @@
 Rails.application.routes.draw do
 
-  resources :weekly_menus
   resources :ingredients
 
   resources :users do 
     resources :pantries, only: [:show] 
     resources :grocery_lists
     resources :recipes
+    resources :weekly_menus
   end
 
   resources :pantries do 
