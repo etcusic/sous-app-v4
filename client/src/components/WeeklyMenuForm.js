@@ -39,7 +39,7 @@ class WeeklyMenuForm extends Component {
     return (
     <div>
         <h2>Edit Weekly Menu:</h2>
-        <form onSubmit={ event => sendNewIngredient(event, this.props.userId, this.props.method, this.state.weeklyMenu, this.props.updateMenu) }>
+        <form onSubmit={ event => sendWeeklyMenu(event, this.props.userId, this.props.method, this.state.weeklyMenu, this.props.updateMenu) }>
             <table>
                 <thead>
                     <tr>

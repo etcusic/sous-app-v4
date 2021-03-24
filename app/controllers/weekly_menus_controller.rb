@@ -16,4 +16,10 @@ class WeeklyMenusController < ApplicationController
         binding.pry
     end
 
+    private
+
+    def weekly_menu_params
+        
+    end
+
 end

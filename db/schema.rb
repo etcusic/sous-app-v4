@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_03_24_190611) do
+ActiveRecord::Schema.define(version: 2021_03_24_200032) do
 
   create_table "daily_menus", force: :cascade do |t|
     t.integer "weekly_menu_id", null: false
@@ -46,6 +46,7 @@ ActiveRecord::Schema.define(version: 2021_03_24_190611) do
     t.integer "quantity"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
+    t.string "category"
     t.index ["daily_menu_id"], name: "index_meals_on_daily_menu_id"
     t.index ["recipe_id"], name: "index_meals_on_recipe_id"
   end
