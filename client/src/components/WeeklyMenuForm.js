@@ -5,7 +5,8 @@ class WeeklyMenuForm extends Component {
     constructor(){
         super()
         this.state = {
-            recipes: []
+            recipes: [],
+            weeklyMenu: {}
         }
     }
 
@@ -14,9 +15,22 @@ class WeeklyMenuForm extends Component {
         .then(resp =>  resp.json())
         .then(recipes => {
             this.setState({
-                recipes: recipes
+                recipes: recipes,
+                weeklyMenu: this.props.weeklyMenu
             })
         })
+    }
+
+    changeMenu = (event, key) => {
+        let menu = Object.assign({}, this.state.weeklyMenu)
+        menu[key] = this.state.recipes[event.target.value]
+        this.setState({
+            weeklyMenu: menu
+        })
+    }
+
+    checkState = () => {
+        console.log(this.state.weeklyMenu)
     }
 
   render() {
@@ -25,15 +39,15 @@ class WeeklyMenuForm extends Component {
         <h2>Edit Weekly Menu:</h2>
         <table>
             <tbody>
-                { Object.keys(this.props.weeklyMenu).map(key => {
+                { Object.keys(this.state.weeklyMenu).map(key => {
                     return (
                         <tr>
                             <td>{ key }</td>
                             <td>
-                                <select>
+                                <select onChange={ event => this.changeMenu(event, key) }>
                                     <option value="invalid">-------</option>
-                                    { this.state.recipes.map(recipe => {
-                                        return <option value={ recipe.name }>{ recipe.name }</option>
+                                    { this.state.recipes.map((recipe, index) => {
+                                        return <option value={ index }>{ recipe.name }</option>
                                     }) }
                                 </select>
                             </td>
@@ -42,6 +56,7 @@ class WeeklyMenuForm extends Component {
                 })}
             </tbody>
         </table>
+        <button onClick={ this.checkState }>Check State</button>
     </div>
     );
   }

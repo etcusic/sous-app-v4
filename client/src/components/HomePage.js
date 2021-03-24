@@ -128,6 +128,10 @@ class HomePage extends Component {
     this.setState({ view: <WeeklyMenu weeklyMenu={ this.state.weeklyMenu } weeklyMenuForm={ () => this.weeklyMenuForm(this.state.weeklyMenu) } />})
   }
 
+  updateMenu = () => {
+    
+  }
+
   weeklyMenuForm = (menu) => {
     this.setState({ view: <WeeklyMenuForm weeklyMenu={ menu } userId={ this.state.userId } />})
   }
