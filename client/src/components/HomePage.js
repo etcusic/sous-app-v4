@@ -19,7 +19,7 @@ class HomePage extends Component {
         pantryId: 0,
         pantry: [],
         view: <Placeholder />,
-        weeklyMenu: {"Monday": {}, "Tuesday": {}, "Wednesday": {}, "Thursday": {}, "Friday": {}, "Saturday": {}, "Sunday": {}}
+        weeklyMenu: []
     }
   }
 
@@ -33,7 +33,9 @@ class HomePage extends Component {
         userId: user.id,
         userName: user.name,
         pantryId: user.pantry_id,
-        pantry: user.pantry
+        pantry: user.pantry,
+        weeklyMenu: {"Monday": "a", "Tuesday": "b", "Wednesday": "", "Thursday": "", "Friday": "", "Saturday": "", "Sunday": ""}
+        // weeklyMenu: [{"Monday": "a"}, {"Tuesday": "b"}, {"Wednesday": ""}, {"Thursday": ""}, {"Friday": ""}, {"Saturday": ""}, {"Sunday": ""}]
       })
     })
   }
@@ -41,7 +43,11 @@ class HomePage extends Component {
   profilePage = () => {
     const emptyRecipe = {name: "", servings: 0, instructions: "", ingredients: [{id: 0, name: "", quantity: 0, unit: ""}]}
       this.setState({
-          view: <UserProfile showPantry={ this.showPantry } showRecipes={ this.showRecipes } recipeForm={ () => this.recipeForm(emptyRecipe, 'POST') } />
+          view: <UserProfile 
+                  showPantry={ this.showPantry } 
+                  showRecipes={ this.showRecipes } 
+                  recipeForm={ () => this.recipeForm(emptyRecipe, 'POST') }
+                  weeklyMenu={ this.weeklyMenu } />
       })
   }
 
@@ -120,7 +126,7 @@ class HomePage extends Component {
   }
 
   weeklyMenu = () => {
-    this.setState({ view: <WeeklyMenu weeklyMenu={this.state.weeklyMenu} />})
+    this.setState({ view: <WeeklyMenu weeklyMenu={this.state.weeklyMenu} weeklyMenuForm={ () => this.weeklyMenuForm(this.state.weeklyMenu)} />})
   }
 
   weeklyMenuForm = (menu) => {
