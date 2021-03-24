@@ -6,7 +6,7 @@ class WeeklyMenuForm extends Component {
         super()
         this.state = {
             recipes: [],
-            weeklyMenu: {}
+            weeklyMenu: []
         }
     }
 
@@ -38,6 +38,13 @@ class WeeklyMenuForm extends Component {
     <div>
         <h2>Edit Weekly Menu:</h2>
         <table>
+            <thead>
+                <tr>
+                    <th>Day:</th>
+                    <th>Dish:</th>
+                    <th>Quantity:</th>
+                </tr>
+            </thead>
             <tbody>
                 { Object.keys(this.state.weeklyMenu).map(key => {
                     return (
@@ -52,10 +59,10 @@ class WeeklyMenuForm extends Component {
                                         } else {
                                             return <option value={ index }>{ recipe.name }</option>
                                         }
-                                        
                                     }) }
                                 </select>
                             </td>
+                            <td><input type ="number"></input></td>
                         </tr>
                     )
                 })}

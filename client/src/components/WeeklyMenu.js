@@ -7,12 +7,21 @@ class WeeklyMenu extends Component {
     <div>
         <h2>Weekly Menu:</h2>
         <table>
+            <thead>
+                <tr>
+                    <th>Day:</th>
+                    <th>Dish:</th>
+                    <th>Quantity:</th>
+                </tr>
+            </thead>
             <tbody>
-                { Object.keys(this.props.weeklyMenu).map(key => {
+                {/* { Object.keys(this.props.weeklyMenu).map(key => { */}
+                { this.props.weeklyMenu.map( obj => {
                     return (
                             <tr>
-                                <td>{key}: </td>
-                                <td>{this.props.weeklyMenu[key] === "" ? "--------" : this.props.weeklyMenu[key].name}</td>
+                                <td>{obj.day} </td>
+                                <td>{obj.name === "" ? "--------" : obj.name}</td>
+                                <td>{obj.quantity}</td>
                             </tr>
                         )
                 })}

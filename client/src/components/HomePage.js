@@ -34,7 +34,16 @@ class HomePage extends Component {
         userName: user.name,
         pantryId: user.pantry_id,
         pantry: user.pantry,
-        weeklyMenu: {"Monday": "", "Tuesday": "", "Wednesday": "", "Thursday": "", "Friday": "", "Saturday": "", "Sunday": ""}
+        weeklyMenu: [
+          {day: "Monday", recipeId: 0, name:"", quantity: 0},
+          {day: "Tuesday", recipeId: 0, name:"", quantity: 0},
+          {day: "Wednesday", recipeId: 0, name:"", quantity: 0},
+          {day: "Thursday", recipeId: 0, name:"", quantity: 0},
+          {day: "Friday", recipeId: 0, name:"", quantity: 0},
+          {day: "Saturday", recipeId: 0, name:"", quantity: 0},
+          {day: "Sunday", recipeId: 0, name:"", quantity: 0}
+        ]
+        // weeklyMenu: {"Monday": "", "Tuesday": "", "Wednesday": "", "Thursday": "", "Friday": "", "Saturday": "", "Sunday": ""}
       })
     })
   }
@@ -125,6 +134,7 @@ class HomePage extends Component {
   }
 
   weeklyMenu = () => {
+    // find recipes that match menu id's and send those specific recipes
     this.setState({ view: <WeeklyMenu weeklyMenu={ this.state.weeklyMenu } weeklyMenuForm={ () => this.weeklyMenuForm(this.state.weeklyMenu) } />})
   }
 
