@@ -47,7 +47,12 @@ class WeeklyMenuForm extends Component {
                                 <select onChange={ event => this.changeMenu(event, key) }>
                                     <option value="invalid">-------</option>
                                     { this.state.recipes.map((recipe, index) => {
-                                        return <option value={ index }>{ recipe.name }</option>
+                                        if (recipe.name === this.state.weeklyMenu[key].name){
+                                            return <option selected value={ index }>{ recipe.name }</option>
+                                        } else {
+                                            return <option value={ index }>{ recipe.name }</option>
+                                        }
+                                        
                                     }) }
                                 </select>
                             </td>
