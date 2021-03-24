@@ -11,6 +11,13 @@
 
 # add IngredientJoinTable model for sub ingredients to inherit from
 
+# rails g resource WeeklyMenu user:belongs_to 
+# has_many :daily_menus || has_many :meals, through: :daily_menus
+# rails g model DailyMenu weekly_menu:belongs_to date:date => instance method "day" with strftime
+# has_many :meals || has_many :recipes, through: :meals
+# rails g model Meal daily_menu:belongs_to recipe:belongs_to quantity:integer
+
+
 User.create(name: "Mr Bojangles")
 Pantry.create(user_id: 1)
 
@@ -174,7 +181,7 @@ Recipe.create(user_id: 1, name: "Grilled Salmon & Veg", servings: 1, instruction
 Recipe.create(user_id: 1, name: "Turkey Tacos", servings: 1, instructions: "")
 Recipe.create(user_id: 1, name: "Southwest Chili", servings: 1, instructions: "")
 Recipe.create(user_id: 1, name: "Turkey Bolognese", servings: 1, instructions: "")
-Recipe.create(user_id: 1, name: "Whole Rost Chicken", servings: 1, instructions: "")
+Recipe.create(user_id: 1, name: "Whole Roast Chicken", servings: 1, instructions: "")
 Recipe.create(user_id: 1, name: "Pho Ga with Cabbage Noodles", servings: 1, instructions: "")
 Recipe.create(user_id: 1, name: "Phad Thai wiht Cabbage Noodles", servings: 1, instructions: "")
 Recipe.create(user_id: 1, name: "Bibimbap", servings: 1, instructions: "")

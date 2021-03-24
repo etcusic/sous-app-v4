@@ -35,6 +35,7 @@ class HomePage extends Component {
         pantryId: user.pantry_id,
         pantry: user.pantry,
         weeklyMenu: [
+          // change to => {:day, :meals (array of recipe ids) } => meals = [{:meal (dinner), :recipe_id, :quantity}, {...}, {...}]
           {day: "Monday", recipeId: 0, name:"", quantity: 0},
           {day: "Tuesday", recipeId: 0, name:"", quantity: 0},
           {day: "Wednesday", recipeId: 0, name:"", quantity: 0},

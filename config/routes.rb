@@ -1,5 +1,6 @@
 Rails.application.routes.draw do
 
+  resources :weekly_menus
   resources :ingredients
 
   resources :users do 
