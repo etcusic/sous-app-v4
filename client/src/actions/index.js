@@ -49,7 +49,7 @@ export const sendWeeklyMenu = (event, userId, method, payload, reaction) => {
             "Content-Type": 'application/json',
             "Accept": 'application/json'
         },
-        body: JSON.stringify(ingredients)
+        body: JSON.stringify(payload)
     }
 
     fetch(route, configObject)

@@ -135,21 +135,22 @@ class HomePage extends Component {
   }
 
   weeklyMenu = () => {
+    // PASS IN MENU PARAMATER - NEED TO UPDATE STATE, THEN SHOW COMPONENT - will redux solve this??
     // find recipes that match menu id's and send those specific recipes
     this.setState({ view: <WeeklyMenu weeklyMenu={ this.state.weeklyMenu } weeklyMenuForm={ () => this.weeklyMenuForm(this.state.weeklyMenu) } />})
   }
 
   updateMenu = (menu) => {
     console.log(menu)
-    // have a timing problem - should get solved with redux??
-    new Promise((resolve, reject) => this.setState({ weeklyMenu: menu })).then(this.profilePage())
+    new Promise(() => this.setState({ weeklyMenu: menu })).then(this.weeklyMenu())
   }
 
   weeklyMenuForm = (menu) => {
     this.setState({ view: <WeeklyMenuForm 
                               weeklyMenu={ menu } 
                               userId={ this.state.userId } 
-                              updateMenu={ this.updateMenu } 
+                              method={ 'POST' }
+                              updateMenu={ this.updateMenu }
                           />})
   }
 
