@@ -34,8 +34,7 @@ class HomePage extends Component {
         userName: user.name,
         pantryId: user.pantry_id,
         pantry: user.pantry,
-        weeklyMenu: {"Monday": "a", "Tuesday": "b", "Wednesday": "", "Thursday": "", "Friday": "", "Saturday": "", "Sunday": ""}
-        // weeklyMenu: [{"Monday": "a"}, {"Tuesday": "b"}, {"Wednesday": ""}, {"Thursday": ""}, {"Friday": ""}, {"Saturday": ""}, {"Sunday": ""}]
+        weeklyMenu: {"Monday": "", "Tuesday": "", "Wednesday": "", "Thursday": "", "Friday": "", "Saturday": "", "Sunday": ""}
       })
     })
   }
