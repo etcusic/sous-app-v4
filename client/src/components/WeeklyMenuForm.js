@@ -57,6 +57,8 @@ class WeeklyMenuForm extends Component {
             </tbody>
         </table>
         <button onClick={ this.checkState }>Check State</button>
+            <br></br><br></br>
+            <button onClick={ () => this.props.updateMenu(this.state.weeklyMenu) }>Update Menu</button>
     </div>
     );
   }

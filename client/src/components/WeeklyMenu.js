@@ -12,7 +12,7 @@ class WeeklyMenu extends Component {
                     return (
                             <tr>
                                 <td>{key}: </td>
-                                <td>{this.props.weeklyMenu[key] === "" ? "--------" : this.props.weeklyMenu[key]}</td>
+                                <td>{this.props.weeklyMenu[key] === "" ? "--------" : this.props.weeklyMenu[key].name}</td>
                             </tr>
                         )
                 })}

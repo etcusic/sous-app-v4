@@ -128,12 +128,18 @@ class HomePage extends Component {
     this.setState({ view: <WeeklyMenu weeklyMenu={ this.state.weeklyMenu } weeklyMenuForm={ () => this.weeklyMenuForm(this.state.weeklyMenu) } />})
   }
 
-  updateMenu = () => {
-    
+  updateMenu = (menu) => {
+    console.log(menu)
+    // have a timing problem - should get solved with redux??
+    new Promise((resolve, reject) => this.setState({ weeklyMenu: menu })).then(this.profilePage())
   }
 
   weeklyMenuForm = (menu) => {
-    this.setState({ view: <WeeklyMenuForm weeklyMenu={ menu } userId={ this.state.userId } />})
+    this.setState({ view: <WeeklyMenuForm 
+                              weeklyMenu={ menu } 
+                              userId={ this.state.userId } 
+                              updateMenu={ this.updateMenu } 
+                          />})
   }
 
   render() {
