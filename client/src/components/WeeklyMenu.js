@@ -19,7 +19,7 @@ class WeeklyMenu extends Component {
             </tbody>
             
         </table>
-        
+        <br></br>
         <div>
             <button onClick={ this.props.weeklyMenuForm }>Edit Menu</button>
         </div>

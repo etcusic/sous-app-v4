@@ -10,6 +10,7 @@ class Recipes extends Component {
   }
 
   componentDidMount(){
+    // move to acitons
       fetch(`http://localhost:3001/users/${this.props.userId}/recipes`)
       .then(resp =>  resp.json())
       .then(recipes => {
