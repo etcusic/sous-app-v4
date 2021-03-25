@@ -19,6 +19,7 @@ class HomePage extends Component {
         pantryId: 0,
         pantry: [],
         view: <Placeholder />,
+        thisMonth: [],
         weeklyMenu: []
     }
   }
@@ -29,7 +30,6 @@ class HomePage extends Component {
     fetch(`http://localhost:3001/users/1`)
     .then(resp =>  resp.json())
     .then(user => {
-      console.log(user.weekly_menus)
       this.setState({
         userId: user.id,
         userName: user.name,
@@ -136,10 +136,15 @@ class HomePage extends Component {
     })
   }
 
+  setMenu = (weeklyMenu) => {
+    console.log(weeklyMenu)
+    this.setState({ weeklyMenu: weeklyMenu })
+  }
+
   weeklyMenu = () => {
     // PASS IN MENU PARAMATER - NEED TO UPDATE STATE, THEN SHOW COMPONENT - will redux solve this??
     // find recipes that match menu id's and send those specific recipes
-    this.setState({ view: <WeeklyMenu weeklyMenu={ this.state.weeklyMenu } weeklyMenuForm={ () => this.weeklyMenuForm(this.state.weeklyMenu) } />})
+    this.setState({ view: <WeeklyMenu userId={ this.state.userId } thisMonth={ this.state.thisMonth } weeklyMenu={ this.state.weeklyMenu } weeklyMenuForm={ () => this.weeklyMenuForm(this.state.weeklyMenu) } />})
   }
 
   updateMenu = (menu) => {

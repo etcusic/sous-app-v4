@@ -1,7 +1,5 @@
 export const sendRecipeData = (event, method, recipe, userId, reaction) => {
     event.preventDefault()
-    console.log("send recipe")
-    console.log(recipe)
     let id = recipe.id > 0 ? `/${recipe.id}` : ""
     const route = `http://localhost:3001/users/${userId}/recipes` + id
 
@@ -22,7 +20,6 @@ export const sendRecipeData = (event, method, recipe, userId, reaction) => {
 export const sendNewIngredient = (event, method, ingredients, pantryId, reaction) => {
     // check for valid inputs - name, category, unit, cost_per_unit
     event.preventDefault()
-    console.log(ingredients)
     // work on different routes for creating and updating
     const route = `http://localhost:3001/pantries/${pantryId}/new_ingredient`
     const configObject = {
@@ -42,11 +39,6 @@ export const sendNewIngredient = (event, method, ingredients, pantryId, reaction
 export const sendWeeklyMenu = (event, userId, method, payload, reaction) => {
     event.preventDefault()
     const route = `http://localhost:3001/users/${userId}/weekly_menus`
-    console.log(`userId => ${userId}`)
-    console.log(`method => ${method}`)
-    console.log(`route => ${route}`)
-    console.log(`payload => ${JSON.stringify(payload)}`)
-    console.log(`reaction => ${reaction}`)
     const configObject = {
         method: method,
         headers: {
@@ -60,3 +52,10 @@ export const sendWeeklyMenu = (event, userId, method, payload, reaction) => {
       .then(response => response.json())
       .then(json => reaction(json))
 }
+
+const fetchWeeklyMenu = (event, userId, reaction) => {
+    event.preventDefault()
+    fetch(`http://localhost:3001/users/${userId}/weekly_menus/${event.target.value}`)
+    .then(response => response.json())
+    .then(json => reaction(json))
+}   

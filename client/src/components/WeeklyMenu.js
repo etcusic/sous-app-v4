@@ -6,6 +6,14 @@ class WeeklyMenu extends Component {
     return (
     <div>
         <h2>Weekly Menu:</h2>
+        <div>
+        { console.log(this.props.thisMonth) }
+            <select onClick={ event => fetchWeeklyMenu(event, this.props.userId, this.props.setMenu) }>
+                { this.props.thisMonth.map((week, i) => {
+                    return <option value={ week.id }>{ `${week.days[0]} - ${week.days[6]}` }</option>
+                })}
+            </select>
+        </div>
         <table>
             <thead>
                 <tr>
