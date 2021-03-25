@@ -30,6 +30,11 @@ class WeeklyMenu extends Component {
         </table>
         <br></br>
         <div>
+             <button onClick={ this.listOfWeeks }>Check Date</button>
+        </div>
+       
+        <br></br>
+        <div>
             <button onClick={ this.props.weeklyMenuForm }>Edit Menu</button>
         </div>
     </div>
