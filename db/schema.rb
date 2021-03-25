@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_03_24_200032) do
+ActiveRecord::Schema.define(version: 2021_03_25_130804) do
 
   create_table "daily_menus", force: :cascade do |t|
     t.integer "weekly_menu_id", null: false
@@ -91,6 +91,7 @@ ActiveRecord::Schema.define(version: 2021_03_24_200032) do
     t.integer "user_id", null: false
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
+    t.date "start_date"
     t.index ["user_id"], name: "index_weekly_menus_on_user_id"
   end
 
