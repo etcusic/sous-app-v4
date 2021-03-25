@@ -29,11 +29,13 @@ class HomePage extends Component {
     fetch(`http://localhost:3001/users/1`)
     .then(resp =>  resp.json())
     .then(user => {
+      console.log(user.weekly_menus)
       this.setState({
         userId: user.id,
         userName: user.name,
         pantryId: user.pantry_id,
         pantry: user.pantry,
+        thisMonth: user.weekly_menus,
         weeklyMenu: [
           // change to => {:day, :meals (array of recipe ids) } => meals = [{:meal (dinner), :recipe_id, :quantity}, {...}, {...}]
           {day: "Monday", recipeId: 0, name:"", quantity: 0},
