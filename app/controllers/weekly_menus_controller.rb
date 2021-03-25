@@ -14,8 +14,9 @@ class WeeklyMenusController < ApplicationController
     end
 
     def update
-        # currently only accounting for 1 meal per daily menu
+        # currently only accounting for 1 meal per daily menu - need to account for multiple
         @daily_menus = DailyMenu.create_and_update_meals(weekly_menu_params)
+        render json: @daily_menus
     end
 
     private

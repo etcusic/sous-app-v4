@@ -6,12 +6,22 @@ class WeeklyMenu extends Component {
     constructor(){
         super()
         this.state = {
-            week: {}
+            week: {},
+            recipes: []
         }
     }
 
     componentDidMount(){
-        this.setState({ week: this.props.thisMonth[0] })
+        fetch(`http://localhost:3001/users/${this.props.userId}/recipes`)
+        .then(resp =>  resp.json())
+        .then(recipes => {
+            let obj = {0: "--------"}
+            recipes.forEach(recipe => obj[recipe.id] = recipe.name)
+            this.setState({ 
+                week: this.props.thisMonth[0],
+                recipes: obj
+            })
+        })
     }
 
     changeWeek = (event) => {
@@ -48,7 +58,7 @@ class WeeklyMenu extends Component {
                         return (
                                 <tr>
                                     <td>{menu.date} </td>
-                                    <td>{meal.recipe_name === "" ? "--------" : meal.name}</td>
+                                    <td>{this.state.recipes[meal.recipe_id]}</td>
                                     <td>{meal.quantity}</td>
                                 </tr>
                             )

@@ -133,6 +133,7 @@ class HomePage extends Component {
   }
 
   weeklyMenu = () => {
+    console.log(this.state.recipes)
     // PASS IN MENU PARAMATER - NEED TO UPDATE STATE, THEN SHOW COMPONENT - will redux solve this??
     // find recipes that match menu id's and send those specific recipes
     this.setState({ view: <WeeklyMenu 
@@ -146,8 +147,7 @@ class HomePage extends Component {
 
   updateMenu = (menu) => {
     console.log(menu)
-    // new Promise(() => this.setState({ weeklyMenu: menu })).then(this.weeklyMenu())
-    this.weeklyMenuForm()
+    new Promise(() => this.setState({ weeklyMenu: menu })).then(this.weeklyMenu())
   }
 
   weeklyMenuForm = () => {

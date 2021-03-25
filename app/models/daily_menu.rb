@@ -13,7 +13,7 @@ class DailyMenu < ApplicationRecord
 
   def get_meals
     if self.meals.length > 0 
-      self.meals  # adjust meal info in meal model
+      self.meals.map{|meal| meal.send_info}  # adjust meal info in meal model
     else
       # blank meal method in meal model ??
       [{recipe_id: 0, quantity: 0, category: "--"}]
@@ -24,7 +24,6 @@ class DailyMenu < ApplicationRecord
   def self.create_and_update_meals(daily_menus_array)
     daily_menus_array.map do |menu| 
       @daily = DailyMenu.find_by_id(menu[:id])
-      #  currently only accounting for 1 meal per daily menu 
       menu[:meals].map do |meal|
           if @daily.meals.length < 1
               new_meal = @daily.meals.build(meal).save
@@ -32,7 +31,8 @@ class DailyMenu < ApplicationRecord
               update_meal = @daily.meals[0].update(meal)
           end
       end
-  end
+      @daily.send_info
+    end
   end
 
 end

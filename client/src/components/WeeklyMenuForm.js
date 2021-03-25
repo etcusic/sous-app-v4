@@ -73,7 +73,7 @@ class WeeklyMenuForm extends Component {
                                 <td> 
                                     <select onChange={ event => this.changeMenu(event, i, j, "recipe_id") }>
                                         { Object.keys(this.state.recipes).map(key => {
-                                            if (key === meal.recipe_id) {
+                                            if (key == meal.recipe_id) {
                                                 return <option selected value={key}>{ this.state.recipes[key] }</option>
                                             } else {
                                                 return <option value={key}>{ this.state.recipes[key] }</option>
