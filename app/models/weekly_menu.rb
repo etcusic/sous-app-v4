@@ -37,8 +37,7 @@ class WeeklyMenu < ApplicationRecord
     7.times do |i|
       week << DailyMenu.find_or_create_by(weekly_menu_id: self.id, date: (self.start_date + i))
     end
-    binding.pry
-    week
+    week.map{|daily_menu| daily_menu.send_info }
   end
 
 end
