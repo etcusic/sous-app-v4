@@ -1,6 +1,25 @@
 import React, { Component } from 'react';
+import { fetchWeeklyMenu } from '../actions/index.js'
 
 class WeeklyMenu extends Component {
+
+    constructor(){
+        super()
+        this.state = {
+            week: {}
+        }
+    }
+
+    componentDidMount(){
+        this.setState({ week: this.props.thisMonth[0] })
+    }
+
+    changeWeek = (event) => {
+        console.log(event.target.value)
+        let newWeek = this.props.thisMonth.find(w => w.id == event.target.value)
+        console.log(newWeek)
+        this.setState({ week: newWeek })
+    }
 
   render() {
     return (
@@ -8,11 +27,12 @@ class WeeklyMenu extends Component {
         <h2>Weekly Menu:</h2>
         <div>
         { console.log(this.props.thisMonth) }
-            <select onClick={ event => fetchWeeklyMenu(event, this.props.userId, this.props.setMenu) }>
+            <select onChange={ event => this.changeWeek(event) }>
                 { this.props.thisMonth.map((week, i) => {
                     return <option value={ week.id }>{ `${week.days[0]} - ${week.days[6]}` }</option>
                 })}
             </select>
+            <button onClick={ event => fetchWeeklyMenu(event, this.props.userId, this.state.week.id, this.props.setMenu) }>Submit</button>
         </div>
         <table>
             <thead>
