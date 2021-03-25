@@ -5,9 +5,8 @@ class WeeklyMenusController < ApplicationController
     end
 
     def show
-        menu = WeeklyMenu.find_by_id(params[:id])
-        menu.get_daily_menus
-        binding.pry
+        @weekly_menu = WeeklyMenu.find_by_id(params[:id])
+        render json: @weekly_menu.send_info
     end
 
     def create

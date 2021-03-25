@@ -30,23 +30,14 @@ class HomePage extends Component {
     fetch(`http://localhost:3001/users/1`)
     .then(resp =>  resp.json())
     .then(user => {
+      console.log(user.this_weeks_menu)
       this.setState({
         userId: user.id,
         userName: user.name,
         pantryId: user.pantry_id,
         pantry: user.pantry,
         thisMonth: user.weekly_menus,
-        weeklyMenu: [
-          // change to => {:day, :meals (array of recipe ids) } => meals = [{:meal (dinner), :recipe_id, :quantity}, {...}, {...}]
-          {day: "Monday", recipeId: 0, name:"", quantity: 0},
-          {day: "Tuesday", recipeId: 0, name:"", quantity: 0},
-          {day: "Wednesday", recipeId: 0, name:"", quantity: 0},
-          {day: "Thursday", recipeId: 0, name:"", quantity: 0},
-          {day: "Friday", recipeId: 0, name:"", quantity: 0},
-          {day: "Saturday", recipeId: 0, name:"", quantity: 0},
-          {day: "Sunday", recipeId: 0, name:"", quantity: 0}
-        ]
-        // weeklyMenu: {"Monday": "", "Tuesday": "", "Wednesday": "", "Thursday": "", "Friday": "", "Saturday": "", "Sunday": ""}
+        weeklyMenu: user.this_weeks_menu
       })
     })
   }
@@ -138,13 +129,18 @@ class HomePage extends Component {
 
   setMenu = (weeklyMenu) => {
     console.log(weeklyMenu)
-    this.setState({ weeklyMenu: weeklyMenu })
+    // this.setState({ weeklyMenu: weeklyMenu })
   }
 
   weeklyMenu = () => {
     // PASS IN MENU PARAMATER - NEED TO UPDATE STATE, THEN SHOW COMPONENT - will redux solve this??
     // find recipes that match menu id's and send those specific recipes
-    this.setState({ view: <WeeklyMenu userId={ this.state.userId } thisMonth={ this.state.thisMonth } weeklyMenu={ this.state.weeklyMenu } weeklyMenuForm={ () => this.weeklyMenuForm(this.state.weeklyMenu) } />})
+    this.setState({ view: <WeeklyMenu 
+    userId={ this.state.userId } 
+    thisMonth={ this.state.thisMonth } 
+    weeklyMenu={ this.state.weeklyMenu } 
+    weeklyMenuForm={ () => this.weeklyMenuForm(this.state.weeklyMenu) }
+    setMenu={ this.setMenu } />})
   }
 
   updateMenu = (menu) => {

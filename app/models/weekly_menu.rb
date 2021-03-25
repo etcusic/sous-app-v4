@@ -40,4 +40,17 @@ class WeeklyMenu < ApplicationRecord
     week.map{|daily_menu| daily_menu.send_info }
   end
 
+  def send_info
+    info = {
+      id: self.id,
+      start_date: self.start_date.strftime("%A, %b %d"),
+      daily_menus: self.get_daily_menus
+    }
+  end
+
+  def self.this_weeks_menu(user_id)
+    menu = self.find_or_create_by(user_id: user_id, start_date: self.find_last_sunday(Date.today))
+    menu.send_info
+  end
+
 end
