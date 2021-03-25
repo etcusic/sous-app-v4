@@ -129,18 +129,19 @@ class HomePage extends Component {
 
   setMenu = (weeklyMenu) => {
     console.log(weeklyMenu)
-    // this.setState({ weeklyMenu: weeklyMenu })
+    this.setState({ weeklyMenu: weeklyMenu })
   }
 
   weeklyMenu = () => {
     // PASS IN MENU PARAMATER - NEED TO UPDATE STATE, THEN SHOW COMPONENT - will redux solve this??
     // find recipes that match menu id's and send those specific recipes
     this.setState({ view: <WeeklyMenu 
-    userId={ this.state.userId } 
-    thisMonth={ this.state.thisMonth } 
-    weeklyMenu={ this.state.weeklyMenu } 
-    weeklyMenuForm={ () => this.weeklyMenuForm(this.state.weeklyMenu) }
-    setMenu={ this.setMenu } />})
+                            userId={ this.state.userId } 
+                            thisMonth={ this.state.thisMonth } 
+                            weeklyMenu={ this.state.weeklyMenu } 
+                            weeklyMenuForm={ () => this.weeklyMenuForm(this.state.weeklyMenu) }
+                            setMenu={ this.setMenu } 
+                          />})
   }
 
   updateMenu = (menu) => {
@@ -148,9 +149,9 @@ class HomePage extends Component {
     new Promise(() => this.setState({ weeklyMenu: menu })).then(this.weeklyMenu())
   }
 
-  weeklyMenuForm = (menu) => {
+  weeklyMenuForm = (weeklyMenu) => {
     this.setState({ view: <WeeklyMenuForm 
-                              weeklyMenu={ menu } 
+                              weeklyMenu={ weeklyMenu } 
                               userId={ this.state.userId } 
                               method={ 'POST' }
                               updateMenu={ this.updateMenu }

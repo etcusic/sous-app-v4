@@ -44,15 +44,15 @@ class WeeklyMenu extends Component {
             </thead>
             <tbody>
                 { console.log(this.props.weeklyMenu )}
-                { this.props.weeklyMenu.map( obj => {
-                    return (
-                            <tr>
-                                <td>{obj.day} </td>
-                                <td>{obj.name === "" ? "--------" : obj.name}</td>
-                                <td>{obj.quantity}</td>
-                            </tr>
-                        )
-                })}
+                { this.props.weeklyMenu.daily_menus.map( menu => menu.meals.map( meal => {
+                        return (
+                                <tr>
+                                    <td>{menu.date} </td>
+                                    <td>{meal.recipe_name === "" ? "--------" : meal.name}</td>
+                                    <td>{meal.quantity}</td>
+                                </tr>
+                            )
+                }))}
             </tbody>
             
         </table>

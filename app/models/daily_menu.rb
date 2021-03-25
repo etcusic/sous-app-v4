@@ -16,7 +16,7 @@ class DailyMenu < ApplicationRecord
       self.meals  # adjust meal info in meal model
     else
       # blank meal method in meal model ??
-      [{recipe_id: 0, quantity: 0, category: "--"}]
+      [{recipe_id: 0, recipe_name: "", quantity: 0, category: "--"}]
     end
   end
 
