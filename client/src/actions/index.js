@@ -36,11 +36,12 @@ export const sendNewIngredient = (event, method, ingredients, pantryId, reaction
       .then(json => reaction(json))
 }
 
-export const sendWeeklyMenu = (event, userId, method, payload, reaction) => {
+export const sendWeeklyMenu = (event, userId, weeklyMenuId, payload, reaction) => {
     event.preventDefault()
-    const route = `http://localhost:3001/users/${userId}/weekly_menus`
+    console.log(payload)
+    const route = `http://localhost:3001/users/${userId}/weekly_menus/${weeklyMenuId}`
     const configObject = {
-        method: method,
+        method: 'PATCH',
         headers: {
             "Content-Type": 'application/json',
             "Accept": 'application/json'

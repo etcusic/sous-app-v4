@@ -16,8 +16,23 @@ class DailyMenu < ApplicationRecord
       self.meals  # adjust meal info in meal model
     else
       # blank meal method in meal model ??
-      [{recipe_id: 0, recipe_name: "", quantity: 0, category: "--"}]
+      [{recipe_id: 0, quantity: 0, category: "--"}]
     end
+  end
+
+  # NEEDS TO BE ABLE TO ACCOUNT FOR MULTIPLE MEALS
+  def self.create_and_update_meals(daily_menus_array)
+    daily_menus_array.map do |menu| 
+      @daily = DailyMenu.find_by_id(menu[:id])
+      #  currently only accounting for 1 meal per daily menu 
+      menu[:meals].map do |meal|
+          if @daily.meals.length < 1
+              new_meal = @daily.meals.build(meal).save
+          else
+              update_meal = @daily.meals[0].update(meal)
+          end
+      end
+  end
   end
 
 end

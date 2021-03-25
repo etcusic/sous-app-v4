@@ -146,14 +146,14 @@ class HomePage extends Component {
 
   updateMenu = (menu) => {
     console.log(menu)
-    new Promise(() => this.setState({ weeklyMenu: menu })).then(this.weeklyMenu())
+    // new Promise(() => this.setState({ weeklyMenu: menu })).then(this.weeklyMenu())
+    this.weeklyMenuForm()
   }
 
   weeklyMenuForm = () => {
     this.setState({ view: <WeeklyMenuForm 
                               weeklyMenu={ this.state.weeklyMenu } 
                               userId={ this.state.userId } 
-                              method={ 'PATCH' }
                               updateMenu={ this.updateMenu }
                           />})
   }
