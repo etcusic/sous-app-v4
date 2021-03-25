@@ -6,8 +6,9 @@ class WeeklyMenuForm extends Component {
     constructor(){
         super()
         this.state = {
-            recipes: [],
-            weeklyMenu: []
+            weeklyMenuId: 0,
+            dailyMenus: [],
+            recipes: []
         }
     }
 
@@ -16,9 +17,11 @@ class WeeklyMenuForm extends Component {
         fetch(`http://localhost:3001/users/${this.props.userId}/recipes`)
         .then(resp =>  resp.json())
         .then(recipes => {
+            console.log(this.props.weeklyMenu)
             this.setState({
-                recipes: recipes,
-                weeklyMenu: this.props.weeklyMenu
+                weeklyMenuId: this.props.weeklyMenu.id,
+                dailyMenus: this.props.weeklyMenu.dailyMenus,
+                recipes: recipes
             })
         })
     }
@@ -39,7 +42,7 @@ class WeeklyMenuForm extends Component {
     return (
     <div>
         <h2>Edit Weekly Menu:</h2>
-        <form onSubmit={ event => sendWeeklyMenu(event, this.props.userId, this.props.method, this.state.weeklyMenu, this.props.updateMenu) }>
+        {/* <form onSubmit={ event => sendWeeklyMenu(event, this.props.userId, this.props.method, this.state.weeklyMenu, this.props.updateMenu) }>
             <table>
                 <thead>
                     <tr>
@@ -74,7 +77,7 @@ class WeeklyMenuForm extends Component {
             <button onClick={ this.checkState }>Check State</button>
             <br></br><br></br>
             <input type="submit"></input>
-        </form>
+        </form> */}
         
     </div>
     );

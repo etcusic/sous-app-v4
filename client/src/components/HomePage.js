@@ -149,11 +149,11 @@ class HomePage extends Component {
     new Promise(() => this.setState({ weeklyMenu: menu })).then(this.weeklyMenu())
   }
 
-  weeklyMenuForm = (weeklyMenu) => {
+  weeklyMenuForm = () => {
     this.setState({ view: <WeeklyMenuForm 
-                              weeklyMenu={ weeklyMenu } 
+                              weeklyMenu={ this.state.weeklyMenu } 
                               userId={ this.state.userId } 
-                              method={ 'POST' }
+                              method={ 'PATCH' }
                               updateMenu={ this.updateMenu }
                           />})
   }
