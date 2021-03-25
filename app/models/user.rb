@@ -11,6 +11,7 @@ class User < ApplicationRecord
             name: self.name,
             pantry_id: self.pantry.id,
             pantry: self.pantry.ingredients_with_quantities,
+            # this_weeks_menu: WeeklyMenu.get_daily_menus(self.id, Date.today),
             weekly_menus: WeeklyMenu.get_this_month(self.id)
         }
     end

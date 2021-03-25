@@ -53,10 +53,8 @@ export const sendWeeklyMenu = (event, userId, method, payload, reaction) => {
       .then(json => reaction(json))
 }
 
-export const fetchWeeklyMenu = (event, userId, weeklyMenuId, reaction) => {
-    // event.preventDefault()
-    console.log(weeklyMenuId)
-    // fetch(`http://localhost:3001/users/${userId}/weekly_menus/${weeklyMenuId}`)
-    // .then(response => response.json())
-    // .then(json => reaction(json))
+export const fetchWeeklyMenu = (userId, weeklyMenuId, reaction) => {
+    fetch(`http://localhost:3001/users/${userId}/weekly_menus/${weeklyMenuId}`)
+    .then(response => response.json())
+    .then(json => reaction(json))
 }   

@@ -32,7 +32,7 @@ class WeeklyMenu extends Component {
                     return <option value={ week.id }>{ `${week.days[0]} - ${week.days[6]}` }</option>
                 })}
             </select>
-            <button onClick={ event => fetchWeeklyMenu(event, this.props.userId, this.state.week.id, this.props.setMenu) }>Submit</button>
+            <button onClick={ () => fetchWeeklyMenu(this.props.userId, this.state.week.id, this.props.setMenu) }>Submit</button>
         </div>
         <table>
             <thead>

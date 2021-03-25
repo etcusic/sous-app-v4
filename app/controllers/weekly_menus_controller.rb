@@ -5,6 +5,8 @@ class WeeklyMenusController < ApplicationController
     end
 
     def show
+        menu = WeeklyMenu.find_by_id(params[:id])
+        menu.get_daily_menus
         binding.pry
     end
 
@@ -19,7 +21,7 @@ class WeeklyMenusController < ApplicationController
     private
 
     def weekly_menu_params
-        
+
     end
 
 end
